@@ -1,163 +1,180 @@
 ---
-layout: '../layouts/ExhibitLayout.astro'
-title: "Linux Distros"
-author: "Surname, Firstname; Surname2, Firstname2"
-readingTime: "67 minutes"
+layout: ../layouts/ExhibitLayout.astro
+title: "Historical Computing: Evolution of Human-Computer Interaction"
+description: "A virtual exhibit about the evolution of Human-Computer Interaction."
+author: "Helaga, Raina; Lee, Jason Benedict; Maravilla, Sofia; Plurad, Venice Raeka; Ramirez, Diana Angela"
+readingTime: "10 minutes"
 ---
 
- {/* We import various Astro and React components */}
+---
+layout: ../layouts/ExhibitLayout.astro
+title: "Historical Computing: Evolution of Human-Computer Interaction"
+description: "A virtual exhibit about the evolution of Human-Computer Interaction."
+author: "Helaga, Raina; Lee, Jason Benedict; Maravilla, Sofia; Plurad, Venice Raeka; Ramirez, Diana Angela"
+readingTime: "10 minutes"
+---
 
-import TextWithImage from "../components/TextWithImage.astro"
+# Historical Computing: Evolution of Human-Computer Interaction
 
-import ImageGallery from '../components/ImageGallery.jsx';
-import DistroQuiz from "../components/DistroQuiz.jsx"
+Human-Computer Interaction, or HCI, is about how people interact with computers and technology. Over time, this interaction changed a lot. Computers started with very limited input methods like punch cards and batch processing, then later developed into command-line systems, pointing devices, graphical interfaces, touchscreens, and now voice and spatial computing.
 
-{/* Images have to be imported manually */}
+This exhibit shows the major milestones in the evolution of HCI and explains how each stage made computers easier, faster, and more natural for people to use.
 
-import cachyos from "../assets/CachyOS.png"
-import debian from "../assets/Debian.png"
-import endeavour from "../assets/Endeavour.png"
-import fedora from "../assets/Fedora.png"
-import manjaro from "../assets/Manjaro.png"
-import mint from "../assets/Mint.png"
-import mxlinux from "../assets/MX-Linux.png"
-import popos from "../assets/PopOS.png"
-import ubuntu from "../assets/Ubuntu.png"
-import zorin from "../assets/Zorin.png"
-import tux from "../assets/Tux.png"
+---
 
-{/* Used for the ImageGallery component */}
+## 1940s–1950s: Batch Processing and Punch Cards
 
-export const photos = [
-  {
-    id: 1,
-    title: "Debian",
-    tagline: "The universal operating system",
-    author: "Ian Murdock",
-    year: 1993,
-    img: debian.src,
-    url: "https://www.debian.org",
-  },
-  {
-    id: 2,
-    title: "Fedora",
-    tagline: "Freedom. Friends. Features. First.",
-    author: "Fedora Project (Red Hat)",
-    year: 2003,
-    img: fedora.src,
-    url: "https://fedoraproject.org",
-  },
-  {
-    id: 3,
-    title: "Ubuntu",
-    tagline: "Linux for human beings",
-    author: "Canonical Ltd.",
-    year: 2004,
-    img: ubuntu.src,
-    url: "https://ubuntu.com",
-  },
-  {
-    id: 4,
-    title: "Linux Mint",
-    tagline: "From freedom came elegance",
-    author: "Clément Lefèbvre",
-    year: 2006,
-    img: mint.src,
-    url: "https://linuxmint.com",
-  },
-  {
-    id: 5,
-    title: "Zorin OS",
-    tagline: "Make your computer better",
-    author: "Artyom & Kyrill Zorin",
-    year: 2009,
-    img: zorin.src,
-    url: "https://zorin.com/os/",
-  },
-  {
-    id: 6,
-    title: "Manjaro",
-    tagline: "Enjoy the simplicity",
-    author: "Manjaro GmbH & Co. KG",
-    year: 2011,
-    img: manjaro.src,
-    url: "https://manjaro.org",
-  },
-  {
-    id: 7,
-    title: "MX Linux",
-    tagline: "Simple, stable, and lightweight",
-    author: "antiX & former MEPIS communities",
-    year: 2014,
-    img: mxlinux.src,
-    url: "https://mxlinux.org",
-  },
-  {
-    id: 8,
-    title: "Pop!_OS",
-    tagline: "You're in Control",
-    author: "System76",
-    year: 2017,
-    img: popos.src,
-    url: "https://pop.system76.com",
-  },
-  {
-    id: 9,
-    title: "EndeavourOS",
-    tagline: "Start your Endeavour",
-    author: "EndeavourOS Team",
-    year: 2019,
-    img: endeavour.src,
-    url: "https://endeavouros.com",
-  },
-  {
-    id: 10,
-    title: "CachyOS",
-    tagline: "Performance-First Linux",
-    author: "Peter Jung",
-    year: 2021,
-    img: cachyos.src,
-    url: "https://cachyos.org",
-  },
-];
+During the early years of computing, users interacted with computers through punch cards and batch processing. Instructions were prepared beforehand by punching holes into cards. These cards were then processed in groups or batches by the computer.
 
-{/* Actual content */}
+This process was slow because users could not directly communicate with the computer in real time. If there was an error, the user usually had to fix the cards and wait again for the next processing cycle.
 
-# Introduction to Linux Distributions
+### Key Topics
 
-<TextWithImage
-  body="Linux is a free and open-source operating system (OS). Whereas Microsoft's Windows and Apple's MacOS are proprietary, consumer-oriented products, Linux is a system that you truly own. Its [source code is available online](https://github.com/torvalds/linux), and due to this, anyone can take the code, modify it, and redistribute it freely."
-  imageSrc={tux.src}
-  imageAlt="Image of Tux, the Linux mascot"
-  imageCaption="Tux, the Linux mascot"
-/>
+- Punch cards
+- Batch processing
+- ENIAC
+- Physical rewiring
+- Early programming
 
-*(The above is an example of a custom Astro component, \<TextWithImage>, which simply places some text beside an image. [Astro components](https://docs.astro.build/en/basics/astro-components/) are meant to provide reusable HTML templates for layouting content. Check the source code of the various components to learn more about creating them -- and if you're reading this from your IDE, run the dev server via `npm run dev` to see it render live!)*
+### Significance to HCI
 
-## Various Modern Linux Distributions
+Batch processing and punch cards were among the earliest forms of human-computer interaction. Even though the process was difficult and time-consuming, it helped build the foundation for future interfaces that became more direct and interactive.
 
-<ImageGallery photos={photos} client:load />
+---
 
-*(This \<ImageGallery> is an example of a custom React component. React components provide more interactivity than Astro components, and can keep track of state.)*
+## 1960s–1970s: Command Line Interfaces
 
-Nothing is stopping anyone from building their own "version" of Linux, but there are deeper reasons why people add on to the ever-growing pile of distros. Each one of these distros exist to solve **different problems**, such as in Debian's focus on stability going against the Arch-based distros' focus on cutting-edge software. Distros can also express **different philosophies: Fedora ships with only 100% free and open-source software out-of-the-box, while other distros, such as Ubuntu, may prioritize convenience and include proprietary drivers out of the box. The open-source nature of Linux also makes for a very **easy ecosystem** to derive from other existing distros, similar to how Manjaro built on top of Arch to provide a more user-friendly way to benefit from its rolling release model by including a pre-installed desktop environment.
+Command Line Interfaces, or CLI, allowed users to type text-based commands using keyboards and terminals. This was a big improvement compared to punch cards because users could directly enter commands and receive responses from the computer.
 
-## Distro Chooser
+However, CLI still required users to memorize commands and understand the correct syntax. This made it powerful, but also difficult for beginners.
 
-Want to see which distro fits you the best? If you're new to Linux or are thinking of switching from another distro, try out the following Distro Quiz!
+### Key Topics
 
-<DistroQuiz client:load />
+- Text-based commands
+- Keyboards and terminals
+- Early Unix systems
+- File management
 
-*(This \<DistroQuiz> is an example of a slightly more involved React component.)*
+### Significance to HCI
 
-Note that we expect a more involved output -- a real submission on Linux distros could, for example:
+CLI made computer interaction faster and more direct. Users no longer had to rely only on batch processing, but they still needed technical knowledge to use the system properly.
 
-- elaborate on each distro
-- highlight the differences between the distros' package managers and their commands
-- implement a terminal emulator sandbox that lets you input basic commands
-- implement something that shows the differences between a fixed-release and rolling-release model
+---
+
+## 1968: Pointing Devices
+
+In 1968, Douglas Engelbart introduced the computer mouse during the famous “Mother of All Demos.” The mouse became an important milestone because it allowed users to control objects on the screen using physical movement.
+
+Instead of only typing commands, users could point, select, and navigate visually. This helped prepare the way for graphical user interfaces.
+
+### Key Topics
+
+- Computer mouse
+- Pointing devices
+- Light pen and joystick comparisons
+- Interactive display workstations
+
+### Significance to HCI
+
+Pointing devices helped connect physical movement with digital actions. This made computers easier to control and helped make interaction more visual and user-friendly.
+
+---
+
+## 1980s: Graphical User Interfaces
+
+Graphical User Interfaces, or GUI, became popular in the 1980s. GUIs introduced windows, icons, menus, and pointers. Instead of typing commands, users could click on visual elements on the screen.
+
+This made computers easier for non-technical users because they no longer needed to memorize many commands.
+
+### Key Topics
+
+- Windows, icons, menus, and pointers
+- Mouse-based control
+- Desktop metaphor
+- Files, folders, and trash bin
+
+### Significance to HCI
+
+GUI made computers more accessible and easier to learn. It reduced the difficulty of using computers and introduced many design ideas that are still used in modern interfaces today.
+
+---
+
+## 2000s: Touch and Mobile Interfaces
+
+Touchscreens and mobile devices changed how people interacted with technology. Instead of using only a mouse and keyboard, users could tap, swipe, pinch, and zoom directly on the screen.
+
+This made interaction feel more natural because users could directly touch and control what they saw.
+
+### Key Topics
+
+- Capacitive touchscreens
+- Multi-touch gestures
+- Smartphones
+- Mobile interfaces
+
+### Significance to HCI
+
+Touch and mobile interfaces made technology more portable and accessible. They also made interaction easier for many users because gestures like tapping and swiping are simple and intuitive.
+
+---
+
+## Present and Future: Spatial and Voice Computing
+
+Today, HCI continues to evolve through voice assistants, augmented reality, virtual reality, and spatial computing. These technologies allow users to interact with computers using speech, gestures, and immersive environments.
+
+Instead of only clicking, typing, or touching, users can now speak commands, move through virtual spaces, and interact with digital objects in more natural ways.
+
+### Key Topics
+
+- Voice assistants
+- Augmented reality and virtual reality
+- Spatial mapping
+- Brain-computer interfaces
+
+### Significance to HCI
+
+Spatial and voice computing show how interaction is becoming more conversational and immersive. These technologies may shape the future of computing by making digital systems feel more natural and human-centered.
+
+---
+
+## Interactive Elements
+
+Our exhibit will include interactive elements to help users understand the evolution of HCI in a more engaging way.
+
+### Interactive Timeline
+
+Users can click different HCI milestones from the 1940s up to the present. When a milestone is selected, the page will show the related overview, key topics, media, and significance.
+
+### Punch Card Simulator
+
+Users can type a short word or number, and the page will show a simplified punch card pattern. This helps demonstrate how early computers stored and processed information.
+
+### CLI Terminal Simulator
+
+Users can type simple commands into a terminal-style interface. The simulator will respond with preset outputs to show how command-line interaction works.
+
+### Mini Desktop Simulator
+
+Users can interact with a simple desktop interface inspired by early graphical user interfaces. This can include draggable icons and clickable windows.
+
+### Voice Command Simulation
+
+Users can type a voice-style command, and the interface will show a response. This represents how modern voice assistants interpret commands and perform actions.
+
+---
+
+## Conclusion
+
+The evolution of HCI shows how computers changed from difficult and technical machines into tools that are easier for people to use. From punch cards to voice assistants, each stage made interaction faster, more visual, and more natural.
+
+By understanding this history, users can see how past innovations shaped the technology we use today and how future interfaces may become even more seamless and human-centered.
+
+---
 
 ## References
 
-- Distro images retrieved from https://www.tecmint.com/top-most-popular-linux-distributions/
-- Tux image retrieved from https://en.wikipedia.org/wiki/Tux_(mascot)#/media/File:Tux.svg
+- Computer History Museum. “Timeline of Computer History.”
+- Stanford Research Institute. “Douglas Engelbart and the Mouse.”
+- MDX Documentation. “What is MDX?”
+- Astro Documentation. “Astro Framework.”
+- Apple. “iPhone and Multi-Touch Interface.”
