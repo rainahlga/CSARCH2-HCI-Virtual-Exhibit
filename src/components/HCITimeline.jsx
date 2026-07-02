@@ -4,8 +4,10 @@ const milestones = [
   {
     year: "1940s–1950s",
     title: "Batch Processing and Punch Cards",
+    overview:
+      "During the early years of computing, users interacted with computers through punch cards and batch processing. Instructions were prepared beforehand by punching holes into cards, which were then processed in groups or batches.",
     artifact:
-      "Punch cards were used as one of the earliest ways to give instructions and data to computers.",
+      "Punch cards were used as one of the earliest ways to store instructions and data for computers.",
     topics: [
       "Punch cards",
       "Batch processing",
@@ -14,15 +16,17 @@ const milestones = [
       "Early programming",
     ],
     media:
-      "Imagine preparing a stack of punched cards first, then submitting them to the computer for processing.",
+      "This era can be represented through an image or simulation of a punch card to show how data was encoded using holes.",
     significance:
-      "This stage shows how limited early human-computer interaction was. Users could not directly talk to the computer in real time, but this became the foundation for future interfaces.",
+      "This stage shows how limited early human-computer interaction was. Users could not directly communicate with the computer in real time, but punch cards helped build the foundation for future computer interfaces.",
   },
   {
     year: "1960s–1970s",
     title: "Command Line Interfaces",
+    overview:
+      "Command Line Interfaces allowed users to interact with computers by typing text-based commands through keyboards and terminals. This gave users more direct control compared to punch cards.",
     artifact:
-      "Terminals and keyboards allowed users to type commands directly into the computer.",
+      "Computer terminals and keyboards became important tools for entering commands directly into a computer system.",
     topics: [
       "Text-based commands",
       "Keyboards",
@@ -31,15 +35,17 @@ const milestones = [
       "File management",
     ],
     media:
-      "A command-line interface uses typed commands instead of buttons, icons, or touch gestures.",
+      "This era can be shown through a terminal-style interface where users type simple commands and receive preset responses.",
     significance:
-      "CLI made interaction faster and more direct compared to punch cards. However, users still needed to memorize commands and use the correct syntax.",
+      "CLI made computer interaction faster and more direct. However, users still needed to memorize commands and use the correct syntax, which made it difficult for beginners.",
   },
   {
     year: "1968",
     title: "Pointing Devices",
+    overview:
+      "The computer mouse became a major milestone in HCI after Douglas Engelbart introduced it during the famous Mother of All Demos. It allowed users to control items on a screen through physical movement.",
     artifact:
-      "Douglas Engelbart introduced the computer mouse during the famous Mother of All Demos.",
+      "The computer mouse became a key pointing device that connected hand movement to digital screen movement.",
     topics: [
       "Computer mouse",
       "Pointing devices",
@@ -48,15 +54,17 @@ const milestones = [
       "Interactive display workstations",
     ],
     media:
-      "The mouse connected physical hand movement to movement on a digital screen.",
+      "This era can include an image or video reference of the early computer mouse and pointing-device demonstrations.",
     significance:
-      "Pointing devices made computers easier to control because users could point, select, and navigate visually instead of only typing commands.",
+      "Pointing devices helped users point, select, and navigate visually instead of only typing commands. This supported the development of graphical user interfaces.",
   },
   {
     year: "1980s",
     title: "Graphical User Interfaces",
+    overview:
+      "Graphical User Interfaces became popular in the 1980s. They introduced windows, icons, menus, and pointers, allowing users to interact with visual elements instead of typing every command.",
     artifact:
-      "Graphical User Interfaces introduced windows, icons, menus, and pointers.",
+      "The desktop interface became a major artifact of this era, using icons, folders, menus, and windows.",
     topics: [
       "Windows",
       "Icons",
@@ -66,15 +74,17 @@ const milestones = [
       "Files and folders",
     ],
     media:
-      "Users could click visual elements on the screen instead of typing every instruction.",
+      "This era can be represented through a mini desktop simulator inspired by early graphical interfaces.",
     significance:
-      "GUI made computers easier for non-technical users. It reduced the need to memorize commands and made interaction more visual and user-friendly.",
+      "GUI made computers easier for non-technical users. It reduced the need to memorize commands and made computer interaction more visual, intuitive, and accessible.",
   },
   {
     year: "2000s",
     title: "Touch and Mobile Interfaces",
+    overview:
+      "Touchscreens and mobile devices changed how users interacted with technology. Users could tap, swipe, pinch, and zoom directly on the screen.",
     artifact:
-      "Touchscreens allowed users to tap, swipe, pinch, and zoom directly on the screen.",
+      "Smartphones and capacitive touchscreens became important artifacts of touch-based interaction.",
     topics: [
       "Capacitive touchscreens",
       "Multi-touch gestures",
@@ -83,15 +93,17 @@ const milestones = [
       "Direct manipulation",
     ],
     media:
-      "Touch interaction made digital devices feel more natural because users could directly control what they saw.",
+      "This era can include examples of touch gestures like tapping, swiping, pinching, and zooming.",
     significance:
-      "Touch and mobile interfaces made computing more portable, accessible, and intuitive for many users.",
+      "Touch and mobile interfaces made computing more portable and natural. Users could directly control what they saw on the screen, making technology easier to use.",
   },
   {
     year: "Present",
     title: "Spatial and Voice Computing",
+    overview:
+      "Modern HCI includes voice assistants, augmented reality, virtual reality, and spatial computing. These technologies allow users to interact through speech, gestures, and immersive spaces.",
     artifact:
-      "Voice assistants, AR, VR, and spatial computing are modern forms of human-computer interaction.",
+      "Voice assistants, AR/VR devices, and spatial computing systems represent the current and future direction of HCI.",
     topics: [
       "Voice assistants",
       "Augmented reality",
@@ -100,17 +112,17 @@ const milestones = [
       "Brain-computer interfaces",
     ],
     media:
-      "Users can now speak commands, use gestures, and interact with digital objects in immersive spaces.",
+      "This era can be represented through a voice command simulation where users type a voice-style command and receive a response.",
     significance:
-      "Modern HCI is becoming more conversational and immersive. Instead of only clicking or typing, users can interact with technology in more natural ways.",
+      "Modern HCI is becoming more conversational and immersive. Instead of only clicking or typing, users can interact with technology in more natural and human-centered ways.",
   },
 ];
 
-const tabs = ["Featured Artifact", "Key Topics", "Media", "Significance"];
+const tabs = ["Overview", "Featured Artifact", "Key Topics", "Media", "Significance"];
 
 export default function HCITimeline() {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [activeTab, setActiveTab] = useState("Featured Artifact");
+  const [activeTab, setActiveTab] = useState("Overview");
 
   const selectedMilestone = milestones[selectedIndex];
 
@@ -127,7 +139,7 @@ export default function HCITimeline() {
             }
             onClick={() => {
               setSelectedIndex(index);
-              setActiveTab("Featured Artifact");
+              setActiveTab("Overview");
             }}
           >
             {milestone.year}
@@ -153,6 +165,8 @@ export default function HCITimeline() {
         </div>
 
         <div className="tab-content">
+          {activeTab === "Overview" && <p>{selectedMilestone.overview}</p>}
+
           {activeTab === "Featured Artifact" && (
             <p>{selectedMilestone.artifact}</p>
           )}
