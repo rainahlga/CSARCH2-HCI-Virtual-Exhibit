@@ -1,25 +1,31 @@
 import { useState } from "react";
 
 /*
-  Later, your groupmates can create their own components inside src/components
-  and import them here.
+  HOW GROUPMATES CAN ADD FEATURES LATER:
 
-  Example:
-  import PunchCardSimulator from "./PunchCardSimulator.jsx";
-  import CLITerminal from "./CLITerminal.jsx";
-  import MiniDesktop from "./MiniDesktop.jsx";
-  import VoiceCommand from "./VoiceCommand.jsx";
+  1. Create their component in src/components
+     Example:
+     PunchCardSimulator.jsx
+     CLITerminal.jsx
+     MiniDesktop.jsx
+     VoiceCommand.jsx
 
-  Then replace the placeholder component inside the milestones array.
+  2. Import it here:
+     import PunchCardSimulator from "./PunchCardSimulator.jsx";
+
+  3. Replace the placeholder in the correct era:
+     interactiveComponent: <PunchCardSimulator />,
+
+  This keeps the whole website as an interactive timeline while still letting
+  each member add their own interactive part per era.
 */
 
-function PlaceholderDemo({ title, assignedTo, description }) {
+function PlaceholderFeature({ title, text }) {
   return (
-    <div className="demo-box">
-      <p className="demo-label">Interactive Component Slot</p>
+    <div className="feature-placeholder">
+      <p className="feature-label">Interactive Feature Slot</p>
       <h4>{title}</h4>
-      <p>{description}</p>
-      <p className="assigned">Assigned to: {assignedTo}</p>
+      <p>{text}</p>
     </div>
   );
 }
@@ -29,57 +35,57 @@ const milestones = [
     year: "1940s–1950s",
     shortTitle: "Punch Cards",
     title: "Batch Processing and Punch Cards",
-    subtitle: "The earliest stage of computer interaction",
+    subtitle: "Early computing through prepared input",
     overview:
       "During the early years of computing, users interacted with computers through punch cards and batch processing. Instructions were prepared beforehand by punching holes into cards, which were then processed in groups or batches.",
-    artifact: "Featured Artifact: Punch Card",
-    artifactDescription:
+    artifactTitle: "Punch Card",
+    artifactText:
       "Punch cards stored instructions and data using holes. Users had to prepare the cards before submitting them to the computer.",
     topics: [
-      "Punch cards",
-      "Batch processing",
+      "Punch Cards",
+      "Batch Processing",
       "ENIAC",
-      "Physical rewiring",
-      "Early programming",
+      "Physical Rewiring",
+      "Early Programming",
     ],
-    demoTitle: "Punch Card Simulator",
-    demoComponent: (
-      <PlaceholderDemo
+    media:
+      "This section can show a punch card visual or simulator to demonstrate how early computers received instructions.",
+    significance:
+      "This stage shows how limited early human-computer interaction was. Users could not communicate with the computer in real time, but this became the foundation for future interfaces.",
+    interactiveComponent: (
+      <PlaceholderFeature
         title="Punch Card Simulator"
-        assignedTo="Diana"
-        description="Diana can replace this slot with a simulator where users type a word or number and see a simplified punch card pattern."
+        text="A simulator can be placed here where users type a short word or number and see a simplified punch card pattern."
       />
     ),
-    significance:
-      "This stage shows how limited early HCI was. Users could not directly communicate with the computer in real time, but it became the foundation for future interfaces.",
   },
   {
     year: "1960s–1970s",
     shortTitle: "CLI",
     title: "Command Line Interfaces",
-    subtitle: "Typing commands directly into the machine",
+    subtitle: "Interaction through typed commands",
     overview:
       "Command Line Interfaces allowed users to interact with computers by typing text-based commands through keyboards and terminals. This gave users more direct control compared to punch cards.",
-    artifact: "Featured Artifact: Computer Terminal",
-    artifactDescription:
+    artifactTitle: "Computer Terminal",
+    artifactText:
       "Terminals and keyboards allowed users to enter commands and receive computer responses through text.",
     topics: [
-      "Text-based commands",
+      "Text-Based Commands",
       "Keyboards",
-      "Computer terminals",
-      "Early Unix systems",
-      "File management",
+      "Computer Terminals",
+      "Early Unix Systems",
+      "File Management",
     ],
-    demoTitle: "CLI Terminal Simulator",
-    demoComponent: (
-      <PlaceholderDemo
+    media:
+      "This section can show a terminal-style interface where users type commands and receive preset responses.",
+    significance:
+      "CLI made computer interaction faster and more direct. However, users still needed to memorize commands and use the correct syntax.",
+    interactiveComponent: (
+      <PlaceholderFeature
         title="CLI Terminal Simulator"
-        assignedTo="Venice"
-        description="Venice can replace this slot with a terminal-style interface where users type commands and receive preset responses."
+        text="A terminal simulator can be placed here where users enter simple commands and receive system-like responses."
       />
     ),
-    significance:
-      "CLI made interaction faster and more direct. However, users still needed to memorize commands and use the correct syntax.",
   },
   {
     year: "1968",
@@ -88,26 +94,26 @@ const milestones = [
     subtitle: "Physical movement becomes digital control",
     overview:
       "The computer mouse became a major milestone in HCI after Douglas Engelbart introduced it during the famous Mother of All Demos. It allowed users to control items on a screen through physical movement.",
-    artifact: "Featured Artifact: Computer Mouse",
-    artifactDescription:
-      "The mouse connected physical hand movement to digital screen movement, making navigation easier.",
+    artifactTitle: "Computer Mouse",
+    artifactText:
+      "The mouse connected hand movement to digital screen movement, making navigation easier and more visual.",
     topics: [
-      "Computer mouse",
-      "Pointing devices",
-      "Light pen",
-      "Joystick comparison",
-      "Interactive display workstations",
+      "Computer Mouse",
+      "Pointing Devices",
+      "Light Pen",
+      "Joystick Comparison",
+      "Interactive Display Workstations",
     ],
-    demoTitle: "Pointing Device Interaction",
-    demoComponent: (
-      <PlaceholderDemo
+    media:
+      "This section can show the early computer mouse and how pointing devices changed computer navigation.",
+    significance:
+      "Pointing devices helped users point, select, and navigate visually instead of only typing commands. This supported the development of graphical user interfaces.",
+    interactiveComponent: (
+      <PlaceholderFeature
         title="Pointing Device Interaction"
-        assignedTo="Raina / Optional"
-        description="This slot can stay as an explanation, or later be changed into a small mouse/pointing interaction demo."
+        text="A small mouse or pointing interaction can be added here if the group wants to expand this era."
       />
     ),
-    significance:
-      "Pointing devices helped users point, select, and navigate visually. This supported the development of graphical user interfaces.",
   },
   {
     year: "1980s",
@@ -116,612 +122,489 @@ const milestones = [
     subtitle: "Windows, icons, menus, and pointers",
     overview:
       "Graphical User Interfaces became popular in the 1980s. They introduced windows, icons, menus, and pointers, allowing users to interact with visual elements instead of typing every command.",
-    artifact: "Featured Artifact: Desktop Interface",
-    artifactDescription:
+    artifactTitle: "Desktop Interface",
+    artifactText:
       "The desktop interface used icons, folders, windows, and menus to make computers easier to understand.",
     topics: [
       "Windows",
       "Icons",
       "Menus",
       "Pointers",
-      "Desktop metaphor",
-      "Files and folders",
+      "Desktop Metaphor",
+      "Files and Folders",
     ],
-    demoTitle: "Mini Desktop Simulator",
-    demoComponent: (
-      <PlaceholderDemo
-        title="Mini Desktop Simulator"
-        assignedTo="Jason"
-        description="Jason can replace this slot with a mini desktop simulator with clickable windows and draggable icons."
-      />
-    ),
+    media:
+      "This section can show a mini desktop simulator inspired by early graphical user interfaces.",
     significance:
       "GUI made computers easier for non-technical users. It reduced the need to memorize commands and made computer interaction more visual and accessible.",
+    interactiveComponent: (
+      <PlaceholderFeature
+        title="Mini Desktop Simulator"
+        text="A mini desktop simulator can be placed here with clickable windows and draggable icons."
+      />
+    ),
   },
   {
     year: "2000s",
     shortTitle: "Touch",
     title: "Touch and Mobile Interfaces",
-    subtitle: "Direct interaction through tapping and swiping",
+    subtitle: "Direct interaction through touch",
     overview:
       "Touchscreens and mobile devices changed how users interacted with technology. Users could tap, swipe, pinch, and zoom directly on the screen.",
-    artifact: "Featured Artifact: Smartphone Touchscreen",
-    artifactDescription:
+    artifactTitle: "Smartphone Touchscreen",
+    artifactText:
       "Smartphones and capacitive touchscreens made interaction more direct because users could control what they saw on the screen.",
     topics: [
-      "Capacitive touchscreens",
-      "Multi-touch gestures",
+      "Capacitive Touchscreens",
+      "Multi-Touch Gestures",
       "Smartphones",
-      "Mobile interfaces",
-      "Direct manipulation",
+      "Mobile Interfaces",
+      "Direct Manipulation",
     ],
-    demoTitle: "Touch Gesture Interaction",
-    demoComponent: (
-      <PlaceholderDemo
-        title="Touch Gesture Interaction"
-        assignedTo="Optional"
-        description="This slot can show a simple tap, swipe, or pinch explanation if the group decides to add one later."
-      />
-    ),
+    media:
+      "This section can show examples of common touch gestures such as tapping, swiping, pinching, and zooming.",
     significance:
       "Touch and mobile interfaces made computing more portable and intuitive. They made technology easier to use for more people.",
+    interactiveComponent: (
+      <PlaceholderFeature
+        title="Touch Gesture Interaction"
+        text="A touch gesture demo can be added here if the group wants to include an extra feature for this era."
+      />
+    ),
   },
   {
     year: "Present/Future",
     shortTitle: "Voice & Spatial",
     title: "Spatial and Voice Computing",
-    subtitle: "Interaction through speech, space, and immersion",
+    subtitle: "Interaction through speech and space",
     overview:
       "Modern HCI includes voice assistants, augmented reality, virtual reality, and spatial computing. These technologies allow users to interact through speech, gestures, and immersive spaces.",
-    artifact: "Featured Artifact: Voice Assistants and AR/VR Devices",
-    artifactDescription:
+    artifactTitle: "Voice Assistants and AR/VR Devices",
+    artifactText:
       "Voice assistants and spatial devices represent the current and future direction of human-computer interaction.",
     topics: [
-      "Voice assistants",
-      "Augmented reality",
-      "Virtual reality",
-      "Spatial mapping",
-      "Brain-computer interfaces",
+      "Voice Assistants",
+      "Augmented Reality",
+      "Virtual Reality",
+      "Spatial Mapping",
+      "Brain-Computer Interfaces",
     ],
-    demoTitle: "Voice Command Simulator",
-    demoComponent: (
-      <PlaceholderDemo
-        title="Voice Command Simulator"
-        assignedTo="Sofia"
-        description="Sofia can replace this slot with a voice command simulator where users type a voice-style command and receive a response."
-      />
-    ),
+    media:
+      "This section can show a voice command simulation where users type a voice-style command and receive a response.",
     significance:
       "Modern HCI is becoming more conversational and immersive. Instead of only clicking or typing, users can interact with technology in more natural and human-centered ways.",
+    interactiveComponent: (
+      <PlaceholderFeature
+        title="Voice Command Simulator"
+        text="A voice command simulator can be placed here where users type a command and receive a response."
+      />
+    ),
   },
 ];
 
-const tabs = ["Overview", "Artifact", "Key Topics", "Interactive Demo", "Significance"];
+const tabs = ["Featured Artifact", "Key Topics", "Media", "Significance"];
 
 export default function HCITimeline() {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [activeTab, setActiveTab] = useState("Overview");
+  const [activeTab, setActiveTab] = useState("Featured Artifact");
 
   const selected = milestones[selectedIndex];
-  const progress = ((selectedIndex + 1) / milestones.length) * 100;
 
   function goPrevious() {
     setSelectedIndex((current) =>
       current === 0 ? milestones.length - 1 : current - 1
     );
-    setActiveTab("Overview");
+    setActiveTab("Featured Artifact");
   }
 
   function goNext() {
     setSelectedIndex((current) =>
       current === milestones.length - 1 ? 0 : current + 1
     );
-    setActiveTab("Overview");
+    setActiveTab("Featured Artifact");
   }
 
   return (
-    <main className="hci-site">
-      <section className="hero">
-        <p className="eyebrow">Historical Computing</p>
-        <h1>Evolution of Human-Computer Interaction</h1>
-        <p className="hero-text">
-          Explore how human-computer interaction evolved from punch cards and
-          command lines to graphical interfaces, touchscreens, voice assistants,
-          and spatial computing.
-        </p>
+    <main className="timeline-page">
+      <section className="timeline-layout">
+        <aside className="timeline-sidebar">
+          <div className="line"></div>
 
-        <div className="group-info">
-          <span>Group 8 [S02]</span>
-          <span>Helaga • Lee • Maravilla • Plurad • Ramirez</span>
-        </div>
-      </section>
+          {milestones.map((milestone, index) => (
+            <button
+              key={milestone.title}
+              className={
+                selectedIndex === index ? "era-button active" : "era-button"
+              }
+              onClick={() => {
+                setSelectedIndex(index);
+                setActiveTab("Featured Artifact");
+              }}
+            >
+              <span className="era-year">{milestone.year}</span>
+              <span className="era-name">{milestone.shortTitle}</span>
+            </button>
+          ))}
+        </aside>
 
-      <section className="timeline-shell">
-        <div className="timeline-header">
-          <div>
-            <p className="section-label">Interactive Timeline</p>
-            <h2>{selected.title}</h2>
-            <p className="subtitle">{selected.subtitle}</p>
+        <section className="main-panel">
+          <div className="top-row">
+            <div>
+              <p className="small-title">Human Computer Interaction:</p>
+              <h1>{selected.title}</h1>
+              <p className="subtitle">{selected.subtitle}</p>
+            </div>
+
+            <div className="year-box">{selected.year}</div>
           </div>
 
-          <div className="year-card">
-            <span>{selected.year}</span>
+          <div className="overview-box">
+            <p>{selected.overview}</p>
           </div>
-        </div>
 
-        <div className="progress-track">
-          <div className="progress-fill" style={{ width: `${progress}%` }} />
-        </div>
-
-        <div className="timeline-layout">
-          <aside className="timeline-nav">
-            {milestones.map((milestone, index) => (
+          <div className="tab-row">
+            {tabs.map((tab) => (
               <button
-                key={milestone.title}
-                className={
-                  selectedIndex === index
-                    ? "milestone-button active"
-                    : "milestone-button"
-                }
-                onClick={() => {
-                  setSelectedIndex(index);
-                  setActiveTab("Overview");
-                }}
+                key={tab}
+                className={activeTab === tab ? "tab active-tab" : "tab"}
+                onClick={() => setActiveTab(tab)}
               >
-                <span className="milestone-year">{milestone.year}</span>
-                <span className="milestone-title">{milestone.shortTitle}</span>
+                {tab}
               </button>
             ))}
-          </aside>
-
-          <section className="content-panel">
-            <div className="tab-row">
-              {tabs.map((tab) => (
-                <button
-                  key={tab}
-                  className={activeTab === tab ? "tab active-tab" : "tab"}
-                  onClick={() => setActiveTab(tab)}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-
-            <div className="content-card">
-              {activeTab === "Overview" && (
-                <>
-                  <h3>Overview</h3>
-                  <p>{selected.overview}</p>
-                </>
-              )}
-
-              {activeTab === "Artifact" && (
-                <>
-                  <h3>{selected.artifact}</h3>
-                  <p>{selected.artifactDescription}</p>
-                </>
-              )}
-
-              {activeTab === "Key Topics" && (
-                <>
-                  <h3>Key Topics</h3>
-                  <div className="topic-grid">
-                    {selected.topics.map((topic) => (
-                      <span key={topic} className="topic-pill">
-                        {topic}
-                      </span>
-                    ))}
-                  </div>
-                </>
-              )}
-
-              {activeTab === "Interactive Demo" && (
-                <>
-                  <h3>{selected.demoTitle}</h3>
-                  {selected.demoComponent}
-                </>
-              )}
-
-              {activeTab === "Significance" && (
-                <>
-                  <h3>Significance to HCI</h3>
-                  <p>{selected.significance}</p>
-                </>
-              )}
-            </div>
-
-            <div className="controls">
-              <button onClick={goPrevious}>← Previous Era</button>
-              <button onClick={goNext}>Next Era →</button>
-            </div>
-          </section>
-        </div>
-      </section>
-
-      <section className="member-section">
-        <p className="section-label">Interactive Element Assignments</p>
-        <div className="member-grid">
-          <div>
-            <strong>Timeline</strong>
-            <span>Raina</span>
           </div>
-          <div>
-            <strong>Punch Card</strong>
-            <span>Diana</span>
-          </div>
-          <div>
-            <strong>CLI</strong>
-            <span>Venice</span>
-          </div>
-          <div>
-            <strong>Mini Desktop</strong>
-            <span>Jason</span>
-          </div>
-          <div>
-            <strong>Voice Command</strong>
-            <span>Sofia</span>
-          </div>
-        </div>
-      </section>
 
-      <section className="references">
-        <p className="section-label">References</p>
-        <ul>
-          <li>Computer History Museum. “Timeline of Computer History.”</li>
-          <li>Stanford Research Institute. “Douglas Engelbart and the Mouse.”</li>
-          <li>MDX Documentation. “What is MDX?”</li>
-          <li>Astro Documentation. “Astro Framework.”</li>
-          <li>Apple. “iPhone and Multi-Touch Interface.”</li>
-        </ul>
+          <div className="content-box">
+            {activeTab === "Featured Artifact" && (
+              <>
+                <h2>{selected.artifactTitle}</h2>
+                <p>{selected.artifactText}</p>
+                {selected.interactiveComponent}
+              </>
+            )}
+
+            {activeTab === "Key Topics" && (
+              <>
+                <h2>Key Topics</h2>
+                <div className="topic-list">
+                  {selected.topics.map((topic) => (
+                    <span key={topic}>{topic}</span>
+                  ))}
+                </div>
+              </>
+            )}
+
+            {activeTab === "Media" && (
+              <>
+                <h2>Media</h2>
+                <p>{selected.media}</p>
+              </>
+            )}
+
+            {activeTab === "Significance" && (
+              <>
+                <h2>Significance to HCI</h2>
+                <p>{selected.significance}</p>
+              </>
+            )}
+          </div>
+
+          <div className="nav-controls">
+            <button onClick={goPrevious}>← Previous</button>
+            <button onClick={goNext}>Next →</button>
+          </div>
+        </section>
       </section>
 
       <style>{`
-        .hci-site {
+        .timeline-page {
           min-height: 100vh;
-          background:
-            radial-gradient(circle at top left, rgba(156, 163, 175, 0.3), transparent 30%),
-            linear-gradient(135deg, #050505, #111827 55%, #020617);
-          color: #f9fafb;
+          background: #ffffff;
+          color: #111111;
           padding: 2rem;
-          border-radius: 24px;
-        }
-
-        .hero {
-          max-width: 950px;
-          margin: 0 auto 2rem auto;
-          text-align: center;
-          padding: 3rem 1rem 2rem;
-        }
-
-        .eyebrow,
-        .section-label {
-          text-transform: uppercase;
-          letter-spacing: 3px;
-          color: #9ca3af;
-          font-weight: 800;
-          font-size: 0.85rem;
-        }
-
-        .hero h1 {
-          font-size: clamp(2rem, 6vw, 4.8rem);
-          line-height: 1;
-          margin: 0.5rem 0 1rem;
-          text-transform: uppercase;
-        }
-
-        .hero-text {
-          max-width: 780px;
-          margin: 0 auto;
-          color: #d1d5db;
-          font-size: 1.1rem;
-          line-height: 1.7;
-        }
-
-        .group-info {
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-          gap: 0.8rem;
-          margin-top: 1.5rem;
-        }
-
-        .group-info span {
-          background: rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          padding: 0.7rem 1rem;
-          border-radius: 999px;
-          color: #e5e7eb;
-        }
-
-        .timeline-shell {
-          max-width: 1200px;
-          margin: 0 auto;
-          background: rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          border-radius: 28px;
-          padding: 1.5rem;
-          backdrop-filter: blur(10px);
-        }
-
-        .timeline-header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 1rem;
-          padding: 1rem;
-        }
-
-        .timeline-header h2 {
-          font-size: clamp(1.6rem, 4vw, 3rem);
-          margin: 0.3rem 0;
-          text-transform: uppercase;
-        }
-
-        .subtitle {
-          color: #d1d5db;
-          margin: 0;
-        }
-
-        .year-card {
-          background: #f9fafb;
-          color: #111827;
-          font-weight: 900;
-          padding: 1rem 1.2rem;
-          border-radius: 18px;
-          min-width: 140px;
-          text-align: center;
-        }
-
-        .progress-track {
-          height: 10px;
-          background: rgba(255, 255, 255, 0.16);
-          border-radius: 999px;
-          overflow: hidden;
-          margin: 0.5rem 1rem 1.5rem;
-        }
-
-        .progress-fill {
-          height: 100%;
-          background: #f9fafb;
-          border-radius: 999px;
-          transition: width 0.3s ease;
+          font-family: Arial, Helvetica, sans-serif;
         }
 
         .timeline-layout {
+          max-width: 1200px;
+          margin: 0 auto;
           display: grid;
-          grid-template-columns: 230px 1fr;
-          gap: 1.2rem;
+          grid-template-columns: 210px 1fr;
+          gap: 2rem;
+          align-items: start;
         }
 
-        .timeline-nav {
+        .timeline-sidebar {
+          position: sticky;
+          top: 2rem;
           display: flex;
           flex-direction: column;
-          gap: 0.8rem;
+          gap: 1rem;
+          padding: 1.5rem 0 1.5rem 1.2rem;
+          min-height: 650px;
         }
 
-        .milestone-button {
+        .line {
+          position: absolute;
+          left: 0.45rem;
+          top: 2rem;
+          bottom: 2rem;
+          width: 4px;
+          background: #111111;
+          border-radius: 999px;
+        }
+
+        .era-button {
+          position: relative;
+          z-index: 1;
+          border: 3px solid #111111;
+          background: #d9d9d9;
+          color: #111111;
+          border-radius: 999px;
+          padding: 0.9rem 1rem;
           text-align: left;
-          border: 1px solid rgba(255, 255, 255, 0.18);
-          background: rgba(255, 255, 255, 0.08);
-          color: #f9fafb;
-          border-radius: 18px;
-          padding: 1rem;
           cursor: pointer;
           transition: 0.2s ease;
+          box-shadow: 4px 4px 0 #111111;
         }
 
-        .milestone-button:hover {
-          transform: translateX(4px);
-          background: rgba(255, 255, 255, 0.15);
+        .era-button:hover {
+          transform: translate(-2px, -2px);
+          box-shadow: 6px 6px 0 #111111;
+          background: #ffffff;
         }
 
-        .milestone-button.active {
-          background: #f9fafb;
-          color: #111827;
+        .era-button.active {
+          background: #111111;
+          color: #ffffff;
         }
 
-        .milestone-year,
-        .milestone-title {
+        .era-year {
           display: block;
+          font-size: 0.78rem;
+          font-weight: 900;
+          letter-spacing: 1px;
         }
 
-        .milestone-year {
-          font-weight: 900;
-          font-size: 0.85rem;
-          color: inherit;
-          opacity: 0.75;
-        }
-
-        .milestone-title {
-          font-weight: 900;
+        .era-name {
+          display: block;
           font-size: 1rem;
+          font-weight: 900;
+          text-transform: uppercase;
           margin-top: 0.2rem;
         }
 
-        .content-panel {
-          background: #f9fafb;
-          color: #111827;
-          border-radius: 24px;
+        .main-panel {
+          border: 4px solid #111111;
+          border-radius: 22px;
+          padding: 2rem;
+          background: #ffffff;
+          box-shadow: 8px 8px 0 #111111;
+        }
+
+        .top-row {
+          display: flex;
+          justify-content: space-between;
+          gap: 1.5rem;
+          align-items: flex-start;
+        }
+
+        .small-title {
+          margin: 0;
+          color: #777777;
+          font-weight: 900;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+        }
+
+        h1 {
+          font-size: clamp(2rem, 5vw, 4.2rem);
+          line-height: 0.95;
+          text-transform: uppercase;
+          margin: 0.4rem 0;
+          max-width: 760px;
+        }
+
+        .subtitle {
+          font-size: 1.05rem;
+          color: #444444;
+          font-weight: 700;
+          margin-top: 0.7rem;
+        }
+
+        .year-box {
+          min-width: 150px;
+          background: #111111;
+          color: #ffffff;
+          border-radius: 18px;
           padding: 1rem;
+          font-weight: 900;
+          text-align: center;
+          border: 3px solid #111111;
+        }
+
+        .overview-box {
+          margin: 1.5rem 0;
+          background: #e6e6e6;
+          border: 3px solid #111111;
+          border-radius: 18px;
+          padding: 1.2rem;
+          line-height: 1.7;
+          font-weight: 600;
         }
 
         .tab-row {
           display: flex;
           flex-wrap: wrap;
           gap: 0.5rem;
-          margin-bottom: 1rem;
+          margin-top: 1.5rem;
         }
 
         .tab {
-          border: none;
-          border-radius: 999px;
-          padding: 0.75rem 1rem;
-          background: #e5e7eb;
-          color: #111827;
-          font-weight: 800;
+          border: 3px solid #111111;
+          background: #111111;
+          color: #ffffff;
+          padding: 0.9rem 1.1rem;
+          border-radius: 14px 14px 0 0;
+          font-weight: 900;
           cursor: pointer;
         }
 
         .tab:hover {
-          background: #d1d5db;
+          background: #333333;
         }
 
         .active-tab {
-          background: #111827;
-          color: #f9fafb;
+          background: #bcbcbc;
+          color: #111111;
+          border-bottom-color: #bcbcbc;
         }
 
-        .content-card {
-          min-height: 280px;
-          background: #ffffff;
-          border-radius: 20px;
+        .content-box {
+          background: #bcbcbc;
+          border: 3px solid #111111;
+          border-radius: 0 18px 18px 18px;
           padding: 1.5rem;
-          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+          min-height: 260px;
+          line-height: 1.7;
         }
 
-        .content-card h3 {
+        .content-box h2 {
           margin-top: 0;
-          font-size: 1.8rem;
+          text-transform: uppercase;
+          letter-spacing: 1px;
         }
 
-        .content-card p {
-          line-height: 1.8;
+        .content-box p {
           font-size: 1.05rem;
+          font-weight: 600;
         }
 
-        .topic-grid {
+        .topic-list {
           display: flex;
           flex-wrap: wrap;
-          gap: 0.7rem;
+          gap: 0.8rem;
         }
 
-        .topic-pill {
-          background: #111827;
-          color: #f9fafb;
-          padding: 0.8rem 1rem;
+        .topic-list span {
+          display: inline-block;
+          background: #ffffff;
+          border: 3px solid #111111;
           border-radius: 999px;
-          font-weight: 800;
+          padding: 0.8rem 1rem;
+          font-weight: 900;
+          box-shadow: 3px 3px 0 #111111;
         }
 
-        .demo-box {
-          border: 2px dashed #9ca3af;
+        .feature-placeholder {
+          background: #ffffff;
+          border: 3px dashed #111111;
           border-radius: 18px;
           padding: 1.2rem;
-          margin-top: 1rem;
-          background: #f3f4f6;
+          margin-top: 1.2rem;
         }
 
-        .demo-box h4 {
+        .feature-label {
+          margin: 0;
+          font-size: 0.78rem;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          color: #555555;
+          font-weight: 900;
+        }
+
+        .feature-placeholder h4 {
           margin: 0.4rem 0;
           font-size: 1.3rem;
-        }
-
-        .demo-label {
-          margin: 0 0 0.5rem;
-          font-weight: 900;
           text-transform: uppercase;
-          color: #4b5563;
-          letter-spacing: 2px;
-          font-size: 0.8rem;
         }
 
-        .assigned {
-          font-weight: 800;
-          color: #374151;
-        }
-
-        .controls {
+        .nav-controls {
           display: flex;
           justify-content: space-between;
+          margin-top: 1.5rem;
           gap: 1rem;
-          margin-top: 1rem;
         }
 
-        .controls button {
-          border: none;
-          background: #111827;
-          color: #f9fafb;
-          padding: 0.9rem 1.2rem;
+        .nav-controls button {
+          border: 3px solid #111111;
+          background: #ffffff;
+          color: #111111;
           border-radius: 999px;
+          padding: 0.9rem 1.2rem;
           font-weight: 900;
           cursor: pointer;
+          box-shadow: 4px 4px 0 #111111;
         }
 
-        .controls button:hover {
-          background: #374151;
-        }
-
-        .member-section,
-        .references {
-          max-width: 1200px;
-          margin: 2rem auto 0;
-          background: rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          border-radius: 24px;
-          padding: 1.5rem;
-        }
-
-        .member-grid {
-          display: grid;
-          grid-template-columns: repeat(5, 1fr);
-          gap: 1rem;
-        }
-
-        .member-grid div {
-          background: #f9fafb;
-          color: #111827;
-          border-radius: 18px;
-          padding: 1rem;
-        }
-
-        .member-grid strong,
-        .member-grid span {
-          display: block;
-        }
-
-        .member-grid strong {
-          font-size: 1rem;
-        }
-
-        .member-grid span {
-          color: #4b5563;
-          margin-top: 0.3rem;
-        }
-
-        .references ul {
-          color: #d1d5db;
-          line-height: 1.8;
+        .nav-controls button:hover {
+          background: #111111;
+          color: #ffffff;
         }
 
         @media (max-width: 850px) {
-          .hci-site {
+          .timeline-page {
             padding: 1rem;
-          }
-
-          .timeline-header {
-            flex-direction: column;
-            align-items: flex-start;
           }
 
           .timeline-layout {
             grid-template-columns: 1fr;
           }
 
-          .timeline-nav {
+          .timeline-sidebar {
+            position: static;
+            min-height: auto;
             flex-direction: row;
             overflow-x: auto;
-            padding-bottom: 0.5rem;
+            padding: 1rem 0 1rem 0;
           }
 
-          .milestone-button {
+          .line {
+            display: none;
+          }
+
+          .era-button {
             min-width: 160px;
           }
 
-          .member-grid {
-            grid-template-columns: 1fr;
+          .top-row {
+            flex-direction: column;
           }
 
-          .controls {
+          .year-box {
+            min-width: auto;
+          }
+
+          .main-panel {
+            padding: 1.2rem;
+            box-shadow: 5px 5px 0 #111111;
+          }
+
+          h1 {
+            font-size: 2rem;
+          }
+
+          .nav-controls {
             flex-direction: column;
           }
         }
