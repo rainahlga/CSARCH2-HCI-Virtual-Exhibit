@@ -1,23 +1,22 @@
 import { useState } from "react";
 
 /*
-  FAST + MODULAR VERSION
+  Final HCI Interactive Timeline
 
-  Groupmates can add their actual interactive components later.
+  This follows the proposal vision:
+  - Left vertical timeline
+  - Clickable milestones
+  - Active milestone highlighting
+  - Dynamic content switching
+  - Tabs for Featured Artifact, Key Topics, Media, and Significance
+  - Faster design with lighter CSS and client:idle in the MDX file
 
-  Example:
-  import PunchCardSimulator from "./PunchCardSimulator.jsx";
-  import CLITerminal from "./CLITerminal.jsx";
-  import MiniDesktop from "./MiniDesktop.jsx";
-  import VoiceCommand from "./VoiceCommand.jsx";
-
-  Then inside renderFeaturedArtifact(), replace the placeholder for the correct era.
+  Groupmates can later replace the sample demo visuals with their actual components.
 */
 
 const milestones = [
   {
     id: "punch",
-    year: "1940s",
     marker: "1940s",
     title: "Batch Processing and Punch Cards",
     tryIt: "Punching a Punch Card",
@@ -25,16 +24,21 @@ const milestones = [
       "During the early years of computing, users interacted with computers through punch cards and batch processing. Instructions were prepared beforehand by punching holes into cards, which were then processed in groups or batches.",
     artifactTitle: "Punch Card",
     artifactText:
-      "Punch cards stored instructions and data using holes. Users had to prepare the cards before submitting them to the computer.",
-    topics: ["Punch Cards", "Batch Processing", "ENIAC", "Physical Rewiring", "Early Programming"],
+      "Punch cards stored instructions and data using holes. Users had to prepare the cards before submitting them to the computer. This made early computing slow, but it became one of the first ways people gave instructions to machines.",
+    topics: [
+      "Punch Cards",
+      "Batch Processing",
+      "ENIAC",
+      "Physical Rewiring",
+      "Early Programming",
+    ],
     media:
-      "This section can show a punch card visual or simulator to demonstrate how early computers received instructions.",
+      "This era is represented through a simplified punch card visual. The holes show how early data and instructions were encoded before being processed by a computer.",
     significance:
-      "This stage shows how limited early HCI was. Users could not directly communicate with the computer in real time, but it became the foundation for future interfaces.",
+      "This stage shows how limited early human-computer interaction was. Users could not communicate with the computer in real time, but punch cards helped create the foundation for future interfaces.",
   },
   {
     id: "cli",
-    year: "1960s",
     marker: "1960s",
     title: "Command Line Interface",
     tryIt: "Command Line Interface",
@@ -42,16 +46,21 @@ const milestones = [
       "Command Line Interfaces allowed users to interact with computers by typing text-based commands through keyboards and terminals. This gave users more direct control compared to punch cards.",
     artifactTitle: "Computer Terminal",
     artifactText:
-      "Terminals and keyboards allowed users to enter commands and receive computer responses through text.",
-    topics: ["Text-Based Commands", "Keyboards", "Computer Terminals", "Early Unix Systems", "File Management"],
+      "Computer terminals and keyboards allowed users to enter commands and receive responses through text. This made interaction faster because users no longer had to wait for punched cards to be processed.",
+    topics: [
+      "Text-Based Commands",
+      "Keyboards",
+      "Computer Terminals",
+      "Early Unix Systems",
+      "File Management",
+    ],
     media:
-      "This section can show a terminal-style interface where users type commands and receive preset responses.",
+      "This era is represented through a terminal-style screen where commands are typed using a keyboard.",
     significance:
-      "CLI made computer interaction faster and more direct. However, users still needed to memorize commands and use the correct syntax.",
+      "CLI made computer interaction faster and more direct. However, users still needed to memorize commands and use the correct syntax, which made it difficult for beginners.",
   },
   {
     id: "mouse",
-    year: "1968",
     marker: "1968",
     title: "Pointing Devices",
     tryIt: "Pointing Device Interaction",
@@ -59,16 +68,21 @@ const milestones = [
       "The computer mouse became a major milestone in HCI after Douglas Engelbart introduced it during the famous Mother of All Demos. It allowed users to control items on a screen through physical movement.",
     artifactTitle: "Computer Mouse",
     artifactText:
-      "The mouse connected hand movement to digital screen movement, making navigation easier and more visual.",
-    topics: ["Computer Mouse", "Pointing Devices", "Light Pen", "Joystick Comparison", "Interactive Display Workstations"],
+      "The mouse connected hand movement to digital screen movement. It allowed users to point, select, and navigate visually instead of relying only on typed commands.",
+    topics: [
+      "Computer Mouse",
+      "Pointing Devices",
+      "Light Pen",
+      "Joystick Comparison",
+      "Interactive Display Workstations",
+    ],
     media:
-      "This section can show the early computer mouse and how pointing devices changed computer navigation.",
+      "This era is represented through a simple mouse visual showing how physical motion became digital control.",
     significance:
-      "Pointing devices helped users point, select, and navigate visually instead of only typing commands. This supported the development of graphical user interfaces.",
+      "Pointing devices helped make computers easier to navigate. They supported the shift toward graphical interfaces and more visual forms of interaction.",
   },
   {
     id: "gui",
-    year: "1980s",
     marker: "1980s",
     title: "Graphical User Interface",
     tryIt: "Mini Desktop",
@@ -76,16 +90,22 @@ const milestones = [
       "Graphical User Interfaces became popular in the 1980s. They introduced windows, icons, menus, and pointers, allowing users to interact with visual elements instead of typing every command.",
     artifactTitle: "Desktop Interface",
     artifactText:
-      "The desktop interface used icons, folders, windows, and menus to make computers easier to understand.",
-    topics: ["Windows", "Icons", "Menus", "Pointers", "Desktop Metaphor", "Files and Folders"],
+      "The desktop interface used icons, folders, windows, menus, and pointers to make computers easier to understand and use.",
+    topics: [
+      "Windows",
+      "Icons",
+      "Menus",
+      "Pointers",
+      "Desktop Metaphor",
+      "Files and Folders",
+    ],
     media:
-      "This section can show a mini desktop simulator inspired by early graphical user interfaces.",
+      "This era is represented through a mini desktop layout inspired by early graphical user interfaces.",
     significance:
-      "GUI made computers easier for non-technical users. It reduced the need to memorize commands and made computer interaction more visual and accessible.",
+      "GUI made computers easier for non-technical users. It reduced the need to memorize commands and made interaction more visual, intuitive, and accessible.",
   },
   {
     id: "touch",
-    year: "2000s",
     marker: "2000s",
     title: "Touch and Mobile Interface",
     tryIt: "Touch Interaction",
@@ -93,16 +113,21 @@ const milestones = [
       "Touchscreens and mobile devices changed how users interacted with technology. Users could tap, swipe, pinch, and zoom directly on the screen.",
     artifactTitle: "Smartphone Touchscreen",
     artifactText:
-      "Smartphones and capacitive touchscreens made interaction more direct because users could control what they saw on the screen.",
-    topics: ["Capacitive Touchscreens", "Multi-Touch Gestures", "Smartphones", "Mobile Interfaces", "Direct Manipulation"],
+      "Smartphones and capacitive touchscreens allowed users to directly control what they saw on the screen through touch gestures.",
+    topics: [
+      "Capacitive Touchscreens",
+      "Multi-Touch Gestures",
+      "Smartphones",
+      "Mobile Interfaces",
+      "Direct Manipulation",
+    ],
     media:
-      "This section can show examples of common touch gestures such as tapping, swiping, pinching, and zooming.",
+      "This era is represented through a phone-style visual showing common touch gestures such as tap, swipe, pinch, and zoom.",
     significance:
-      "Touch and mobile interfaces made computing more portable and intuitive. They made technology easier to use for more people.",
+      "Touch and mobile interfaces made computing more portable and intuitive. They helped make digital technology easier to use for more people.",
   },
   {
     id: "voice",
-    year: "Present",
     marker: "Present",
     title: "Spatial and Voice",
     tryIt: "Voice Command",
@@ -110,10 +135,16 @@ const milestones = [
       "Modern HCI includes voice assistants, augmented reality, virtual reality, and spatial computing. These technologies allow users to interact through speech, gestures, and immersive spaces.",
     artifactTitle: "Voice Assistants and AR/VR Devices",
     artifactText:
-      "Voice assistants and spatial devices represent the current and future direction of human-computer interaction.",
-    topics: ["Voice Assistants", "Augmented Reality", "Virtual Reality", "Spatial Mapping", "Brain-Computer Interfaces"],
+      "Voice assistants and spatial computing devices represent the current and future direction of human-computer interaction.",
+    topics: [
+      "Voice Assistants",
+      "Augmented Reality",
+      "Virtual Reality",
+      "Spatial Mapping",
+      "Brain-Computer Interfaces",
+    ],
     media:
-      "This section can show a voice command simulation where users type a voice-style command and receive a response.",
+      "This era is represented through a voice command interface where a user gives a command and receives visual feedback.",
     significance:
       "Modern HCI is becoming more conversational and immersive. Instead of only clicking or typing, users can interact with technology in more natural and human-centered ways.",
   },
@@ -125,7 +156,7 @@ function renderFeaturedArtifact(selected) {
   if (selected.id === "punch") {
     return (
       <div className="demo-area punch-demo">
-        <div className="punch-card">
+        <div className="punch-card" aria-label="Punch card visual">
           {Array.from({ length: 72 }).map((_, index) => (
             <span
               key={index}
@@ -138,7 +169,7 @@ function renderFeaturedArtifact(selected) {
           ))}
         </div>
 
-        <div className="keypad">
+        <div className="keypad" aria-label="Punch card keypad visual">
           {["R", "S", "X", "-", "O", "1", "2", "3", "4", "5", "6", "7", "8", "9"].map(
             (key) => (
               <span key={key}>{key}</span>
@@ -174,11 +205,13 @@ function renderFeaturedArtifact(selected) {
       <div className="demo-area desktop-demo">
         <div className="desktop-window">
           <div className="window-bar">Classic Desktop</div>
+
           <div className="desktop-icons">
             <span>Files</span>
             <span>Apps</span>
             <span>Trash</span>
           </div>
+
           <div className="start-menu">
             <p>Programs</p>
             <p>Documents</p>
@@ -303,14 +336,17 @@ export default function HCITimeline() {
       <style>{`
         .hci-wrapper {
           display: grid;
-          grid-template-columns: 90px minmax(0, 940px) 42px;
-          gap: 0;
+          grid-template-columns: 92px minmax(0, 940px) 42px;
           max-width: 1120px;
           margin: 0 auto;
           background: #000;
           color: #111;
           min-height: 760px;
-          font-family: Arial, Helvetica, sans-serif;
+          font-family:
+            "Segoe UI",
+            Arial,
+            Helvetica,
+            sans-serif;
         }
 
         .left-timeline,
@@ -333,7 +369,7 @@ export default function HCITimeline() {
           bottom: 3rem;
           left: 50%;
           width: 3px;
-          background: #777;
+          background: #7c8188;
           transform: translateX(-50%);
         }
 
@@ -344,54 +380,85 @@ export default function HCITimeline() {
           height: 48px;
           border-radius: 50%;
           border: 0;
-          background: #8f959c;
+          background: #858b93;
           color: #111;
-          font-size: 0.62rem;
+          font-size: 0.58rem;
           font-weight: 900;
           cursor: pointer;
+          transition:
+            transform 0.18s ease,
+            background 0.18s ease,
+            color 0.18s ease,
+            outline 0.18s ease;
         }
 
         .year-dot span {
           display: block;
           transform: scale(0.95);
+          letter-spacing: 0.2px;
+        }
+
+        .year-dot:hover {
+          background: #ffffff;
+          transform: scale(1.12);
+          outline: 4px solid #d9dce1;
         }
 
         .year-dot.active {
           width: 68px;
           height: 68px;
-          background: #fff;
+          background: #ffffff;
+          color: #111;
           outline: 6px solid #d9dce1;
+          font-size: 0.68rem;
+          animation: activePulse 1.8s ease-in-out infinite;
+        }
+
+        @keyframes activePulse {
+          0% {
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.35);
+          }
+          70% {
+            box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+          }
+          100% {
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+          }
         }
 
         .exhibit-card {
-          background: #fff;
-          padding: 2.2rem 2.5rem;
+          background: #ffffff;
+          padding: 2.3rem 2.6rem;
           min-height: 760px;
         }
 
         .exhibit-header p:first-child {
           margin: 0;
-          color: #d8d8d8;
+          color: #d6d6d6;
           text-transform: uppercase;
           font-weight: 900;
-          font-size: clamp(1.1rem, 3vw, 2.2rem);
-          letter-spacing: 2px;
+          font-size: clamp(1.3rem, 3vw, 2.35rem);
+          letter-spacing: 1.5px;
+          line-height: 1;
         }
 
         .exhibit-header h1 {
-          margin: 0.2rem 0 0.8rem;
+          margin: 0.25rem 0 0.9rem;
           color: #000;
           text-transform: uppercase;
-          font-size: clamp(2rem, 5vw, 3.4rem);
-          letter-spacing: 8px;
-          line-height: 1;
+          font-size: clamp(2rem, 4.8vw, 3.45rem);
+          letter-spacing: 7px;
+          line-height: 0.98;
+          font-weight: 950;
         }
 
         .intro {
           max-width: 820px;
-          line-height: 1.55;
-          font-size: 0.98rem;
+          line-height: 1.6;
+          font-size: 1rem;
           margin: 0;
+          color: #333;
+          font-weight: 500;
         }
 
         .try-section {
@@ -401,7 +468,9 @@ export default function HCITimeline() {
         .try-section strong {
           display: block;
           margin-bottom: 0.8rem;
-          font-size: 1rem;
+          font-size: 1.02rem;
+          font-weight: 900;
+          letter-spacing: 0.2px;
         }
 
         .demo-area {
@@ -409,6 +478,14 @@ export default function HCITimeline() {
           background: #f1f1f1;
           border-radius: 16px;
           padding: 1rem;
+          transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+        }
+
+        .demo-area:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
         }
 
         .punch-demo {
@@ -458,22 +535,39 @@ export default function HCITimeline() {
           border-radius: 50%;
           background: #fff;
           font-weight: 900;
+          font-size: 0.82rem;
+          transition:
+            transform 0.15s ease,
+            background 0.15s ease;
+        }
+
+        .keypad span:hover {
+          transform: scale(1.12);
+          background: #eeeeee;
         }
 
         .cli-demo {
           background: #000;
           color: #00ff37;
-          font-family: Consolas, monospace;
+          font-family: Consolas, "Courier New", monospace;
           font-size: 1.1rem;
         }
 
         .cli-demo p {
           margin: 0;
+          font-weight: 700;
         }
 
         .cursor {
           display: inline-block;
           margin-top: 0.5rem;
+          animation: blink 1s steps(2, start) infinite;
+        }
+
+        @keyframes blink {
+          50% {
+            opacity: 0;
+          }
         }
 
         .mouse-demo,
@@ -483,12 +577,22 @@ export default function HCITimeline() {
           text-align: center;
         }
 
+        .mouse-demo p {
+          font-weight: 800;
+          color: #333;
+        }
+
         .mouse-shape {
           width: 85px;
           height: 130px;
           border: 6px solid #333;
           border-radius: 45px;
           background: #ddd;
+          transition: transform 0.2s ease;
+        }
+
+        .mouse-shape:hover {
+          transform: translateX(8px);
         }
 
         .mouse-line {
@@ -511,13 +615,14 @@ export default function HCITimeline() {
           background: #3a73a7;
           border: 6px solid #cfc092;
           position: relative;
+          overflow: hidden;
         }
 
         .window-bar {
           background: #d9d9d9;
           padding: 6px;
           font-weight: 900;
-          font-size: 0.8rem;
+          font-size: 0.82rem;
         }
 
         .desktop-icons {
@@ -532,6 +637,14 @@ export default function HCITimeline() {
           background: rgba(255,255,255,0.18);
           padding: 8px;
           border-radius: 6px;
+          transition:
+            transform 0.18s ease,
+            background 0.18s ease;
+        }
+
+        .desktop-icons span:hover {
+          transform: translateY(-3px);
+          background: rgba(255,255,255,0.28);
         }
 
         .start-menu {
@@ -547,6 +660,11 @@ export default function HCITimeline() {
         .start-menu p {
           margin: 0;
           padding: 5px 8px;
+          transition: background 0.15s ease;
+        }
+
+        .start-menu p:hover {
+          background: #d1d5db;
         }
 
         .voice-demo {
@@ -562,6 +680,11 @@ export default function HCITimeline() {
           padding: 1rem;
           min-height: 48px;
           font-weight: 800;
+          border-radius: 2px;
+        }
+
+        .voice-input:hover {
+          outline: 3px solid #8f959c;
         }
 
         .phone {
@@ -580,6 +703,14 @@ export default function HCITimeline() {
           border-radius: 999px;
           padding: 10px;
           font-weight: 900;
+          transition:
+            transform 0.16s ease,
+            background 0.16s ease;
+        }
+
+        .phone span:hover {
+          transform: scale(1.08);
+          background: #d9dce1;
         }
 
         .tab-row {
@@ -596,12 +727,24 @@ export default function HCITimeline() {
           padding: 1rem 0.5rem;
           border-radius: 12px 12px 0 0;
           font-weight: 900;
+          font-size: 0.9rem;
           cursor: pointer;
+          letter-spacing: 0.2px;
+          transition:
+            background 0.18s ease,
+            color 0.18s ease,
+            transform 0.18s ease;
+        }
+
+        .tab:hover {
+          background: #2c2c2c;
+          transform: translateY(-4px);
         }
 
         .tab.active-tab {
           background: #8f959c;
           color: #000;
+          transform: translateY(-4px);
         }
 
         .info-panel {
@@ -614,11 +757,16 @@ export default function HCITimeline() {
         .info-panel h2 {
           margin-top: 0;
           font-size: 1.35rem;
+          font-weight: 950;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
         }
 
         .info-panel p {
-          line-height: 1.6;
-          font-size: 0.98rem;
+          line-height: 1.65;
+          font-size: 1rem;
+          font-weight: 550;
+          color: #161616;
         }
 
         .topic-grid {
@@ -632,6 +780,15 @@ export default function HCITimeline() {
           padding: 0.7rem 0.9rem;
           border-radius: 999px;
           font-weight: 900;
+          font-size: 0.88rem;
+          transition:
+            transform 0.16s ease,
+            background 0.16s ease;
+        }
+
+        .topic-grid span:hover {
+          transform: translateY(-3px);
+          background: #eeeeee;
         }
 
         @media (max-width: 850px) {
@@ -666,6 +823,11 @@ export default function HCITimeline() {
 
           .exhibit-header h1 {
             letter-spacing: 3px;
+            font-size: clamp(1.8rem, 9vw, 2.6rem);
+          }
+
+          .exhibit-header p:first-child {
+            font-size: 1.15rem;
           }
 
           .tab-row {
@@ -678,6 +840,16 @@ export default function HCITimeline() {
 
           .punch-card {
             grid-template-columns: repeat(8, 22px);
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          *,
+          *::before,
+          *::after {
+            animation: none !important;
+            transition: none !important;
+            scroll-behavior: auto !important;
           }
         }
       `}</style>
