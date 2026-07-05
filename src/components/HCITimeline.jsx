@@ -9,7 +9,8 @@ import { useState } from "react";
   - Active milestone highlighting
   - Dynamic content switching
   - Tabs for Featured Artifact, Key Topics, Media, and Significance
-  - Faster design with lighter CSS and client:idle in the MDX file
+  - Better header design
+  - More depth/dimension but still lightweight for speed
 
   Groupmates can later replace the sample demo visuals with their actual components.
 */
@@ -18,6 +19,7 @@ const milestones = [
   {
     id: "punch",
     marker: "1940s",
+    eraName: "Batch Processing Era",
     title: "Batch Processing and Punch Cards",
     tryIt: "Punching a Punch Card",
     overview:
@@ -40,6 +42,7 @@ const milestones = [
   {
     id: "cli",
     marker: "1960s",
+    eraName: "Text Command Era",
     title: "Command Line Interface",
     tryIt: "Command Line Interface",
     overview:
@@ -62,6 +65,7 @@ const milestones = [
   {
     id: "mouse",
     marker: "1968",
+    eraName: "Pointing Device Era",
     title: "Pointing Devices",
     tryIt: "Pointing Device Interaction",
     overview:
@@ -84,6 +88,7 @@ const milestones = [
   {
     id: "gui",
     marker: "1980s",
+    eraName: "Graphical Interface Era",
     title: "Graphical User Interface",
     tryIt: "Mini Desktop",
     overview:
@@ -107,6 +112,7 @@ const milestones = [
   {
     id: "touch",
     marker: "2000s",
+    eraName: "Touch Interaction Era",
     title: "Touch and Mobile Interface",
     tryIt: "Touch Interaction",
     overview:
@@ -129,7 +135,8 @@ const milestones = [
   {
     id: "voice",
     marker: "Present",
-    title: "Spatial and Voice",
+    eraName: "Spatial and Voice Era",
+    title: "Spatial and Voice Computing",
     tryIt: "Voice Command",
     overview:
       "Modern HCI includes voice assistants, augmented reality, virtual reality, and spatial computing. These technologies allow users to interact through speech, gestures, and immersive spaces.",
@@ -263,20 +270,35 @@ export default function HCITimeline() {
         {milestones.map((milestone, index) => (
           <button
             key={milestone.id}
-            className={selectedIndex === index ? "year-dot active" : "year-dot"}
+            className={selectedIndex === index ? "era-button active" : "era-button"}
             onClick={() => chooseEra(index)}
             aria-label={`Open ${milestone.title}`}
           >
-            <span>{milestone.marker}</span>
+            <span className="era-marker">{milestone.marker}</span>
+            <span className="era-title">{milestone.eraName}</span>
           </button>
         ))}
       </aside>
 
       <section className="exhibit-card">
         <header className="exhibit-header">
-          <p>Human-Computer Interaction:</p>
-          <h1>{selected.title}</h1>
-          <p className="intro">{selected.overview}</p>
+          <div className="header-top">
+            <div>
+              <p className="museum-label">Historical Computing Exhibit</p>
+              <p className="hci-label">Human-Computer Interaction</p>
+            </div>
+
+            <div className="era-count">
+              <span>{String(selectedIndex + 1).padStart(2, "0")}</span>
+              <small>/ {String(milestones.length).padStart(2, "0")}</small>
+            </div>
+          </div>
+
+          <div className="title-box">
+            <p className="era-name">{selected.eraName}</p>
+            <h1>{selected.title}</h1>
+            <p className="intro">{selected.overview}</p>
+          </div>
         </header>
 
         <section className="try-section">
@@ -336,8 +358,8 @@ export default function HCITimeline() {
       <style>{`
         .hci-wrapper {
           display: grid;
-          grid-template-columns: 92px minmax(0, 940px) 42px;
-          max-width: 1120px;
+          grid-template-columns: 170px minmax(0, 940px) 42px;
+          max-width: 1180px;
           margin: 0 auto;
           background: #000;
           color: #111;
@@ -347,6 +369,7 @@ export default function HCITimeline() {
             Arial,
             Helvetica,
             sans-serif;
+          box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
         }
 
         .left-timeline,
@@ -359,110 +382,222 @@ export default function HCITimeline() {
           display: flex;
           flex-direction: column;
           justify-content: space-around;
-          align-items: center;
-          padding: 2rem 0;
+          align-items: stretch;
+          padding: 2rem 1rem;
+          gap: 0.75rem;
         }
 
         .timeline-line {
           position: absolute;
           top: 3rem;
           bottom: 3rem;
-          left: 50%;
+          left: 1.6rem;
           width: 3px;
-          background: #7c8188;
-          transform: translateX(-50%);
+          background: #72767d;
         }
 
-        .year-dot {
+        .era-button {
           position: relative;
           z-index: 2;
-          width: 48px;
-          height: 48px;
+          display: grid;
+          grid-template-columns: 46px 1fr;
+          align-items: center;
+          gap: 0.55rem;
+          border: none;
+          background: transparent;
+          color: #9ca3af;
+          text-align: left;
+          cursor: pointer;
+          padding: 0.4rem 0;
+        }
+
+        .era-marker {
+          display: grid;
+          place-items: center;
+          width: 46px;
+          height: 46px;
           border-radius: 50%;
-          border: 0;
           background: #858b93;
           color: #111;
-          font-size: 0.58rem;
+          font-size: 0.62rem;
           font-weight: 900;
-          cursor: pointer;
           transition:
             transform 0.18s ease,
             background 0.18s ease,
-            color 0.18s ease,
             outline 0.18s ease;
         }
 
-        .year-dot span {
+        .era-title {
           display: block;
-          transform: scale(0.95);
-          letter-spacing: 0.2px;
+          font-size: 0.76rem;
+          font-weight: 900;
+          line-height: 1.15;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          opacity: 0.75;
+          transition:
+            color 0.18s ease,
+            opacity 0.18s ease,
+            transform 0.18s ease;
         }
 
-        .year-dot:hover {
+        .era-button:hover .era-marker {
           background: #ffffff;
-          transform: scale(1.12);
+          transform: scale(1.08);
           outline: 4px solid #d9dce1;
         }
 
-        .year-dot.active {
-          width: 68px;
-          height: 68px;
+        .era-button:hover .era-title {
+          color: #ffffff;
+          opacity: 1;
+          transform: translateX(3px);
+        }
+
+        .era-button.active .era-marker {
+          width: 60px;
+          height: 60px;
           background: #ffffff;
           color: #111;
           outline: 6px solid #d9dce1;
-          font-size: 0.68rem;
-          animation: activePulse 1.8s ease-in-out infinite;
+          transform: translateX(-7px);
         }
 
-        @keyframes activePulse {
-          0% {
-            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.35);
-          }
-          70% {
-            box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
-          }
-          100% {
-            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-          }
+        .era-button.active .era-title {
+          color: #ffffff;
+          opacity: 1;
+          transform: translateX(2px);
         }
 
         .exhibit-card {
           background: #ffffff;
-          padding: 2.3rem 2.6rem;
+          padding: 2rem 2.4rem 2.3rem;
           min-height: 760px;
         }
 
-        .exhibit-header p:first-child {
+        .exhibit-header {
+          position: relative;
+          border-radius: 24px;
+          padding: 1.3rem;
+          background:
+            linear-gradient(135deg, #f5f5f5 0%, #ffffff 45%, #e9eaec 100%);
+          border: 1px solid #d8d8d8;
+          box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.8),
+            0 14px 28px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+        }
+
+        .exhibit-header::before {
+          content: "";
+          position: absolute;
+          right: -90px;
+          top: -90px;
+          width: 240px;
+          height: 240px;
+          border-radius: 50%;
+          background: rgba(0, 0, 0, 0.055);
+        }
+
+        .exhibit-header::after {
+          content: "";
+          position: absolute;
+          right: 36px;
+          bottom: 26px;
+          width: 120px;
+          height: 120px;
+          border: 18px solid rgba(0, 0, 0, 0.04);
+          border-radius: 50%;
+        }
+
+        .header-top,
+        .title-box {
+          position: relative;
+          z-index: 1;
+        }
+
+        .header-top {
+          display: flex;
+          justify-content: space-between;
+          gap: 1rem;
+          align-items: flex-start;
+          margin-bottom: 1rem;
+        }
+
+        .museum-label {
           margin: 0;
-          color: #d6d6d6;
+          color: #5f646b;
           text-transform: uppercase;
+          font-size: 0.75rem;
+          letter-spacing: 2px;
           font-weight: 900;
-          font-size: clamp(1.3rem, 3vw, 2.35rem);
+        }
+
+        .hci-label {
+          margin: 0.2rem 0 0;
+          color: #c9c9c9;
+          text-transform: uppercase;
+          font-size: clamp(1rem, 2.5vw, 1.8rem);
           letter-spacing: 1.5px;
+          font-weight: 900;
+        }
+
+        .era-count {
+          min-width: 88px;
+          background: #111;
+          color: #fff;
+          border-radius: 18px;
+          padding: 0.65rem 0.8rem;
+          text-align: center;
+          box-shadow: 5px 5px 0 #c7c7c7;
+        }
+
+        .era-count span {
+          font-size: 1.5rem;
+          font-weight: 900;
           line-height: 1;
         }
 
+        .era-count small {
+          font-size: 0.78rem;
+          color: #cfcfcf;
+          font-weight: 800;
+        }
+
+        .era-name {
+          display: inline-block;
+          margin: 0 0 0.55rem;
+          padding: 0.35rem 0.7rem;
+          background: #111;
+          color: #fff;
+          border-radius: 999px;
+          font-size: 0.78rem;
+          font-weight: 900;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+        }
+
         .exhibit-header h1 {
-          margin: 0.25rem 0 0.9rem;
+          margin: 0.1rem 0 0.9rem;
           color: #000;
           text-transform: uppercase;
-          font-size: clamp(2rem, 4.8vw, 3.45rem);
-          letter-spacing: 7px;
+          font-size: clamp(2rem, 4.5vw, 3.35rem);
+          letter-spacing: 5px;
           line-height: 0.98;
-          font-weight: 950;
+          font-weight: 900;
+          max-width: 760px;
         }
 
         .intro {
-          max-width: 820px;
+          max-width: 810px;
           line-height: 1.6;
-          font-size: 1rem;
+          font-size: 0.98rem;
           margin: 0;
           color: #333;
           font-weight: 500;
         }
 
         .try-section {
-          margin-top: 1.4rem;
+          margin-top: 1.35rem;
         }
 
         .try-section strong {
@@ -757,7 +892,7 @@ export default function HCITimeline() {
         .info-panel h2 {
           margin-top: 0;
           font-size: 1.35rem;
-          font-weight: 950;
+          font-weight: 900;
           text-transform: uppercase;
           letter-spacing: 0.5px;
         }
@@ -791,7 +926,7 @@ export default function HCITimeline() {
           background: #eeeeee;
         }
 
-        @media (max-width: 850px) {
+        @media (max-width: 900px) {
           .hci-wrapper {
             grid-template-columns: 1fr;
             min-height: auto;
@@ -810,24 +945,27 @@ export default function HCITimeline() {
             display: none;
           }
 
-          .year-dot,
-          .year-dot.active {
-            min-width: 58px;
-            min-height: 58px;
+          .era-button {
+            min-width: 150px;
+            grid-template-columns: 46px 1fr;
+          }
+
+          .era-button.active .era-marker {
+            transform: none;
           }
 
           .exhibit-card {
-            padding: 1.4rem;
+            padding: 1.2rem;
             min-height: auto;
+          }
+
+          .header-top {
+            flex-direction: column;
           }
 
           .exhibit-header h1 {
             letter-spacing: 3px;
             font-size: clamp(1.8rem, 9vw, 2.6rem);
-          }
-
-          .exhibit-header p:first-child {
-            font-size: 1.15rem;
           }
 
           .tab-row {
