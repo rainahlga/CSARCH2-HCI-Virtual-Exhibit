@@ -1,5 +1,6 @@
 import { useState } from "react";
-import myMusicTrack from "../assets/Elevator Music.mp3"; 
+import myMusicTrack from "../assets/Elevator Music.mp3";
+import CLITerminal from "./CLITerminal.jsx";
 // Adjust the relative path string above depending on your file structure
 /*
   Final HCI Interactive Timeline
@@ -14,6 +15,12 @@ import myMusicTrack from "../assets/Elevator Music.mp3";
   - More depth/dimension but still lightweight for speed
 
   Groupmates can later replace the sample demo visuals with their actual components.
+
+  NOTE: The CLI era's "Try It" demo now embeds the real, functional
+  CLITerminal component instead of the old static/fake prompt mockup.
+  Because HCITimeline is already hydrated with client:load in the .mdx
+  page, CLITerminal does NOT need its own client: directive here -- it
+  hydrates automatically as part of the same React tree.
 */
 
 const milestones = [
@@ -190,9 +197,8 @@ function renderFeaturedArtifact(selected) {
 
   if (selected.id === "cli") {
     return (
-      <div className="demo-area cli-demo">
-        <p>C:\Users\admin&gt;</p>
-        <span className="cursor">_</span>
+      <div className="demo-area cli-demo-wrapper">
+        <CLITerminal />
       </div>
     );
   }
@@ -809,28 +815,14 @@ export default function HCITimeline() {
           background: #eeeeee;
         }
 
-        .cli-demo {
-          background: #000;
-          color: #00ff37;
-          font-family: Consolas, "Courier New", monospace;
-          font-size: 1.1rem;
+        .cli-demo-wrapper {
+          background: transparent;
+          padding: 0;
         }
 
-        .cli-demo p {
-          margin: 0;
-          font-weight: 700;
-        }
-
-        .cursor {
-          display: inline-block;
-          margin-top: 0.5rem;
-          animation: blink 1s steps(2, start) infinite;
-        }
-
-        @keyframes blink {
-          50% {
-            opacity: 0;
-          }
+        .cli-demo-wrapper:hover {
+          transform: none;
+          box-shadow: none;
         }
 
         .mouse-demo,
