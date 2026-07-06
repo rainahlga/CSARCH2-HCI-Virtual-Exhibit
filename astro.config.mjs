@@ -7,11 +7,6 @@ export default defineConfig({
   integrations: [mdx(), react(), icon()],
   site: 'https://jrgo7.github.io',
   base: 'virtual-exhibit-template',
-  vite: {
-    optimizeDeps: {
-      include: ['react', 'react-dom', 'react-dom/client', 'react/jsx-runtime'],
-    },
-  },
 });
 
 
