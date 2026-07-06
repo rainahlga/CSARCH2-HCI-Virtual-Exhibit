@@ -1,5 +1,6 @@
 import { useState } from "react";
-
+import myMusicTrack from "../assets/Elevator Music.mp3"; 
+// Adjust the relative path string above depending on your file structure
 /*
   Final HCI Interactive Timeline
 
@@ -243,12 +244,139 @@ function renderFeaturedArtifact(selected) {
     );
   }
 
-  return (
-    <div className="demo-area voice-demo">
-      <div className="voice-input">Type your command here.</div>
-      <div className="voice-output">Visual output will appear here.</div>
-    </div>
-  );
+if (selected.id === "voice") {
+const handleMicrophoneListen = () => {
+      const statusEl = document.getElementById("voice-demo-status");
+      const textEl = document.getElementById("voice-detected-text");
+      const visualActionEl = document.getElementById("voice-visual-action");
+
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        if (statusEl) statusEl.innerText = "Speech recognition not supported.";
+        return;
+      }
+
+      const recognition = new SpeechRecognition();
+      recognition.lang = "en-US";
+      recognition.start();
+
+      if (statusEl) statusEl.innerText = "Listening...";
+
+      recognition.onresult = (event) => {
+        const speechToText = event.results[0][0].transcript.toLowerCase();
+        if (textEl) textEl.innerText = `"${event.results[0][0].transcript}"`;
+        
+        const audioPlayer = document.getElementById("voice-audio-player");
+        // Check if the music player is currently locked
+        const isMusicLocked = visualActionEl?.getAttribute("data-music-locked") === "true";
+
+        if (statusEl) statusEl.innerText = "Processing command...";
+
+        setTimeout(() => {
+          // RULE 1: If music is locked, ONLY allow the stop command
+          if (isMusicLocked) {
+            if (speechToText.includes("stop") || speechToText.includes("pause") || speechToText.includes("turn off")) {
+              if (statusEl) statusEl.innerText = "Music stopped. Interface unlocked.";
+              if (audioPlayer) {
+                audioPlayer.pause();
+                audioPlayer.currentTime = 0; 
+              }
+              if (visualActionEl) {
+                visualActionEl.className = "action-display idle";
+                visualActionEl.setAttribute("data-music-locked", "false"); // Unlock
+              }
+            } else {
+              // Ignore any other command
+              if (statusEl) statusEl.innerText = "Mode Locked: Saying anything other than 'Stop' is ignored while music plays.";
+            }
+            return; // Exit early so no other commands trigger
+          }
+
+          // RULE 2: Standard behavior if music is NOT locked
+          if (speechToText.includes("light") && speechToText.includes("turn on")) {
+            if (statusEl) statusEl.innerText = "Action performed: Lights turned on.";
+            if (visualActionEl) visualActionEl.className = "action-display light-on";
+          } else if (speechToText.includes("lights") && speechToText.includes("turn off")) {
+            if (statusEl) statusEl.innerText = "Action performed: Lights turned off.";
+            if (visualActionEl) visualActionEl.className = "action-display matrix-theme";
+          } else if (speechToText.includes("music") || speechToText.includes("play")) {
+            if (statusEl) statusEl.innerText = "Action performed: Playing music. Interface locked to 'Stop' command.";
+            if (audioPlayer) {
+              audioPlayer.volume = 1.0;
+              audioPlayer.load();
+              audioPlayer.play().catch(err => {
+                console.error("Browser media policy blocked autoplay:", err);
+              });
+            }
+            if (visualActionEl) {
+              visualActionEl.className = "action-display music-playing";
+              visualActionEl.setAttribute("data-music-locked", "true"); // Lock it down!
+            }
+          } else {
+            if (statusEl) statusEl.innerText = `Unknown command: "${speechToText}"`;
+            if (visualActionEl) visualActionEl.className = "action-display unknown";
+          }
+        }, 1000);
+      };
+    };
+
+    return (
+      <div className="demo-area voice-demo">
+        <div style={{ textAlign: "center", marginBottom: "1rem" }}>
+          <button 
+            onClick={handleMicrophoneListen}
+            style={{
+              background: "#ef4444",
+              color: "#fff",
+              border: "none",
+              padding: "0.8rem 2rem",
+              fontWeight: "900",
+              borderRadius: "999px",
+              cursor: "pointer",
+              textTransform: "uppercase",
+              letterSpacing: "1px",
+              boxShadow: "0 4px 12px rgba(239, 68, 68, 0.4)"
+            }}
+          >
+            🎙️ Click to Speak
+          </button>
+          <p style={{ fontSize: "0.85rem", margin: "8px 0 0", color: "#666" }}>
+            Say "Turn on the lights" to change lighten up the feedback view, and "Turn off the lights" darken it.
+          </p>
+          <p style={{ fontSize: "0.85rem", margin: "8px 0 0", color: "#666" }}>
+            Say "Play music" to play music, and "Stop music" or "Pause music" to stop.
+          </p>
+          <p style={{ fontSize: "0.85rem", margin: "8px 0 0", color: "#666" }}>
+            You cannot turn on and off the lights while music is playing!
+          </p>
+        </div>
+
+        <div className="voice-status-box">
+          <span className="status-label">Status:</span>
+          <div id="voice-demo-status" style={{ fontWeight: "700" }}>Ready.</div>
+        </div>
+
+        <div className="voice-status-box">
+          <span className="status-label">Heard text:</span>
+          <div id="voice-detected-text" style={{ fontStyle: "italic", color: "#444" }}>...</div>
+        </div>
+
+        {/* Note the data-music-locked attribute initialization here */}
+        <div id="voice-visual-action" className="action-display idle" data-music-locked="false">
+          <div className="smart-bulb"></div>
+          <div className="audio-visualizer">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <span className="action-text">Interface Feedback View</span>
+        </div>
+        <audio 
+          id="voice-audio-player" 
+          src={myMusicTrack}
+          loop
+        />
+      </div>
+    );
+  }
 }
 
 export default function HCITimeline() {
@@ -802,21 +930,123 @@ export default function HCITimeline() {
           background: #d1d5db;
         }
 
-        .voice-demo {
-          background: #fff;
-          display: grid;
-          gap: 1rem;
-        }
+        .voice-status-box {
+        background: #e5e7eb;
+        padding: 0.6rem 1rem;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
 
-        .voice-input,
-        .voice-output {
-          background: #000;
-          color: #fff;
-          padding: 1rem;
-          min-height: 48px;
-          font-weight: 800;
-          border-radius: 2px;
-        }
+      .status-label {
+        font-weight: 900;
+        color: #111;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        background: #cbd5e1;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+
+      /* Base Interface Action Display */
+      .action-display {
+        min-height: 120px;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        transition: all 0.4s ease;
+        border: 2px dashed #9ca3af;
+      }
+
+      .action-display.idle {
+        background: #fafafa;
+        color: #6b7280;
+      }
+
+      .action-display .smart-bulb {
+        width: 30px;
+        height: 30px;
+        background: #9ca3af;
+        border-radius: 50%;
+        transition: all 0.4s ease;
+      }
+
+      /* Visual Action: Turn on the lights */
+      .action-display.light-on {
+        background: #fef08a;
+        border-color: #eab308;
+        color: #854d0e;
+      }
+      .action-display.light-on .smart-bulb {
+        background: #eab308;
+        box-shadow: 0 0 20px #eab308;
+      }
+
+      /* Visual Action: Change Theme */
+      .action-display.matrix-theme {
+        background: #064e3b;
+        border-color: #10b981;
+        color: #a7f3d0;
+      }
+      .action-display.matrix-theme .smart-bulb {
+        background: #10b981;
+      }
+
+      /* Visual Action: Error/Unknown command */
+      .action-display.unknown {
+        background: #fee2e2;
+        border-color: #ef4444;
+        color: #991b1b;
+      }
+
+      .audio-visualizer {
+        display: none;
+        gap: 4px;
+        align-items: flex-end;
+        height: 40px;
+        margin: 10px 0;
+      }
+
+      .audio-visualizer span {
+        width: 6px;
+        height: 100%;
+        background: #3b82f6;
+        border-radius: 3px;
+      }
+
+      /* Music Playing Active State */
+      .action-display.music-playing {
+        background: #eff6ff;
+        border-color: #3b82f6;
+        color: #1e3a8a;
+      }
+
+      .action-display.music-playing .smart-bulb {
+        display: none; /* Hide bulb when playing music */
+      }
+
+      .action-display.music-playing .audio-visualizer {
+        display: flex; /* Show visualizer */
+      }
+
+      /* Visualizer Bars Animation Sequencing */
+      .action-display.music-playing .audio-visualizer span {
+        animation: bounceVisualizer 0.6s ease infinite alternate;
+      }
+      .action-display.music-playing .audio-visualizer span:nth-child(2) { animation-delay: 0.1s; animation-duration: 0.4s; }
+      .action-display.music-playing .audio-visualizer span:nth-child(3) { animation-delay: 0.2s; animation-duration: 0.7s; }
+      .action-display.music-playing .audio-visualizer span:nth-child(4) { animation-delay: 0.15s; animation-duration: 0.5s; }
+      .action-display.music-playing .audio-visualizer span:nth-child(5) { animation-delay: 0.3s; animation-duration: 0.6s; }
+
+      @keyframes bounceVisualizer {
+        0% { height: 10%; }
+        100% { height: 100%; }
+      }
 
         .voice-input:hover {
           outline: 3px solid #8f959c;
