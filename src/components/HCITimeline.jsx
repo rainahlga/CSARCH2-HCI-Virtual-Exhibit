@@ -245,7 +245,7 @@ function renderFeaturedArtifact(selected) {
   }
 
 if (selected.id === "voice") {
-const handleMicrophoneListen = () => {
+      const handleMicrophoneListen = () => {
       const statusEl = document.getElementById("voice-demo-status");
       const textEl = document.getElementById("voice-detected-text");
       const visualActionEl = document.getElementById("voice-visual-action");
@@ -325,6 +325,7 @@ const handleMicrophoneListen = () => {
         <div style={{ textAlign: "center", marginBottom: "1rem" }}>
           <button 
             onClick={handleMicrophoneListen}
+            className="voice-act-btn"
             style={{
               background: "#ef4444",
               color: "#fff",
@@ -746,11 +747,6 @@ export default function HCITimeline() {
             box-shadow 0.2s ease;
         }
 
-        .demo-area:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
-        }
-
         .punch-demo {
           display: flex;
           align-items: center;
@@ -1019,7 +1015,6 @@ export default function HCITimeline() {
         border-radius: 3px;
       }
 
-      /* Music Playing Active State */
       .action-display.music-playing {
         background: #eff6ff;
         border-color: #3b82f6;
@@ -1027,14 +1022,13 @@ export default function HCITimeline() {
       }
 
       .action-display.music-playing .smart-bulb {
-        display: none; /* Hide bulb when playing music */
+        display: none; 
       }
 
       .action-display.music-playing .audio-visualizer {
-        display: flex; /* Show visualizer */
+        display: flex; 
       }
 
-      /* Visualizer Bars Animation Sequencing */
       .action-display.music-playing .audio-visualizer span {
         animation: bounceVisualizer 0.6s ease infinite alternate;
       }
@@ -1050,6 +1044,16 @@ export default function HCITimeline() {
 
         .voice-input:hover {
           outline: 3px solid #8f959c;
+        }
+
+        .voice-act-btn:hover {
+          background: #dc2626;
+          box-shadow: 0 6px 16px rgba(220, 38, 38, 0.6);
+          transform: scale(1.05);
+        }
+
+        .voice-act-btn {
+          transition: all 0.2s ease;
         }
 
         .phone {
