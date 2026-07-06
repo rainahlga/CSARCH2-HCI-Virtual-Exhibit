@@ -9,3 +9,4 @@ export default defineConfig({
   base: 'virtual-exhibit-template',
 });
 
+
