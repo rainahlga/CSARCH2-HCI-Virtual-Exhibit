@@ -1,6 +1,7 @@
 import { useState } from "react";
 import myMusicTrack from "../assets/Elevator Music.mp3";
 import CLITerminal from "./CLITerminal.jsx";
+import PunchCardSimulator from "./PunchCardSimulator.jsx";
 // Adjust the relative path string above depending on your file structure
 /*
   Final HCI Interactive Timeline
@@ -171,26 +172,7 @@ function renderFeaturedArtifact(selected) {
   if (selected.id === "punch") {
     return (
       <div className="demo-area punch-demo">
-        <div className="punch-card" aria-label="Punch card visual">
-          {Array.from({ length: 72 }).map((_, index) => (
-            <span
-              key={index}
-              className={
-                [2, 7, 8, 14, 21, 33, 46, 55].includes(index)
-                  ? "hole punched"
-                  : "hole"
-              }
-            />
-          ))}
-        </div>
-
-        <div className="keypad" aria-label="Punch card keypad visual">
-          {["R", "S", "X", "-", "O", "1", "2", "3", "4", "5", "6", "7", "8", "9"].map(
-            (key) => (
-              <span key={key}>{key}</span>
-            )
-          )}
-        </div>
+        <PunchCardSimulator />
       </div>
     );
   }
