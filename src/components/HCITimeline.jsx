@@ -1,316 +1,1218 @@
-import { useState, useRef, useEffect } from "react";
-
+import { useState } from "react";
+import myMusicTrack from "../assets/Elevator Music.mp3";
+import CLITerminal from "./CLITerminal.jsx";
+// Adjust the relative path string above depending on your file structure
 /*
-  CLI Terminal Simulator
-  ------------------------------------------------------------
-  Interactive element for the "Command Line Interfaces (CLI)"
-  section of the HCI exhibit (1960s-1970s).
+  Final HCI Interactive Timeline
 
-  Spec covered (from proposal):
-  - Command Based Input      -> controlled <input>, submitted on Enter
-  - Pre-scripted responses   -> getResponse() below
-  - Simple interface         -> input box + console-like output log
-  - Conditional logic system -> if/else chain in getResponse()
+  This follows the proposal vision:
+  - Left vertical timeline
+  - Clickable milestones
+  - Active milestone highlighting
+  - Dynamic content switching
+  - Tabs for Featured Artifact, Key Topics, Media, and Significance
+  - Better header design
+  - More depth/dimension but still lightweight for speed
 
-  Extra touches (optional, safe to keep or trim):
-  - Boot sequence on mount, like flipping on an old terminal
-  - Up/Down arrow recalls command history (mirrors real shells)
-  - Auto-scroll + auto-focus so it feels like a real terminal
+  Groupmates can later replace the sample demo visuals with their actual components.
+
+  NOTE: The CLI era's "Try It" demo now embeds the real, functional
+  CLITerminal component instead of the old static/fake prompt mockup.
+  Because HCITimeline is already hydrated with client:load in the .mdx
+  page, CLITerminal does NOT need its own client: directive here -- it
+  hydrates automatically as part of the same React tree.
 */
 
-const BOOT_LINES = [
-  "MUSEUM TERMINAL EMULATOR v1.0",
-  "BOOTING...",
-  "SYSTEM READY.",
-  "Type 'help' to see available commands.",
+const milestones = [
+  {
+    id: "punch",
+    marker: "1940s",
+    eraName: "Batch Processing Era",
+    title: "Batch Processing and Punch Cards",
+    tryIt: "Punching a Punch Card",
+    overview:
+      "During the early years of computing, users interacted with computers through punch cards and batch processing. Instructions were prepared beforehand by punching holes into cards, which were then processed in groups or batches.",
+    artifactTitle: "Punch Card",
+    artifactText:
+      "Punch cards stored instructions and data using holes. Users had to prepare the cards before submitting them to the computer. This made early computing slow, but it became one of the first ways people gave instructions to machines.",
+    topics: [
+      "Punch Cards",
+      "Batch Processing",
+      "ENIAC",
+      "Physical Rewiring",
+      "Early Programming",
+    ],
+    media:
+      "This era is represented through a simplified punch card visual. The holes show how early data and instructions were encoded before being processed by a computer.",
+    significance:
+      "This stage shows how limited early human-computer interaction was. Users could not communicate with the computer in real time, but punch cards helped create the foundation for future interfaces.",
+  },
+  {
+    id: "cli",
+    marker: "1960s",
+    eraName: "Text Command Era",
+    title: "Command Line Interface",
+    tryIt: "Command Line Interface",
+    overview:
+      "Command Line Interfaces allowed users to interact with computers by typing text-based commands through keyboards and terminals. This gave users more direct control compared to punch cards.",
+    artifactTitle: "Computer Terminal",
+    artifactText:
+      "Computer terminals and keyboards allowed users to enter commands and receive responses through text. This made interaction faster because users no longer had to wait for punched cards to be processed.",
+    topics: [
+      "Text-Based Commands",
+      "Keyboards",
+      "Computer Terminals",
+      "Early Unix Systems",
+      "File Management",
+    ],
+    media:
+      "This era is represented through a terminal-style screen where commands are typed using a keyboard.",
+    significance:
+      "CLI made computer interaction faster and more direct. However, users still needed to memorize commands and use the correct syntax, which made it difficult for beginners.",
+  },
+  {
+    id: "mouse",
+    marker: "1968",
+    eraName: "Pointing Device Era",
+    title: "Pointing Devices",
+    tryIt: "Pointing Device Interaction",
+    overview:
+      "The computer mouse became a major milestone in HCI after Douglas Engelbart introduced it during the famous Mother of All Demos. It allowed users to control items on a screen through physical movement.",
+    artifactTitle: "Computer Mouse",
+    artifactText:
+      "The mouse connected hand movement to digital screen movement. It allowed users to point, select, and navigate visually instead of relying only on typed commands.",
+    topics: [
+      "Computer Mouse",
+      "Pointing Devices",
+      "Light Pen",
+      "Joystick Comparison",
+      "Interactive Display Workstations",
+    ],
+    media:
+      "This era is represented through a simple mouse visual showing how physical motion became digital control.",
+    significance:
+      "Pointing devices helped make computers easier to navigate. They supported the shift toward graphical interfaces and more visual forms of interaction.",
+  },
+  {
+    id: "gui",
+    marker: "1980s",
+    eraName: "Graphical Interface Era",
+    title: "Graphical User Interface",
+    tryIt: "Mini Desktop",
+    overview:
+      "Graphical User Interfaces became popular in the 1980s. They introduced windows, icons, menus, and pointers, allowing users to interact with visual elements instead of typing every command.",
+    artifactTitle: "Desktop Interface",
+    artifactText:
+      "The desktop interface used icons, folders, windows, menus, and pointers to make computers easier to understand and use.",
+    topics: [
+      "Windows",
+      "Icons",
+      "Menus",
+      "Pointers",
+      "Desktop Metaphor",
+      "Files and Folders",
+    ],
+    media:
+      "This era is represented through a mini desktop layout inspired by early graphical user interfaces.",
+    significance:
+      "GUI made computers easier for non-technical users. It reduced the need to memorize commands and made interaction more visual, intuitive, and accessible.",
+  },
+  {
+    id: "touch",
+    marker: "2000s",
+    eraName: "Touch Interaction Era",
+    title: "Touch and Mobile Interface",
+    tryIt: "Touch Interaction",
+    overview:
+      "Touchscreens and mobile devices changed how users interacted with technology. Users could tap, swipe, pinch, and zoom directly on the screen.",
+    artifactTitle: "Smartphone Touchscreen",
+    artifactText:
+      "Smartphones and capacitive touchscreens allowed users to directly control what they saw on the screen through touch gestures.",
+    topics: [
+      "Capacitive Touchscreens",
+      "Multi-Touch Gestures",
+      "Smartphones",
+      "Mobile Interfaces",
+      "Direct Manipulation",
+    ],
+    media:
+      "This era is represented through a phone-style visual showing common touch gestures such as tap, swipe, pinch, and zoom.",
+    significance:
+      "Touch and mobile interfaces made computing more portable and intuitive. They helped make digital technology easier to use for more people.",
+  },
+  {
+    id: "voice",
+    marker: "Present",
+    eraName: "Spatial and Voice Era",
+    title: "Spatial and Voice Computing",
+    tryIt: "Voice Command",
+    overview:
+      "Modern HCI includes voice assistants, augmented reality, virtual reality, and spatial computing. These technologies allow users to interact through speech, gestures, and immersive spaces.",
+    artifactTitle: "Voice Assistants and AR/VR Devices",
+    artifactText:
+      "Voice assistants and spatial computing devices represent the current and future direction of human-computer interaction.",
+    topics: [
+      "Voice Assistants",
+      "Augmented Reality",
+      "Virtual Reality",
+      "Spatial Mapping",
+      "Brain-Computer Interfaces",
+    ],
+    media:
+      "This era is represented through a voice command interface where a user gives a command and receives visual feedback.",
+    significance:
+      "Modern HCI is becoming more conversational and immersive. Instead of only clicking or typing, users can interact with technology in more natural and human-centered ways.",
+  },
 ];
 
-const README_TEXT =
-  "In the 1960s-70s, the Command Line Interface let users " +
-  "type text commands instead of wiring machines or punching cards. " +
-  "It was faster and more direct, but you had to know the exact " +
-  "command and syntax to get anything done.";
+const tabs = ["Featured Artifact", "Key Topics", "Media", "Significance"];
 
-function getResponse(rawInput, commandLog) {
-  const input = rawInput.trim();
-  const command = input.split(" ")[0].toLowerCase();
-  const args = input.split(" ").slice(1).join(" ").trim();
+function renderFeaturedArtifact(selected) {
+  if (selected.id === "punch") {
+    return (
+      <div className="demo-area punch-demo">
+        <div className="punch-card" aria-label="Punch card visual">
+          {Array.from({ length: 72 }).map((_, index) => (
+            <span
+              key={index}
+              className={
+                [2, 7, 8, 14, 21, 33, 46, 55].includes(index)
+                  ? "hole punched"
+                  : "hole"
+              }
+            />
+          ))}
+        </div>
 
-  if (input === "") {
-    return "";
-  } else if (command === "help") {
-    return [
-      "Available commands:",
-      "  help          - show this list",
-      "  about         - what is a CLI?",
-      "  whoami        - display current user",
-      "  date          - show current date and time",
-      "  ls            - list files in this directory",
-      "  cat <file>    - print contents of a file",
-      "  echo <text>   - repeat text back",
-      "  history       - show commands you've typed",
-      "  clear         - clear the screen",
-      "  exit          - try to leave the terminal",
-    ].join("\n");
-  } else if (command === "about") {
-    return README_TEXT;
-  } else if (command === "whoami") {
-    return "guest@museum-terminal";
-  } else if (command === "date") {
-    return new Date().toString();
-  } else if (command === "ls") {
-    return "readme.txt   unix.log   staff.txt";
-  } else if (command === "cat") {
-    if (args.toLowerCase() === "readme.txt") {
-      return README_TEXT;
-    } else if (args.toLowerCase() === "unix.log") {
-      return "Early Unix (1969) ran on the CLI, using short commands like ls, cd, and rm - many of which are still used today.";
-    } else if (args.toLowerCase() === "staff.txt") {
-      return "Access denied: insufficient privileges.";
-    } else if (args === "") {
-      return "usage: cat <file>";
-    } else {
-      return `cat: ${args}: No such file or directory`;
-    }
-  } else if (command === "echo") {
-    return args === "" ? "" : args;
-  } else if (command === "history") {
-    return commandLog.length === 0
-      ? "No commands yet."
-      : commandLog.map((cmd, i) => `${i + 1}  ${cmd}`).join("\n");
-  } else if (command === "clear") {
-    return "__CLEAR__";
-  } else if (command === "exit") {
-    return "This terminal is a museum piece - it doesn't actually exit!";
-  } else {
-    return `'${command}': command not recognized. Type 'help' for a list of commands.`;
+        <div className="keypad" aria-label="Punch card keypad visual">
+          {["R", "S", "X", "-", "O", "1", "2", "3", "4", "5", "6", "7", "8", "9"].map(
+            (key) => (
+              <span key={key}>{key}</span>
+            )
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  if (selected.id === "cli") {
+    return (
+      <div className="demo-area cli-demo-wrapper">
+        <CLITerminal />
+      </div>
+    );
+  }
+
+  if (selected.id === "mouse") {
+    return (
+      <div className="demo-area mouse-demo">
+        <div className="mouse-shape">
+          <div className="mouse-line"></div>
+        </div>
+        <p>Physical movement → digital selection</p>
+      </div>
+    );
+  }
+
+  if (selected.id === "gui") {
+    return (
+      <div className="demo-area desktop-demo">
+        <div className="desktop-window">
+          <div className="window-bar">Classic Desktop</div>
+
+          <div className="desktop-icons">
+            <span>Files</span>
+            <span>Apps</span>
+            <span>Trash</span>
+          </div>
+
+          <div className="start-menu">
+            <p>Programs</p>
+            <p>Documents</p>
+            <p>Settings</p>
+            <p>Shut Down...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (selected.id === "touch") {
+    return (
+      <div className="demo-area touch-demo">
+        <div className="phone">
+          <span>Tap</span>
+          <span>Swipe</span>
+          <span>Pinch</span>
+          <span>Zoom</span>
+        </div>
+      </div>
+    );
+  }
+
+if (selected.id === "voice") {
+const handleMicrophoneListen = () => {
+      const statusEl = document.getElementById("voice-demo-status");
+      const textEl = document.getElementById("voice-detected-text");
+      const visualActionEl = document.getElementById("voice-visual-action");
+
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        if (statusEl) statusEl.innerText = "Speech recognition not supported.";
+        return;
+      }
+
+      const recognition = new SpeechRecognition();
+      recognition.lang = "en-US";
+      recognition.start();
+
+      if (statusEl) statusEl.innerText = "Listening...";
+
+      recognition.onresult = (event) => {
+        const speechToText = event.results[0][0].transcript.toLowerCase();
+        if (textEl) textEl.innerText = `"${event.results[0][0].transcript}"`;
+        
+        const audioPlayer = document.getElementById("voice-audio-player");
+        // Check if the music player is currently locked
+        const isMusicLocked = visualActionEl?.getAttribute("data-music-locked") === "true";
+
+        if (statusEl) statusEl.innerText = "Processing command...";
+
+        setTimeout(() => {
+          // RULE 1: If music is locked, ONLY allow the stop command
+          if (isMusicLocked) {
+            if (speechToText.includes("stop") || speechToText.includes("pause") || speechToText.includes("turn off")) {
+              if (statusEl) statusEl.innerText = "Music stopped. Interface unlocked.";
+              if (audioPlayer) {
+                audioPlayer.pause();
+                audioPlayer.currentTime = 0; 
+              }
+              if (visualActionEl) {
+                visualActionEl.className = "action-display idle";
+                visualActionEl.setAttribute("data-music-locked", "false"); // Unlock
+              }
+            } else {
+              // Ignore any other command
+              if (statusEl) statusEl.innerText = "Mode Locked: Saying anything other than 'Stop' is ignored while music plays.";
+            }
+            return; // Exit early so no other commands trigger
+          }
+
+          // RULE 2: Standard behavior if music is NOT locked
+          if (speechToText.includes("light") && speechToText.includes("turn on")) {
+            if (statusEl) statusEl.innerText = "Action performed: Lights turned on.";
+            if (visualActionEl) visualActionEl.className = "action-display light-on";
+          } else if (speechToText.includes("lights") && speechToText.includes("turn off")) {
+            if (statusEl) statusEl.innerText = "Action performed: Lights turned off.";
+            if (visualActionEl) visualActionEl.className = "action-display matrix-theme";
+          } else if (speechToText.includes("music") || speechToText.includes("play")) {
+            if (statusEl) statusEl.innerText = "Action performed: Playing music. Interface locked to 'Stop' command.";
+            if (audioPlayer) {
+              audioPlayer.volume = 1.0;
+              audioPlayer.load();
+              audioPlayer.play().catch(err => {
+                console.error("Browser media policy blocked autoplay:", err);
+              });
+            }
+            if (visualActionEl) {
+              visualActionEl.className = "action-display music-playing";
+              visualActionEl.setAttribute("data-music-locked", "true"); // Lock it down!
+            }
+          } else {
+            if (statusEl) statusEl.innerText = `Unknown command: "${speechToText}"`;
+            if (visualActionEl) visualActionEl.className = "action-display unknown";
+          }
+        }, 1000);
+      };
+    };
+
+    return (
+      <div className="demo-area voice-demo">
+        <div style={{ textAlign: "center", marginBottom: "1rem" }}>
+          <button 
+            onClick={handleMicrophoneListen}
+            style={{
+              background: "#ef4444",
+              color: "#fff",
+              border: "none",
+              padding: "0.8rem 2rem",
+              fontWeight: "900",
+              borderRadius: "999px",
+              cursor: "pointer",
+              textTransform: "uppercase",
+              letterSpacing: "1px",
+              boxShadow: "0 4px 12px rgba(239, 68, 68, 0.4)"
+            }}
+          >
+            🎙️ Click to Speak
+          </button>
+          <p style={{ fontSize: "0.85rem", margin: "8px 0 0", color: "#666" }}>
+            Say "Turn on the lights" to change lighten up the feedback view, and "Turn off the lights" darken it.
+          </p>
+          <p style={{ fontSize: "0.85rem", margin: "8px 0 0", color: "#666" }}>
+            Say "Play music" to play music, and "Stop music" or "Pause music" to stop.
+          </p>
+          <p style={{ fontSize: "0.85rem", margin: "8px 0 0", color: "#666" }}>
+            You cannot turn on and off the lights while music is playing!
+          </p>
+        </div>
+
+        <div className="voice-status-box">
+          <span className="status-label">Status:</span>
+          <div id="voice-demo-status" style={{ fontWeight: "700" }}>Ready.</div>
+        </div>
+
+        <div className="voice-status-box">
+          <span className="status-label">Heard text:</span>
+          <div id="voice-detected-text" style={{ fontStyle: "italic", color: "#444" }}>...</div>
+        </div>
+
+        {/* Note the data-music-locked attribute initialization here */}
+        <div id="voice-visual-action" className="action-display idle" data-music-locked="false">
+          <div className="smart-bulb"></div>
+          <div className="audio-visualizer">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <span className="action-text">Interface Feedback View</span>
+        </div>
+        <audio 
+          id="voice-audio-player" 
+          src={myMusicTrack}
+          loop
+        />
+      </div>
+    );
   }
 }
 
-export default function CLITerminal() {
-  const [lines, setLines] = useState(
-    BOOT_LINES.map((text) => ({ type: "output", text }))
-  );
-  const [inputValue, setInputValue] = useState("");
-  const [commandLog, setCommandLog] = useState([]);
-  const [historyPointer, setHistoryPointer] = useState(null);
+export default function HCITimeline() {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [activeTab, setActiveTab] = useState("Featured Artifact");
 
-  const inputRef = useRef(null);
-  const bottomRef = useRef(null);
+  const selected = milestones[selectedIndex];
 
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ block: "end" });
-  }, [lines]);
-
-  function focusInput() {
-    inputRef.current?.focus();
-  }
-
-  function runCommand(raw) {
-    const response = getResponse(raw, commandLog);
-
-    if (raw.trim() !== "") {
-      setCommandLog((prev) => [...prev, raw.trim()]);
-    }
-
-    if (response === "__CLEAR__") {
-      setLines([]);
-      return;
-    }
-
-    setLines((prev) => [
-      ...prev,
-      { type: "input", text: raw },
-      ...(response ? [{ type: "output", text: response }] : []),
-    ]);
-  }
-
-  function handleKeyDown(event) {
-    if (event.key === "Enter") {
-      runCommand(inputValue);
-      setInputValue("");
-      setHistoryPointer(null);
-    } else if (event.key === "ArrowUp") {
-      event.preventDefault();
-      if (commandLog.length === 0) return;
-      const nextPointer =
-        historyPointer === null
-          ? commandLog.length - 1
-          : Math.max(historyPointer - 1, 0);
-      setHistoryPointer(nextPointer);
-      setInputValue(commandLog[nextPointer]);
-    } else if (event.key === "ArrowDown") {
-      event.preventDefault();
-      if (historyPointer === null) return;
-      const nextPointer = historyPointer + 1;
-      if (nextPointer >= commandLog.length) {
-        setHistoryPointer(null);
-        setInputValue("");
-      } else {
-        setHistoryPointer(nextPointer);
-        setInputValue(commandLog[nextPointer]);
-      }
-    }
+  function chooseEra(index) {
+    setSelectedIndex(index);
+    setActiveTab("Featured Artifact");
   }
 
   return (
-    <div className="cli-terminal" onClick={focusInput}>
-      <div className="cli-titlebar">
-        <span className="cli-dot cli-dot-red" />
-        <span className="cli-dot cli-dot-yellow" />
-        <span className="cli-dot cli-dot-green" />
-        <span className="cli-titletext">terminal - 1970</span>
-      </div>
+    <main className="hci-wrapper">
+      <aside className="left-timeline">
+        <div className="timeline-line"></div>
 
-      <div className="cli-screen">
-        {lines.map((line, index) => (
-          <div
-            key={index}
-            className={
-              line.type === "input" ? "cli-line cli-input-line" : "cli-line"
-            }
+        {milestones.map((milestone, index) => (
+          <button
+            key={milestone.id}
+            className={selectedIndex === index ? "era-button active" : "era-button"}
+            onClick={() => chooseEra(index)}
+            aria-label={`Open ${milestone.title}`}
           >
-            {line.type === "input" ? (
-              <>
-                <span className="cli-prompt">guest@museum:~$</span>{" "}
-                {line.text}
-              </>
-            ) : (
-              line.text
-            )}
-          </div>
+            <span className="era-marker">{milestone.marker}</span>
+            <span className="era-title">{milestone.eraName}</span>
+          </button>
         ))}
+      </aside>
 
-        <div className="cli-line cli-input-line">
-          <span className="cli-prompt">guest@museum:~$</span>
-          <input
-            ref={inputRef}
-            className="cli-input"
-            value={inputValue}
-            onChange={(event) => setInputValue(event.target.value)}
-            onKeyDown={handleKeyDown}
-            autoFocus
-            spellCheck={false}
-            autoComplete="off"
-            aria-label="Terminal command input"
-          />
-          <span className="cli-cursor" aria-hidden="true">
-            &#9608;
-          </span>
-        </div>
+      <section className="exhibit-card">
+        <header className="exhibit-header">
+          <div className="header-top">
+            <div>
+              <p className="museum-label">Historical Computing Exhibit</p>
+              <p className="hci-label">Human-Computer Interaction</p>
+            </div>
 
-        <div ref={bottomRef} />
-      </div>
+            <div className="era-count">
+              <span>{String(selectedIndex + 1).padStart(2, "0")}</span>
+              <small>/ {String(milestones.length).padStart(2, "0")}</small>
+            </div>
+          </div>
+
+          <div className="title-box">
+            <p className="era-name">{selected.eraName}</p>
+            <h1>{selected.title}</h1>
+            <p className="intro">{selected.overview}</p>
+          </div>
+        </header>
+
+        <section className="try-section">
+          <strong>Try It: {selected.tryIt}</strong>
+          {renderFeaturedArtifact(selected)}
+        </section>
+
+        <nav className="tab-row" aria-label="Timeline content tabs">
+          {tabs.map((tab) => (
+            <button
+              key={tab}
+              className={activeTab === tab ? "tab active-tab" : "tab"}
+              onClick={() => setActiveTab(tab)}
+            >
+              {tab}
+            </button>
+          ))}
+        </nav>
+
+        <section className="info-panel">
+          {activeTab === "Featured Artifact" && (
+            <>
+              <h2>{selected.artifactTitle}</h2>
+              <p>{selected.artifactText}</p>
+            </>
+          )}
+
+          {activeTab === "Key Topics" && (
+            <>
+              <h2>Key Topics</h2>
+              <div className="topic-grid">
+                {selected.topics.map((topic) => (
+                  <span key={topic}>{topic}</span>
+                ))}
+              </div>
+            </>
+          )}
+
+          {activeTab === "Media" && (
+            <>
+              <h2>Media</h2>
+              <p>{selected.media}</p>
+            </>
+          )}
+
+          {activeTab === "Significance" && (
+            <>
+              <h2>Significance to Human-Computer Interaction</h2>
+              <p>{selected.significance}</p>
+            </>
+          )}
+        </section>
+      </section>
+
+      <aside className="right-rail"></aside>
 
       <style>{`
-        .cli-terminal {
-          max-width: 720px;
+        .hci-wrapper {
+          display: grid;
+          grid-template-columns: 170px minmax(0, 940px) 42px;
+          max-width: 1180px;
           margin: 0 auto;
-          background: #0c0c0c;
-          border-radius: 10px;
-          overflow: hidden;
-          box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
-          font-family: Consolas, "Courier New", monospace;
-          cursor: text;
+          background: #000;
+          color: #111;
+          min-height: 760px;
+          font-family:
+            "Segoe UI",
+            Arial,
+            Helvetica,
+            sans-serif;
+          box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
         }
 
-        .cli-titlebar {
+        .left-timeline,
+        .right-rail {
+          background: #000;
+        }
+
+        .left-timeline {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          align-items: stretch;
+          padding: 2rem 1rem;
+          gap: 0.75rem;
+        }
+
+        .timeline-line {
+          position: absolute;
+          top: 3rem;
+          bottom: 3rem;
+          left: 1.6rem;
+          width: 3px;
+          background: #72767d;
+        }
+
+        .era-button {
+          position: relative;
+          z-index: 2;
+          display: grid;
+          grid-template-columns: 46px 1fr;
+          align-items: center;
+          gap: 0.55rem;
+          border: none;
+          background: transparent;
+          color: #9ca3af;
+          text-align: left;
+          cursor: pointer;
+          padding: 0.4rem 0;
+        }
+
+        .era-marker {
+          display: grid;
+          place-items: center;
+          width: 46px;
+          height: 46px;
+          border-radius: 50%;
+          background: #858b93;
+          color: #111;
+          font-size: 0.62rem;
+          font-weight: 900;
+          transition:
+            transform 0.18s ease,
+            background 0.18s ease,
+            outline 0.18s ease;
+        }
+
+        .era-title {
+          display: block;
+          font-size: 0.76rem;
+          font-weight: 900;
+          line-height: 1.15;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          opacity: 0.75;
+          transition:
+            color 0.18s ease,
+            opacity 0.18s ease,
+            transform 0.18s ease;
+        }
+
+        .era-button:hover .era-marker {
+          background: #ffffff;
+          transform: scale(1.08);
+          outline: 4px solid #d9dce1;
+        }
+
+        .era-button:hover .era-title {
+          color: #ffffff;
+          opacity: 1;
+          transform: translateX(3px);
+        }
+
+        .era-button.active .era-marker {
+          width: 60px;
+          height: 60px;
+          background: #ffffff;
+          color: #111;
+          outline: 6px solid #d9dce1;
+          transform: translateX(-7px);
+        }
+
+        .era-button.active .era-title {
+          color: #ffffff;
+          opacity: 1;
+          transform: translateX(2px);
+        }
+
+        .exhibit-card {
+          background: #ffffff;
+          padding: 2rem 2.4rem 2.3rem;
+          min-height: 760px;
+        }
+
+        .exhibit-header {
+          position: relative;
+          border-radius: 24px;
+          padding: 1.3rem;
+          background:
+            linear-gradient(135deg, #f5f5f5 0%, #ffffff 45%, #e9eaec 100%);
+          border: 1px solid #d8d8d8;
+          box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.8),
+            0 14px 28px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+        }
+
+        .exhibit-header::before {
+          content: "";
+          position: absolute;
+          right: -90px;
+          top: -90px;
+          width: 240px;
+          height: 240px;
+          border-radius: 50%;
+          background: rgba(0, 0, 0, 0.055);
+        }
+
+        .exhibit-header::after {
+          content: "";
+          position: absolute;
+          right: 36px;
+          bottom: 26px;
+          width: 120px;
+          height: 120px;
+          border: 18px solid rgba(0, 0, 0, 0.04);
+          border-radius: 50%;
+        }
+
+        .header-top,
+        .title-box {
+          position: relative;
+          z-index: 1;
+        }
+
+        .header-top {
+          display: flex;
+          justify-content: space-between;
+          gap: 1rem;
+          align-items: flex-start;
+          margin-bottom: 1rem;
+        }
+
+        .museum-label {
+          margin: 0;
+          color: #5f646b;
+          text-transform: uppercase;
+          font-size: 0.75rem;
+          letter-spacing: 2px;
+          font-weight: 900;
+        }
+
+        .hci-label {
+          margin: 0.2rem 0 0;
+          color: #c9c9c9;
+          text-transform: uppercase;
+          font-size: clamp(1rem, 2.5vw, 1.8rem);
+          letter-spacing: 1.5px;
+          font-weight: 900;
+        }
+
+        .era-count {
+          min-width: 88px;
+          background: #111;
+          color: #fff;
+          border-radius: 18px;
+          padding: 0.65rem 0.8rem;
+          text-align: center;
+          box-shadow: 5px 5px 0 #c7c7c7;
+        }
+
+        .era-count span {
+          font-size: 1.5rem;
+          font-weight: 900;
+          line-height: 1;
+        }
+
+        .era-count small {
+          font-size: 0.78rem;
+          color: #cfcfcf;
+          font-weight: 800;
+        }
+
+        .era-name {
+          display: inline-block;
+          margin: 0 0 0.55rem;
+          padding: 0.35rem 0.7rem;
+          background: #111;
+          color: #fff;
+          border-radius: 999px;
+          font-size: 0.78rem;
+          font-weight: 900;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+        }
+
+        .exhibit-header h1 {
+          margin: 0.1rem 0 0.9rem;
+          color: #000;
+          text-transform: uppercase;
+          font-size: clamp(2rem, 4.5vw, 3.35rem);
+          letter-spacing: 5px;
+          line-height: 0.98;
+          font-weight: 900;
+          max-width: 760px;
+        }
+
+        .intro {
+          max-width: 810px;
+          line-height: 1.6;
+          font-size: 0.98rem;
+          margin: 0;
+          color: #333;
+          font-weight: 500;
+        }
+
+        .try-section {
+          margin-top: 1.35rem;
+        }
+
+        .try-section strong {
+          display: block;
+          margin-bottom: 0.8rem;
+          font-size: 1.02rem;
+          font-weight: 900;
+          letter-spacing: 0.2px;
+        }
+
+        .demo-area {
+          min-height: 170px;
+          background: #f1f1f1;
+          border-radius: 16px;
+          padding: 1rem;
+          transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+        }
+
+        .demo-area:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+        }
+
+        .punch-demo {
           display: flex;
           align-items: center;
-          gap: 8px;
-          padding: 0.6rem 0.9rem;
-          background: #2b2b2b;
+          justify-content: center;
+          gap: 1.5rem;
+          background: #eee6c9;
         }
 
-        .cli-dot {
-          width: 12px;
-          height: 12px;
+        .punch-card {
+          display: grid;
+          grid-template-columns: repeat(12, 22px);
+          gap: 4px;
+          padding: 12px;
+          background: #ddd2a8;
+          border: 6px solid #d4c89b;
+          border-radius: 8px;
+        }
+
+        .hole {
+          width: 22px;
+          height: 18px;
+          background: rgba(255,255,255,0.45);
+          border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .hole.punched {
+          background: #000;
+          border-radius: 3px;
+        }
+
+        .keypad {
+          display: grid;
+          grid-template-columns: repeat(3, 40px);
+          gap: 9px;
+          padding: 14px;
+          background: #8f959c;
+          border-radius: 16px;
+        }
+
+        .keypad span {
+          display: grid;
+          place-items: center;
+          width: 40px;
+          height: 40px;
           border-radius: 50%;
-          display: inline-block;
+          background: #fff;
+          font-weight: 900;
+          font-size: 0.82rem;
+          transition:
+            transform 0.15s ease,
+            background 0.15s ease;
         }
 
-        .cli-dot-red {
-          background: #ff5f56;
+        .keypad span:hover {
+          transform: scale(1.12);
+          background: #eeeeee;
         }
 
-        .cli-dot-yellow {
-          background: #ffbd2e;
+        .cli-demo-wrapper {
+          background: transparent;
+          padding: 0;
         }
 
-        .cli-dot-green {
-          background: #27c93f;
+        .cli-demo-wrapper:hover {
+          transform: none;
+          box-shadow: none;
         }
 
-        .cli-titletext {
-          margin-left: 0.5rem;
-          color: #9ca3af;
-          font-size: 0.78rem;
+        .mouse-demo,
+        .touch-demo {
+          display: grid;
+          place-items: center;
+          text-align: center;
+        }
+
+        .mouse-demo p {
+          font-weight: 800;
+          color: #333;
+        }
+
+        .mouse-shape {
+          width: 85px;
+          height: 130px;
+          border: 6px solid #333;
+          border-radius: 45px;
+          background: #ddd;
+          transition: transform 0.2s ease;
+        }
+
+        .mouse-shape:hover {
+          transform: translateX(8px);
+        }
+
+        .mouse-line {
+          width: 5px;
+          height: 30px;
+          background: #333;
+          margin: 16px auto 0;
+          border-radius: 99px;
+        }
+
+        .desktop-demo {
+          background: #d9cfaa;
+          display: grid;
+          place-items: center;
+        }
+
+        .desktop-window {
+          width: min(520px, 100%);
+          height: 210px;
+          background: #3a73a7;
+          border: 6px solid #cfc092;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .window-bar {
+          background: #d9d9d9;
+          padding: 6px;
+          font-weight: 900;
+          font-size: 0.82rem;
+        }
+
+        .desktop-icons {
+          display: flex;
+          gap: 10px;
+          padding: 10px;
+        }
+
+        .desktop-icons span {
+          color: white;
+          font-size: 0.75rem;
+          background: rgba(255,255,255,0.18);
+          padding: 8px;
+          border-radius: 6px;
+          transition:
+            transform 0.18s ease,
+            background 0.18s ease;
+        }
+
+        .desktop-icons span:hover {
+          transform: translateY(-3px);
+          background: rgba(255,255,255,0.28);
+        }
+
+        .start-menu {
+          position: absolute;
+          left: 12px;
+          bottom: 12px;
+          width: 150px;
+          background: #eee;
+          border: 2px solid #888;
+          font-size: 0.75rem;
+        }
+
+        .start-menu p {
+          margin: 0;
+          padding: 5px 8px;
+          transition: background 0.15s ease;
+        }
+
+        .start-menu p:hover {
+          background: #d1d5db;
+        }
+
+        .voice-status-box {
+        background: #e5e7eb;
+        padding: 0.6rem 1rem;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .status-label {
+        font-weight: 900;
+        color: #111;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        background: #cbd5e1;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+
+      /* Base Interface Action Display */
+      .action-display {
+        min-height: 120px;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        transition: all 0.4s ease;
+        border: 2px dashed #9ca3af;
+      }
+
+      .action-display.idle {
+        background: #fafafa;
+        color: #6b7280;
+      }
+
+      .action-display .smart-bulb {
+        width: 30px;
+        height: 30px;
+        background: #9ca3af;
+        border-radius: 50%;
+        transition: all 0.4s ease;
+      }
+
+      /* Visual Action: Turn on the lights */
+      .action-display.light-on {
+        background: #fef08a;
+        border-color: #eab308;
+        color: #854d0e;
+      }
+      .action-display.light-on .smart-bulb {
+        background: #eab308;
+        box-shadow: 0 0 20px #eab308;
+      }
+
+      /* Visual Action: Change Theme */
+      .action-display.matrix-theme {
+        background: #064e3b;
+        border-color: #10b981;
+        color: #a7f3d0;
+      }
+      .action-display.matrix-theme .smart-bulb {
+        background: #10b981;
+      }
+
+      /* Visual Action: Error/Unknown command */
+      .action-display.unknown {
+        background: #fee2e2;
+        border-color: #ef4444;
+        color: #991b1b;
+      }
+
+      .audio-visualizer {
+        display: none;
+        gap: 4px;
+        align-items: flex-end;
+        height: 40px;
+        margin: 10px 0;
+      }
+
+      .audio-visualizer span {
+        width: 6px;
+        height: 100%;
+        background: #3b82f6;
+        border-radius: 3px;
+      }
+
+      /* Music Playing Active State */
+      .action-display.music-playing {
+        background: #eff6ff;
+        border-color: #3b82f6;
+        color: #1e3a8a;
+      }
+
+      .action-display.music-playing .smart-bulb {
+        display: none; /* Hide bulb when playing music */
+      }
+
+      .action-display.music-playing .audio-visualizer {
+        display: flex; /* Show visualizer */
+      }
+
+      /* Visualizer Bars Animation Sequencing */
+      .action-display.music-playing .audio-visualizer span {
+        animation: bounceVisualizer 0.6s ease infinite alternate;
+      }
+      .action-display.music-playing .audio-visualizer span:nth-child(2) { animation-delay: 0.1s; animation-duration: 0.4s; }
+      .action-display.music-playing .audio-visualizer span:nth-child(3) { animation-delay: 0.2s; animation-duration: 0.7s; }
+      .action-display.music-playing .audio-visualizer span:nth-child(4) { animation-delay: 0.15s; animation-duration: 0.5s; }
+      .action-display.music-playing .audio-visualizer span:nth-child(5) { animation-delay: 0.3s; animation-duration: 0.6s; }
+
+      @keyframes bounceVisualizer {
+        0% { height: 10%; }
+        100% { height: 100%; }
+      }
+
+        .voice-input:hover {
+          outline: 3px solid #8f959c;
+        }
+
+        .phone {
+          width: 190px;
+          height: 290px;
+          border: 8px solid #333;
+          border-radius: 28px;
+          background: #111;
+          display: grid;
+          gap: 8px;
+          padding: 24px;
+        }
+
+        .phone span {
+          background: #f5f5f5;
+          border-radius: 999px;
+          padding: 10px;
+          font-weight: 900;
+          transition:
+            transform 0.16s ease,
+            background 0.16s ease;
+        }
+
+        .phone span:hover {
+          transform: scale(1.08);
+          background: #d9dce1;
+        }
+
+        .tab-row {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 8px;
+          margin-top: 1.3rem;
+        }
+
+        .tab {
+          border: 0;
+          background: #000;
+          color: #fff;
+          padding: 1rem 0.5rem;
+          border-radius: 12px 12px 0 0;
+          font-weight: 900;
+          font-size: 0.9rem;
+          cursor: pointer;
+          letter-spacing: 0.2px;
+          transition:
+            background 0.18s ease,
+            color 0.18s ease,
+            transform 0.18s ease;
+        }
+
+        .tab:hover {
+          background: #2c2c2c;
+          transform: translateY(-4px);
+        }
+
+        .tab.active-tab {
+          background: #8f959c;
+          color: #000;
+          transform: translateY(-4px);
+        }
+
+        .info-panel {
+          background: #8f959c;
+          min-height: 170px;
+          padding: 1.4rem;
+          border-radius: 0 0 18px 18px;
+        }
+
+        .info-panel h2 {
+          margin-top: 0;
+          font-size: 1.35rem;
+          font-weight: 900;
+          text-transform: uppercase;
           letter-spacing: 0.5px;
         }
 
-        .cli-screen {
-          background: #000;
-          color: #00ff37;
-          padding: 1rem 1.1rem 1.2rem;
-          min-height: 320px;
-          max-height: 420px;
-          overflow-y: auto;
-          font-size: 0.95rem;
-          line-height: 1.55;
+        .info-panel p {
+          line-height: 1.65;
+          font-size: 1rem;
+          font-weight: 550;
+          color: #161616;
         }
 
-        .cli-line {
-          white-space: pre-wrap;
-          word-break: break-word;
-        }
-
-        .cli-input-line {
+        .topic-grid {
           display: flex;
-          align-items: center;
-          gap: 0.5rem;
+          flex-wrap: wrap;
+          gap: 0.6rem;
         }
 
-        .cli-prompt {
-          color: #4ade80;
-          font-weight: 700;
-          flex-shrink: 0;
+        .topic-grid span {
+          background: #fff;
+          padding: 0.7rem 0.9rem;
+          border-radius: 999px;
+          font-weight: 900;
+          font-size: 0.88rem;
+          transition:
+            transform 0.16s ease,
+            background 0.16s ease;
         }
 
-        .cli-input {
-          flex: 1;
-          background: transparent;
-          border: none;
-          outline: none;
-          color: #00ff37;
-          font-family: inherit;
-          font-size: 0.95rem;
-          caret-color: transparent;
+        .topic-grid span:hover {
+          transform: translateY(-3px);
+          background: #eeeeee;
         }
 
-        .cli-cursor {
-          color: #00ff37;
-          animation: cli-blink 1s steps(2, start) infinite;
-        }
-
-        @keyframes cli-blink {
-          50% {
-            opacity: 0;
+        @media (max-width: 900px) {
+          .hci-wrapper {
+            grid-template-columns: 1fr;
+            min-height: auto;
           }
-        }
 
-        @media (max-width: 600px) {
-          .cli-screen {
-            font-size: 0.85rem;
-            min-height: 260px;
+          .left-timeline {
+            flex-direction: row;
+            justify-content: flex-start;
+            gap: 1rem;
+            overflow-x: auto;
+            padding: 1rem;
+          }
+
+          .timeline-line,
+          .right-rail {
+            display: none;
+          }
+
+          .era-button {
+            min-width: 150px;
+            grid-template-columns: 46px 1fr;
+          }
+
+          .era-button.active .era-marker {
+            transform: none;
+          }
+
+          .exhibit-card {
+            padding: 1.2rem;
+            min-height: auto;
+          }
+
+          .header-top {
+            flex-direction: column;
+          }
+
+          .exhibit-header h1 {
+            letter-spacing: 3px;
+            font-size: clamp(1.8rem, 9vw, 2.6rem);
+          }
+
+          .tab-row {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .punch-demo {
+            flex-direction: column;
+          }
+
+          .punch-card {
+            grid-template-columns: repeat(8, 22px);
           }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .cli-cursor {
-            animation: none;
+          *,
+          *::before,
+          *::after {
+            animation: none !important;
+            transition: none !important;
+            scroll-behavior: auto !important;
           }
         }
       `}</style>
-    </div>
+    </main>
   );
 }
