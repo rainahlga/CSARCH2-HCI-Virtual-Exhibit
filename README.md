@@ -1,3 +1,8 @@
+# Website
+This website is an interactive exploration of Human-Computer Interaction, letting visitors experience firsthand how people have communicated with computers throughout history. Rather than simply reading about these interfaces, visitors get to interact with recreations of them, from early computing methods to modern voice-activated systems, gaining a hands-on understanding of how HCI has evolved over time.
+
+## Deployment Link : https://rainahlga.github.io/CSARCH2-HCI-Virtual-Exhibit/
+
 # Progress Update: 
 
 ## **Development Actions Completed (Things Done):** 
