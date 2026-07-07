@@ -77,6 +77,10 @@ This is to acknowledge that the Virtual Exhibit was made by the CSARCH2 S02 Grou
 
 The group learned and navigated through unfamiliar syntax and approaches that seemed more difficult and faster. The lack of sufficient knowledge while navigating through implementing API elements proved both insightful and convenient. Additionally, debugging, especially with the unfamiliar package versions of astro 
 
+# References :
+Components. (n.d.). Docs. https://docs.astro.build/en/basics/astro-components/
+Contributors, M. (2024, July 4). DoCs | MDX. MDX. https://mdxjs.com/docs/
+
 # Historical Computing: Evolution of Human-Computer Interaction
 
 Submitted by Group 8 [S02]:\
