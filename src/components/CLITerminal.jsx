@@ -1,23 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 
-/*
-  CLI Terminal Simulator
-  ------------------------------------------------------------
-  Interactive element for the "Command Line Interfaces (CLI)"
-  section of the HCI exhibit (1960s-1970s).
-
-  Spec covered (from proposal):
-  - Command Based Input      -> controlled <input>, submitted on Enter
-  - Pre-scripted responses   -> getResponse() below
-  - Simple interface         -> input box + console-like output log
-  - Conditional logic system -> if/else chain in getResponse()
-
-  Extra touches (optional, safe to keep or trim):
-  - Boot sequence on mount, like flipping on an old terminal
-  - Up/Down arrow recalls command history (mirrors real shells)
-  - Auto-scroll + auto-focus so it feels like a real terminal
-*/
-
 const BOOT_LINES = [
   "MUSEUM TERMINAL EMULATOR v1.0",
   "BOOTING...",

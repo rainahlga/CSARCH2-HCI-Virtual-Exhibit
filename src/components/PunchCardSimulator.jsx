@@ -1,29 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 
-/*
-  Punch Card (Keypunch) Simulator
-  ------------------------------------------------------------
-  Interactive element for the "Batch Processing and Punch Cards"
-  section of the HCI exhibit (1940s).
-
-  Spec covered (from proposal):
-  - Prepare-then-submit workflow  -> punch a card first, THEN submit
-  - Hole-based encoding           -> real Hollerith code (IBM cards)
-  - Batch processing              -> submitted card goes to a queue,
-                                     is "read", then a printout appears
-  - No real-time interaction      -> you cannot edit a punched hole;
-                                     mistakes mean taking a new card
-
-  How it works:
-  - Type on your keyboard (or tap the on-screen keys) and each
-    character is punched into the current column using the actual
-    Hollerith encoding (e.g. 'A' = rows 12+1, '5' = row 5).
-  - Backspace deliberately does nothing except scold you - real
-    keypunches could not un-punch a hole.
-  - "Submit to batch" runs a short simulated queue -> card reader ->
-    processor -> line printer sequence and prints the decoded text.
-*/
-
 const ROWS = [12, 11, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; // top to bottom
 const NUM_COLS = 40; // real cards had 80; 40 keeps it readable on screen
 

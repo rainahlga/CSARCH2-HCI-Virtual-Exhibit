@@ -3,27 +3,6 @@ import myMusicTrack from "../assets/Elevator Music.mp3";
 import CLITerminal from "./CLITerminal.jsx";
 import PunchCardSimulator from "./PunchCardSimulator.jsx";
 import GUISimulator from "./MiniDesktop.jsx";
-// Adjust the relative path string above depending on your file structure
-/*
-  Final HCI Interactive Timeline
-
-  This follows the proposal vision:
-  - Left vertical timeline
-  - Clickable milestones
-  - Active milestone highlighting
-  - Dynamic content switching
-  - Tabs for Featured Artifact, Key Topics, Media, and Significance
-  - Better header design
-  - More depth/dimension but still lightweight for speed
-
-  Groupmates can later replace the sample demo visuals with their actual components.
-
-  NOTE: The CLI era's "Try It" demo now embeds the real, functional
-  CLITerminal component instead of the old static/fake prompt mockup.
-  Because HCITimeline is already hydrated with client:load in the .mdx
-  page, CLITerminal does NOT need its own client: directive here -- it
-  hydrates automatically as part of the same React tree.
-*/
 
 const milestones = [
   {
@@ -405,7 +384,9 @@ export default function HCITimeline() {
         </header>
 
         <section className="try-section">
-          <strong>Try It: {selected.tryIt}</strong>
+          {selected.id !== "mouse" && selected.id !== "touch" && (
+            <strong>Try It: {selected.tryIt}</strong>
+          )}
           {renderFeaturedArtifact(selected)}
         </section>
 
