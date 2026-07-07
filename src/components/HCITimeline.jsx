@@ -2,6 +2,7 @@ import { useState } from "react";
 import myMusicTrack from "../assets/Elevator Music.mp3";
 import CLITerminal from "./CLITerminal.jsx";
 import PunchCardSimulator from "./PunchCardSimulator.jsx";
+import GUISimulator from "./MiniDesktop.jsx";
 // Adjust the relative path string above depending on your file structure
 /*
   Final HCI Interactive Timeline
@@ -199,22 +200,7 @@ function renderFeaturedArtifact(selected) {
   if (selected.id === "gui") {
     return (
       <div className="demo-area desktop-demo">
-        <div className="desktop-window">
-          <div className="window-bar">Classic Desktop</div>
-
-          <div className="desktop-icons">
-            <span>Files</span>
-            <span>Apps</span>
-            <span>Trash</span>
-          </div>
-
-          <div className="start-menu">
-            <p>Programs</p>
-            <p>Documents</p>
-            <p>Settings</p>
-            <p>Shut Down...</p>
-          </div>
-        </div>
+        <GUISimulator />
       </div>
     );
   }
@@ -232,8 +218,8 @@ function renderFeaturedArtifact(selected) {
     );
   }
 
-if (selected.id === "voice") {
-      const handleMicrophoneListen = () => {
+  if (selected.id === "voice") {
+    const handleMicrophoneListen = () => {
       const statusEl = document.getElementById("voice-demo-status");
       const textEl = document.getElementById("voice-detected-text");
       const visualActionEl = document.getElementById("voice-visual-action");
@@ -253,7 +239,7 @@ if (selected.id === "voice") {
       recognition.onresult = (event) => {
         const speechToText = event.results[0][0].transcript.toLowerCase();
         if (textEl) textEl.innerText = `"${event.results[0][0].transcript}"`;
-        
+
         const audioPlayer = document.getElementById("voice-audio-player");
         // Check if the music player is currently locked
         const isMusicLocked = visualActionEl?.getAttribute("data-music-locked") === "true";
@@ -267,7 +253,7 @@ if (selected.id === "voice") {
               if (statusEl) statusEl.innerText = "Music stopped. Interface unlocked.";
               if (audioPlayer) {
                 audioPlayer.pause();
-                audioPlayer.currentTime = 0; 
+                audioPlayer.currentTime = 0;
               }
               if (visualActionEl) {
                 visualActionEl.className = "action-display idle";
@@ -311,7 +297,7 @@ if (selected.id === "voice") {
     return (
       <div className="demo-area voice-demo">
         <div style={{ textAlign: "center", marginBottom: "1rem" }}>
-          <button 
+          <button
             onClick={handleMicrophoneListen}
             className="voice-act-btn"
             style={{
@@ -358,8 +344,8 @@ if (selected.id === "voice") {
           </div>
           <span className="action-text">Interface Feedback View</span>
         </div>
-        <audio 
-          id="voice-audio-player" 
+        <audio
+          id="voice-audio-player"
           src={myMusicTrack}
           loop
         />
@@ -837,67 +823,11 @@ export default function HCITimeline() {
         }
 
         .desktop-demo {
-          background: #d9cfaa;
-          display: grid;
-          place-items: center;
-        }
-
-        .desktop-window {
-          width: min(520px, 100%);
-          height: 210px;
-          background: #3a73a7;
-          border: 6px solid #cfc092;
-          position: relative;
+          background: transparent;
+          padding: 0;
+          min-height: auto;
+          border-radius: 12px;
           overflow: hidden;
-        }
-
-        .window-bar {
-          background: #d9d9d9;
-          padding: 6px;
-          font-weight: 900;
-          font-size: 0.82rem;
-        }
-
-        .desktop-icons {
-          display: flex;
-          gap: 10px;
-          padding: 10px;
-        }
-
-        .desktop-icons span {
-          color: white;
-          font-size: 0.75rem;
-          background: rgba(255,255,255,0.18);
-          padding: 8px;
-          border-radius: 6px;
-          transition:
-            transform 0.18s ease,
-            background 0.18s ease;
-        }
-
-        .desktop-icons span:hover {
-          transform: translateY(-3px);
-          background: rgba(255,255,255,0.28);
-        }
-
-        .start-menu {
-          position: absolute;
-          left: 12px;
-          bottom: 12px;
-          width: 150px;
-          background: #eee;
-          border: 2px solid #888;
-          font-size: 0.75rem;
-        }
-
-        .start-menu p {
-          margin: 0;
-          padding: 5px 8px;
-          transition: background 0.15s ease;
-        }
-
-        .start-menu p:hover {
-          background: #d1d5db;
         }
 
         .voice-status-box {
