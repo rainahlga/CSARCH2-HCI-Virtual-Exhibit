@@ -1,6 +1,6 @@
 # Progress Update: 
 
-## ● **Development Actions Completed (Things Done):** 
+## **Development Actions Completed (Things Done):** 
 
    - Interactive timeline that navigates through the different timelines. 
 
@@ -14,13 +14,13 @@
 
    - Interactive element: Mini Desktop 
 
-## ● **Conceptual Insights & Applied Learning (Aha! Moments / Things Learned):** 
+## **Conceptual Insights & Applied Learning (Aha! Moments / Things Learned):** 
 
    - When learning about the speech recognition API, websites use web servers to analyze speech patterns in their private speech-to-text cloud servers (server-based recognition engine) because the machine-learning algorithm of speech recognition is too heavy to be built in a web browser. This feature will only work on Google, Microsoft Edge, and Safari, since they have private speech-to-text cloud servers. 
 
    - Building the punchcard simulator, we learned the mapping of holes using the Hollerith code. Each of the card’s columns encodes exactly one character, literally measured in stacks of cards. 
 
-## ● **Technical Challenges & Mitigations (Challenges):** 
+## **Technical Challenges & Mitigations (Challenges):** 
 
 - In the midst of coding the remaining interactive elements, there was an encountered error when running the webpage on localhost with the warnings: 
 
@@ -34,7 +34,7 @@
 
 These warnings prevented us from interacting with any buttons; clicking on them was futile. Uninstalling and reinstalling node, downloading nvm windows, and continuous npm installs and npm run devs were proven unsuccessful. After analyzing successful runs through npm run dev shows the versions were different from the current version that was causing errors. By updating all astro and react packages, the problem was finally resolved. 
 
-## ● **Creative Iterations & Architectural Pivots (Creative Development):** 
+## **Creative Iterations & Architectural Pivots (Creative Development):** 
 
 - For the Voice Command, we decided to take inspiration from voice-activated virtual assistants like Siri and Alexa that people command to play music or switch the lights. 
 
@@ -44,7 +44,7 @@ These warnings prevented us from interacting with any buttons; clicking on them 
 
    - Beyond the initial proposal, we improved the CLI Terminal’s user experience by adding a boot sequence and command history recall (up/down arrows). 
 
-## ● **Outstanding Actions for Final Submission (Things to be Done):** 
+## **Outstanding Actions for Final Submission (Things to be Done):** 
 
    - Completion of Informational Content on all eras 
 
