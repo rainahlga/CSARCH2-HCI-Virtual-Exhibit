@@ -129,9 +129,10 @@ const milestones = [
     tryIt: "Voice Command",
     overview:
       "Modern HCI includes voice assistants, augmented reality, virtual reality, and spatial computing. These technologies allow users to interact through speech, gestures, and immersive spaces.",
-    artifactTitle: "Voice Assistants and AR/VR Devices",
+    artifactTitle: "Siri",
     artifactText:
-      "Voice assistants and spatial computing devices represent the current and future direction of human-computer interaction.",
+      "Before Siri, the iconic female-voiced voice assistant and artificial intelligence program by Apple, its origins came from its founders' ingenuity in  Defense Department on the Cognitive Assistant That Learns and Organizes (CALO) and was funded by Defense Advanced Research Projects (DARPA). From Stanford Research Institute (SRI) International, Dag Kittlaus, Adam Cheyer, and Tom Gruber were the minds who pushed Siri to Apple's App Store as a standalone application on February 2011 before Apple bought the assets for $200 million. Being one of its kind, Apple monopolized the voice assistant and integrated it to other Apple products before gradually losing its edge since 2016 when competitors like Amazon's Alexa and Google's Google Assistant were introduced." +
+      "\nDebuting in October 2011 on the iPhone 4s, Siri was integrated as one of the phone's newest features. Siri came with three initial accents: American, British and Australian. Various voice actors were not aware they became the voices of Siri namely Susan Bennett who voiced the American accent, Karen Jacobsen who voiced the Australian accent, and Jon Briggs, who voiced the first male-voiced version of Siri. Its voiced evolved and the once human voices were replaced with computer-generated speech, or speech synthesis. Through data modelling and developing deep neural networks in cloud computing networks, voice assistants are woken up to life with a keyword like Hey, Siri.",
     topics: [
       "Voice Assistants",
       "Augmented Reality",
@@ -265,6 +266,23 @@ function renderFeaturedArtifact(selected) {
               visualActionEl.className = "action-display music-playing";
               visualActionEl.setAttribute("data-music-locked", "true"); // Lock it down!
             }
+          } else if (
+            (speechToText.includes("tell") && speechToText.includes("yourself")) ||
+            (speechToText.includes("who") && speechToText.includes("you")) ||
+            (speechToText.includes("what") && speechToText.includes("are you")) ||
+              speechToText.includes("introduce yourself")
+          ) {
+            const response =
+              "I am a voice-activated assistant, ready to help once you press the button!";
+
+            if (statusEl) statusEl.innerText = response;
+
+            const utterance = new SpeechSynthesisUtterance(response);
+            utterance.lang = "en-US";
+            speechSynthesis.speak(utterance);
+
+            if (visualActionEl)
+              visualActionEl.className = "action-display assistant-speaking";
           } else {
             if (statusEl) statusEl.innerText = `Unknown command: "${speechToText}"`;
             if (visualActionEl) visualActionEl.className = "action-display unknown";
@@ -302,6 +320,9 @@ function renderFeaturedArtifact(selected) {
           </p>
           <p style={{ fontSize: "0.85rem", margin: "8px 0 0", color: "#666" }}>
             You cannot turn on and off the lights while music is playing!
+          </p>
+          <p style={{ fontSize: "0.85rem", margin: "8px 0 0", color: "#666" }}>
+            Ask "Who are you?" and expect a reply.
           </p>
         </div>
 
@@ -406,7 +427,7 @@ export default function HCITimeline() {
           {activeTab === "Featured Artifact" && (
             <>
               <h2>{selected.artifactTitle}</h2>
-              <p>{selected.artifactText}</p>
+              <p style={{ whiteSpace: "pre-line" }}>{selected.artifactText}</p>
             </>
           )}
 
