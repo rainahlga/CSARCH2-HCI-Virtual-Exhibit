@@ -1,5 +1,8 @@
 import { useState } from "react";
 import myMusicTrack from "../assets/Elevator Music.mp3";
+import voiceMedia1 from "../assets/voice_media1.mp4"
+import voiceMedia2 from "../assets/voice_media2.mp4"
+
 import CLITerminal from "./CLITerminal.jsx";
 import PunchCardSimulator from "./PunchCardSimulator.jsx";
 import GUISimulator from "./MiniDesktop.jsx";
@@ -23,8 +26,13 @@ const milestones = [
       "Physical Rewiring",
       "Early Programming",
     ],
-    media:
-      "This era is represented through a simplified punch card visual. The holes show how early data and instructions were encoded before being processed by a computer.",
+    media:[
+      {
+        type: "image",
+        url: "https://youtu.be/rh6e-mW_y5E?si=anJ5FabJKzyflXgh", //palitan niyo nalang
+        caption: "This era is represented through a simplified punch card visual. The holes show how early data and instructions were encoded before being processed by a computer."
+      }
+    ],
     significance:
       "This stage shows how limited early human-computer interaction was. Users could not communicate with the computer in real time, but punch cards helped create the foundation for future interfaces.",
   },
@@ -46,8 +54,13 @@ const milestones = [
       "Early Unix Systems",
       "File Management",
     ],
-    media:
-      "This era is represented through a terminal-style screen where commands are typed using a keyboard.",
+    media:[
+      {
+        type: "image",
+        url: "https://youtu.be/rh6e-mW_y5E?si=anJ5FabJKzyflXgh", //palitan niyo nalang
+        caption: "This era is represented through a terminal-style screen where commands are typed using a keyboard."
+      }
+    ],
     significance:
       "CLI made computer interaction faster and more direct. However, users still needed to memorize commands and use the correct syntax, which made it difficult for beginners.",
   },
@@ -69,8 +82,13 @@ const milestones = [
       "Joystick Comparison",
       "Interactive Display Workstations",
     ],
-    media:
-      "This era is represented through a simple mouse visual showing how physical motion became digital control.",
+    media: [
+        {
+        type: "image",
+        url: "https://youtu.be/rh6e-mW_y5E?si=anJ5FabJKzyflXgh", //palitan niyo nalang
+        caption: "This era is represented through a simple mouse visual showing how physical motion became digital control."
+      }
+    ],
     significance:
       "Pointing devices helped make computers easier to navigate. They supported the shift toward graphical interfaces and more visual forms of interaction.",
   },
@@ -93,8 +111,13 @@ const milestones = [
       "Desktop Metaphor",
       "Files and Folders",
     ],
-    media:
-      "This era is represented through a mini desktop layout inspired by early graphical user interfaces.",
+    media: [
+      {
+        type: "image",
+        url: "https://youtu.be/rh6e-mW_y5E?si=anJ5FabJKzyflXgh", //palitan niyo nalang
+        caption: "This era is represented through a mini desktop layout inspired by early graphical user interfaces."
+      }
+    ],
     significance:
       "GUI made computers easier for non-technical users. It reduced the need to memorize commands and made interaction more visual, intuitive, and accessible.",
   },
@@ -116,8 +139,13 @@ const milestones = [
       "Mobile Interfaces",
       "Direct Manipulation",
     ],
-    media:
-      "This era is represented through a phone-style visual showing common touch gestures such as tap, swipe, pinch, and zoom.",
+    media: [
+      {
+        type: "image",
+        url: "https://youtu.be/rh6e-mW_y5E?si=anJ5FabJKzyflXgh", //palitan niyo nalang
+        caption: "This era is represented through a phone-style visual showing common touch gestures such as tap, swipe, pinch, and zoom."
+      }
+    ],
     significance:
       "Touch and mobile interfaces made computing more portable and intuitive. They helped make digital technology easier to use for more people.",
   },
@@ -129,7 +157,7 @@ const milestones = [
     tryIt: "Voice Command",
     overview:
       "Modern HCI includes voice assistants, augmented reality, virtual reality, and spatial computing. These technologies allow users to interact through speech, gestures, and immersive spaces.",
-    artifactTitle: "Siri",
+    artifactTitle: "Siri: Apple's Voice Assistant",
     artifactText:
       `Before Siri, the iconic female-voiced voice assistant and artificial intelligence program by Apple, its origins came from its founders' ingenuity in  Defense Department on the Cognitive Assistant That Learns and Organizes (CALO) and was funded by Defense Advanced Research Projects (DARPA). From Stanford Research Institute (SRI) International, Dag Kittlaus, Adam Cheyer, and Tom Gruber were the minds who pushed Siri to Apple's App Store as a standalone application on February 2011 before Apple bought the assets for $200 million. Being one of its kind, Apple monopolized the voice assistant and integrated it to other Apple products before gradually losing its edge since 2016 when competitors like Amazon's Alexa and Google's Google Assistant were introduced.
 
@@ -141,10 +169,20 @@ const milestones = [
       "Spatial Mapping",
       "Brain-Computer Interfaces",
     ],
-    media:
-      "This era is represented through a voice command interface where a user gives a command and receives visual feedback.",
+    media: [
+      {
+        type: "video",
+        url: voiceMedia1,
+        caption: `The TED Talks seminar above, presented by Dr. Sylvia Xueni Pan, discusses how Virtual Reality (VR) effects social interaction. In its early stages, VR becomes a hub of full-body human social interaction in the comfort of our own homes and with animosity. Conversations and interactions become complete and comprehensive when all unconscious body language is involved.`
+      },
+      {
+        type: "video",
+        url: voiceMedia2,
+        caption: "From Reddam House school in Berkshire, England, Reuters managed to quickly document the experience of learning in the virtual world. Students navigated through the subjects of science while their teachers explained the history, parts and significance of the topic."
+      }
+    ],
     significance:
-      "Modern HCI is becoming more conversational and immersive. Instead of only clicking or typing, users can interact with technology in more natural and human-centered ways.",
+      "Modern HCI is becoming more conversational and immersive. Instead of only clicking or typing, users can interact with technology in more natural and human-centered ways. Voice assistants allows users to interact with their devices through their voice with a simple keyword, and even control the environment of their own homes and personal spaces. When human interaction becomes inconvenient, scarce and socially stressful, virtual reality provides a safe space behind avatars but retaining the full context of human interaction and conversations through full-body language. Additionally, VR begins to be an essential teaching tool through personal immersion and interaction with the subject when it debuted in metaverse schools.",
   },
 ];
 
@@ -446,7 +484,21 @@ export default function HCITimeline() {
           {activeTab === "Media" && (
             <>
               <h2>Media</h2>
-              <p>{selected.media}</p>
+              {selected.media.map((item, index) => (
+                <div key={index}>
+                  {item.type === "image" && (
+                    <img src={item.url} alt={item.caption} />
+                  )}
+
+                  {item.type === "video" && (
+                    <video controls width="100%">
+                    <source src={item.url} type="video/mp4" />
+                    </video>
+                  )}
+
+                  <p>{item.caption}</p>
+                </div>
+              ))}
             </>
           )}
 
