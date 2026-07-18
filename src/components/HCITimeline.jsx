@@ -1,8 +1,5 @@
 import { useState } from "react";
 import myMusicTrack from "../assets/Elevator Music.mp3";
-import voiceMedia1 from "../assets/voice_media1.mp4"
-import voiceMedia2 from "../assets/voice_media2.mp4"
-
 import CLITerminal from "./CLITerminal.jsx";
 import PunchCardSimulator from "./PunchCardSimulator.jsx";
 import GUISimulator from "./MiniDesktop.jsx";
@@ -172,12 +169,12 @@ const milestones = [
     media: [
       {
         type: "video",
-        url: voiceMedia1,
+        url: "https://www.youtube.com/embed/rh6e-mW_y5E",
         caption: `The TED Talks seminar above, presented by Dr. Sylvia Xueni Pan, discusses how Virtual Reality (VR) effects social interaction. In its early stages, VR becomes a hub of full-body human social interaction in the comfort of our own homes and with animosity. Conversations and interactions become complete and comprehensive when all unconscious body language is involved.`
       },
       {
         type: "video",
-        url: voiceMedia2,
+        url: "https://www.youtube.com/embed/4nwQ36m9aDE",
         caption: "From Reddam House school in Berkshire, England, Reuters managed to quickly document the experience of learning in the virtual world. Students navigated through the subjects of science while their teachers explained the history, parts and significance of the topic."
       }
     ],
@@ -491,9 +488,15 @@ export default function HCITimeline() {
                   )}
 
                   {item.type === "video" && (
-                    <video controls width="100%">
-                    <source src={item.url} type="video/mp4" />
-                    </video>
+                      <iframe
+                        width="100%"
+                        height="400"
+                        src={item.url}
+                        title={item.caption}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
                   )}
 
                   <p>{item.caption}</p>
