@@ -16,12 +16,29 @@ const milestones = [
     artifactTitle: "Punch Card",
     artifactText:
       "Punch cards stored instructions and data using holes. Users had to prepare the cards before submitting them to the computer. This made early computing slow, but it became one of the first ways people gave instructions to machines.",
-    topics: [
-      "Punch Cards",
-      "Batch Processing",
-      "ENIAC",
-      "Physical Rewiring",
-      "Early Programming",
+    citations: [],
+      topics: [
+      //ibahin niyo nalang yung links
+      {
+        name: "Punch Cards",
+        link: "https://www.sciencedirect.com/topics/computer-science/voice-assistant"
+      },
+      {
+        name: "Batch Processing",
+        link: "https://www.ibm.com/think/topics/augmented-reality"
+      },
+      {
+        name: "ENIAC",
+        link: "https://www.britannica.com/technology/virtual-reality"
+      },
+      {
+        name: "Physical Rewiring",
+        link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
+      },
+      {
+        name: "Early Programming",
+        link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
+      }
     ],
     media:[
       {
@@ -44,12 +61,29 @@ const milestones = [
     artifactTitle: "Computer Terminal",
     artifactText:
       "Computer terminals and keyboards allowed users to enter commands and receive responses through text. This made interaction faster because users no longer had to wait for punched cards to be processed.",
-    topics: [
-      "Text-Based Commands",
-      "Keyboards",
-      "Computer Terminals",
-      "Early Unix Systems",
-      "File Management",
+    citations: [],
+      topics: [
+      //ibahin niyo nalang yung links
+      {
+        name: "Text-Based Commands",
+        link: "https://www.sciencedirect.com/topics/computer-science/voice-assistant"
+      },
+      {
+        name: "Keyboards",
+        link: "https://www.ibm.com/think/topics/augmented-reality"
+      },
+      {
+        name: "Computer Terminals",
+        link: "https://www.britannica.com/technology/virtual-reality"
+      },
+      {
+        name: "Early Unix Systems",
+        link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
+      },
+      {
+        name: "File Management",
+        link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
+      }
     ],
     media:[
       {
@@ -72,12 +106,29 @@ const milestones = [
     artifactTitle: "Computer Mouse",
     artifactText:
       "The mouse connected hand movement to digital screen movement. It allowed users to point, select, and navigate visually instead of relying only on typed commands.",
-    topics: [
-      "Computer Mouse",
-      "Pointing Devices",
-      "Light Pen",
-      "Joystick Comparison",
-      "Interactive Display Workstations",
+    citations: [],
+      topics: [
+      //ibahin niyo nalang yung links
+      {
+        name: "Computer Mouse",
+        link: "https://www.sciencedirect.com/topics/computer-science/voice-assistant"
+      },
+      {
+        name: "Pointing Devices",
+        link: "https://www.ibm.com/think/topics/augmented-reality"
+      },
+      {
+        name: "Light Pen",
+        link: "https://www.britannica.com/technology/virtual-reality"
+      },
+      {
+        name: "Joystick Comparison",
+        link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
+      },
+      {
+        name: "Interactive Display Workstations",
+        link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
+      }
     ],
     media: [
         {
@@ -100,13 +151,33 @@ const milestones = [
     artifactTitle: "Desktop Interface",
     artifactText:
       "The desktop interface used icons, folders, windows, menus, and pointers to make computers easier to understand and use.",
-    topics: [
-      "Windows",
-      "Icons",
-      "Menus",
-      "Pointers",
-      "Desktop Metaphor",
-      "Files and Folders",
+    citations: [],
+      topics: [
+      //ibahin niyo nalang yung links
+      {
+        name: "Windows",
+        link: "https://www.sciencedirect.com/topics/computer-science/voice-assistant"
+      },
+      {
+        name: "Icons",
+        link: "https://www.ibm.com/think/topics/augmented-reality"
+      },
+      {
+        name: "Menus",
+        link: "https://www.britannica.com/technology/virtual-reality"
+      },
+      {
+        name: "Pointers",
+        link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
+      },
+      {
+        name: "Desktop Metaphor",
+        link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
+      },
+      {
+        name: "Files and Folders",
+        link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
+      }
     ],
     media: [
       {
@@ -129,13 +200,30 @@ const milestones = [
     artifactTitle: "Smartphone Touchscreen",
     artifactText:
       "Smartphones and capacitive touchscreens allowed users to directly control what they saw on the screen through touch gestures.",
+    citations: [],
     topics: [
-      "Capacitive Touchscreens",
-      "Multi-Touch Gestures",
-      "Smartphones",
-      "Mobile Interfaces",
-      "Direct Manipulation",
-    ],
+    //ibahin niyo nalang yung links
+      {
+      name: "Capacitive Touchscreens",
+      link: "https://www.sciencedirect.com/topics/computer-science/voice-assistant"
+    },
+    {
+      name: "Multi-Touch Gestures",
+      link: "https://www.ibm.com/think/topics/augmented-reality"
+    },
+    {
+      name: "Smartphones",
+      link: "https://www.britannica.com/technology/virtual-reality"
+    },
+    {
+      name: "Mobile Interfaces",
+      link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
+    },
+    {
+      name: "Direct Manipulation",
+      link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
+    }
+  ],
     media: [
       {
         type: "image",
@@ -159,12 +247,37 @@ const milestones = [
       `Before Siri, the iconic female-voiced voice assistant and artificial intelligence program by Apple, its origins came from its founders' ingenuity in  Defense Department on the Cognitive Assistant That Learns and Organizes (CALO) and was funded by Defense Advanced Research Projects (DARPA). From Stanford Research Institute (SRI) International, Dag Kittlaus, Adam Cheyer, and Tom Gruber were the minds who pushed Siri to Apple's App Store as a standalone application on February 2011 before Apple bought the assets for $200 million. Being one of its kind, Apple monopolized the voice assistant and integrated it to other Apple products before gradually losing its edge since 2016 when competitors like Amazon's Alexa and Google's Google Assistant were introduced.
 
       Debuting in October 2011 on the iPhone 4s, Siri was integrated as one of the phone's newest features. Siri came with three initial accents: American, British and Australian. Various voice actors were not aware they became the voices of Siri namely Susan Bennett who voiced the American accent, Karen Jacobsen who voiced the Australian accent, and Jon Briggs, who voiced the first male-voiced version of Siri. Its voiced evolved and the once human voices were replaced with computer-generated speech, or speech synthesis. Through data modelling and developing deep neural networks in cloud computing networks, voice assistants are woken up to life with a keyword like "Hey, Siri".`,
+    citations: [
+      {
+        id: 1,
+        text: `Hoy, M. B. (2016). Alexa, Siri, Cortana, and More: An Introduction to Voice Assistants. Medical Reference Services Quarterly, 37(1), 81-88.`
+      },
+      {
+        id: 2,
+        text: `McDonough, M. (2026). Siri. Britannica. https://www.britannica.com/technology/Siri`
+      },
+      {
+        id: 3,
+        text: `Orner, R. (2023). Siri(computer program). EBSCO. https://www.ebsco.com/research-starters/computer-science/siri-computer-program`
+      }
+    ],
     topics: [
-      "Voice Assistants",
-      "Augmented Reality",
-      "Virtual Reality",
-      "Spatial Mapping",
-      "Brain-Computer Interfaces",
+      {
+        name: "Voice Assistants",
+        link: "https://www.sciencedirect.com/topics/computer-science/voice-assistant"
+      },
+      {
+        name: "Augmented Reality",
+        link: "https://www.ibm.com/think/topics/augmented-reality"
+      },
+      {
+        name: "Virtual Reality",
+        link: "https://www.britannica.com/technology/virtual-reality"
+      },
+      {
+        name: "Spatial Mapping",
+        link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
+      }
     ],
     media: [
       {
@@ -464,6 +577,21 @@ export default function HCITimeline() {
             <>
               <h2>{selected.artifactTitle}</h2>
               <p style={{ whiteSpace: "pre-line" }}>{selected.artifactText}</p>
+              <h3>References</h3>
+
+              <ol className="reference-list">
+                {selected.citations.map((citation) => (
+                  <li key={citation.id}>
+                    <a
+                      href={citation.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {citation.text}
+                    </a>
+                  </li>
+                ))}
+              </ol>
             </>
           )}
 
@@ -471,9 +599,19 @@ export default function HCITimeline() {
             <>
               <h2>Key Topics</h2>
               <div className="topic-grid">
-                {selected.topics.map((topic) => (
-                  <span key={topic}>{topic}</span>
-                ))}
+                <div className="topic-grid">
+                  {selected.topics.map((topic) => (
+                    <a
+                      key={topic.name}
+                      href={topic.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="topic-button"
+                    >
+                      {topic.name}
+                    </a>
+                  ))}
+                </div>
               </div>
             </>
           )}
@@ -1106,9 +1244,22 @@ export default function HCITimeline() {
           gap: 0.6rem;
         }
 
-        .topic-grid span {
+        .topic-button {
           background: #fff;
-          padding: 0.7rem 0.9rem;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+
+          padding: 10px 18px;
+          min-height: 42px;
+
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 0.95rem;
+
+          color: #2b2b2b;
+
+          padding: 0.3rem 0.9rem;
           border-radius: 999px;
           font-weight: 900;
           font-size: 0.88rem;
@@ -1117,7 +1268,7 @@ export default function HCITimeline() {
             background 0.16s ease;
         }
 
-        .topic-grid span:hover {
+        .topic-button:hover {
           transform: translateY(-3px);
           background: #eeeeee;
         }
