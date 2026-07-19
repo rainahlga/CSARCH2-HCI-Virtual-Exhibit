@@ -105,40 +105,56 @@ const milestones = [
       "The computer mouse became a major milestone in HCI after Douglas Engelbart introduced it during the famous Mother of All Demos. It allowed users to control items on a screen through physical movement.",
     artifactTitle: "Computer Mouse",
     artifactText:
-      "The mouse connected hand movement to digital screen movement. It allowed users to point, select, and navigate visually instead of relying only on typed commands.",
-    citations: [],
+      `After the era of command line interfaces, navigation across the display takes too tedious and limited on arrow keys. The inventor of the computer mouse, Douglas Engelbart, created the first prototype to the solution to the problem of limited discrete movement across the screen: the mouse. From a simple wooden block with a button in the 1960s, to the evolved to the rolling ball mouse or the mechanical mouse. The mouse takes any arbitrary three-dimensional direction and maps it to a continuous two-dimensional motion. The algorithm can be described as spatial orientation control is done by treating the orientation of the graphical object the same as the orientation of the ball inside the mouse, wherein the cursor on the display does not matter but the previous and latter positions of the mouse are accounted for.
+
+      Optical mouses implement the same approach of computing displacement through analyzing how light from the light emitting diode (LED) underneath the mouse bounces from the surface back to the mouse. There is a Complementary Metal-Oxide-Semiconductor (CMOS) sensor that captures said displacement after the off-axis illumination being perceived by the lens. An image is continuously taken and compared to previous images produced before sending it the computer the true displacement of the cursor. `,
+    citations: [
+      {
+        id: 1,
+        text: "Hall, M. (2026). Douglas Engelbart. Britannica. https://www.britannica.com/biography/Douglas-Engelbart"
+      },
+      {
+        id: 2,
+        text: "Hanson, A. J. (1992). II.3 The Rolling Ball. In Graphics Gems III (IBM Version) (pp. 51-60). Academic Press."
+      },
+      {
+        id: 3,
+        text: "Ng, T. (2003). The optical mouse as a two-dimensional displacement sensor. Sensors and Actuators A: Physical, 107(1), 21-25. https://doi.org/10.1016/S0924-4247(03)00256-5"
+      }
+    ],
       topics: [
       //ibahin niyo nalang yung links
       {
         name: "Computer Mouse",
-        link: "https://www.sciencedirect.com/topics/computer-science/voice-assistant"
-      },
-      {
-        name: "Pointing Devices",
-        link: "https://www.ibm.com/think/topics/augmented-reality"
+        link: "https://www.britannica.com/technology/mouse-computer-device"
       },
       {
         name: "Light Pen",
-        link: "https://www.britannica.com/technology/virtual-reality"
+        link: "https://www.geeksforgeeks.org/computer-science-fundamentals/what-is-a-light-pen/"
       },
       {
         name: "Joystick Comparison",
-        link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
+        link: "https://www.researchgate.net/publication/260436026_Comparing_the_Performance_Workload_and_Usability_of_a_Gamepad_and_Joystick_in_a_Complex_Task"
       },
       {
         name: "Interactive Display Workstations",
-        link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
+        link: "https://www.gflesch.com/blog/interactive-displays"
       }
     ],
     media: [
-        {
-        type: "image",
-        url: "https://youtu.be/rh6e-mW_y5E?si=anJ5FabJKzyflXgh", //palitan niyo nalang
-        caption: "This era is represented through a simple mouse visual showing how physical motion became digital control."
+      {
+      type: "video",
+      url: "https://www.youtube.com/embed/vQesgAtr2e4", //palitan niyo nalang
+      caption: "The video from Branch Education explores the components of how a PS4 controller operate with its layers of electronics, its buttons and its general algorithm of mapping the movement of the joysticks to the movement of the cursor on the display."
+      },
+      {
+      type: "video",
+      url: "https://www.youtube.com/embed/7Ix0mN8agzo", //palitan niyo nalang
+      caption: "TJerryRigEverything demonstrates and tears apart a Samsung Galaxy Note 7's stylus or an S Pen. He explains how the pens work without any power source while communicating with the phone on its displacement."
       }
     ],
     significance:
-      "Pointing devices helped make computers easier to navigate. They supported the shift toward graphical interfaces and more visual forms of interaction.",
+      "Pointing devices diversifies the interaction with a display. Once limited by the up, down, left and right keys of the keyboard, a user can interact with every pixel on the display in seemingly real-time. By building on the principles of the mouse and further improving its use of resources and creating more devices that uses different approaches of sensing movement on the device and displacement calculation, it allows diverse compatibility of a diverse range of computers. From video game controllers, to styluses designed for digital art, pointing devices gave users freedom on a screen.",
   },
   {
     id: "gui",
