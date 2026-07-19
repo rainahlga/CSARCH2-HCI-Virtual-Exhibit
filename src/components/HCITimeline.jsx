@@ -199,40 +199,57 @@ const milestones = [
       "Touchscreens and mobile devices changed how users interacted with technology. Users could tap, swipe, pinch, and zoom directly on the screen.",
     artifactTitle: "Smartphone Touchscreen",
     artifactText:
-      "Smartphones and capacitive touchscreens allowed users to directly control what they saw on the screen through touch gestures.",
-    citations: [],
+      `Mobile devices wouldn't be that portable if it was not for the ability to interact with a display that acted both as the input and the output. Touchscreens came to life in 1965 by E.A. Johnson at the Royal Radar Establishment in Malvern, United Kingdom. Soon, the resistive touchscreen was accidentally discovered by Dr. G. Samuel Hurst in 1970. This specific type of touchscreen allows the user to interact with the machine using pressure. It detects pressure by how much the resistive top and bottom layers conduct. This change in voltage and current tells the machine that the user is interacting with the interface, mapping the location of the interaction and executing the command accordingly. It is cheaper than other types, works with wet and moist environments and can be used by any object that applies pressure on its top layer. For its cons, resistive touchscreens does not support multi-touch, meaning it could only process one input command at a time. 
+
+      Capacitive touchscreens, on the other hand, was invented later in early 2000s that relies on its indium tin oxide top layer, a conductive material when touched by a finger, disrupts the screen's electrostatic field. The interaction is also mapped accordingly by its software to determine what command the user would like to execute. It is relatively more sensitive and responsive than resistive touchscreens, and supports multi-touch. Additionally, it has higher clarity due to the lack of multiple layers resistive screens require. Its named flaws are it does not work with non-conductive objects and is susceptible to electromagnetic interference.
+
+      Infrared touchscreens are used in military grade equipment where it sustains harsh climates with its notable durable. It can detect any type of object touching the screen, though, it is very expensive to manufacture and direct sunlight can interfere with the user's interaction. There are two notable types. Infrared beams are used to sense when a user presses on the interface with its sensors when the finger obstructs the infrared beams. The second type involves internal reflection within the device where the light traveling is divided to travel out of the lens and back into the device. Cameras are used to measure light diffusion when the user interacts with the screen.`,
+    citations: [
+      {
+        id: 1,
+        text: `Dang, Q. (2018, October 30). Touchscreen: an Engineered Harmony between Humans and Machines. Illumin Magazine. https://illumin.usc.edu/touchscreen-an-engineered-harmony-between-humans-and-machines/`
+      },
+      {
+        id: 2,
+        text: `Hope, T., & Kozak, J. (2010). Touch Screens: A Pressing Technology. In Tenth Annual Freshman Conference. University of Pittsburgh.`
+      },
+      {
+        id: 3,
+        text: `Hoy, M. B. (2016). Alexa, Siri, Cortana, and More: An Introduction to Voice Assistants. Medical Reference Services Quarterly, 37(1), 81–88.`
+      }
+    ],
     topics: [
     //ibahin niyo nalang yung links
       {
       name: "Capacitive Touchscreens",
-      link: "https://www.sciencedirect.com/topics/computer-science/voice-assistant"
+      link: "https://www.rocktech.com.hk/rocktech-blog/how-capacitive-touchscreens-work-principles-and-applications/"
     },
     {
       name: "Multi-Touch Gestures",
-      link: "https://www.ibm.com/think/topics/augmented-reality"
+      link: "https://hci-museum.lisn.upsaclay.fr/multi-touch-gestures"
     },
     {
       name: "Smartphones",
-      link: "https://www.britannica.com/technology/virtual-reality"
+      link: "https://www.britannica.com/technology/smartphone"
     },
     {
       name: "Mobile Interfaces",
-      link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
+      link: "https://www.netguru.com/glossary/mobile-user-interface"
     },
     {
       name: "Direct Manipulation",
-      link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
+      link: "https://www.nngroup.com/articles/direct-manipulation/"
     }
   ],
     media: [
       {
-        type: "image",
-        url: "https://youtu.be/rh6e-mW_y5E?si=anJ5FabJKzyflXgh", //palitan niyo nalang
-        caption: "This era is represented through a phone-style visual showing common touch gestures such as tap, swipe, pinch, and zoom."
+        type: "video",
+        url: "https://www.youtube.com/embed/4mPdNV_smWg", //palitan niyo nalang
+        caption: "Branch Education explains the synergy between the layers of a smartphone's touchscreen and how touch is mapped and calculated by the device's software. The electronics behind the screen sweeps through its capacitive sensors and reconstructs a grid to measure the multiple touches the user may apply."
       }
     ],
     significance:
-      "Touch and mobile interfaces made computing more portable and intuitive. They helped make digital technology easier to use for more people.",
+      "Touchscreens made devices more portable, allowing technology to be easily accessed with an ease of a swipe. The technology behind touchscreens allow users to interact with content with multi-touch gestures. Direct manipulation and mobile interfaces makes interactions and input commands more intuitive from dragging and dropping, to easy to understand menu selections and button presses.",
   },
   {
     id: "voice",
@@ -434,6 +451,10 @@ function renderFeaturedArtifact(selected) {
               visualActionEl.className = "action-display assistant-speaking";
           } else {
             if (statusEl) statusEl.innerText = `Unknown command: "${speechToText}"`;
+            const response = "Sorry, I did not catch that.";
+            const utterance = new SpeechSynthesisUtterance(response);
+            utterance.lang = "en-US";
+            speechSynthesis.speak(utterance);
             if (visualActionEl) visualActionEl.className = "action-display unknown";
           }
         }, 1000);
