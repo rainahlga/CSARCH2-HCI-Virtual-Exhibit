@@ -4,6 +4,7 @@ import CLITerminal from "./CLITerminal.jsx";
 import PunchCardSimulator from "./PunchCardSimulator.jsx";
 import GUISimulator from "./MiniDesktop.jsx";
 import SmartphoneGesture from './SmartphoneGesture.jsx';
+import PointingDevice from "./PointingDevice.jsx";   
 
 const milestones = [
   {
@@ -359,10 +360,7 @@ function renderFeaturedArtifact(selected) {
   if (selected.id === "mouse") {
     return (
       <div className="demo-area mouse-demo">
-        <div className="mouse-shape">
-          <div className="mouse-line"></div>
-        </div>
-        <p>Physical movement → digital selection</p>
+        <PointingDevice />
       </div>
     );
   }
