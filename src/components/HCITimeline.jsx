@@ -69,12 +69,12 @@ const milestones = [
       {
         type: "video",
         url: "https://www.youtube.com/embed/KG2M4ttzBnY",
-        caption: "Computerphile - Punch Card Programming. Professor Brailsford gives a hands-on look at how punch-card systems worked in the mainframe era, showing how a deck of cards became a runnable program."
+        caption: "Computerphile: Punch Card Programming. Professor Brailsford gives a hands-on look at how punch-card systems worked in the mainframe era, showing how a deck of cards became a runnable program."
       },
       {
         type: "video",
         url: "https://www.youtube.com/embed/rxFvNaQ6YhY",
-        caption: "IBM Keypunch by Herman Hollerith (ITM). A look at the keypunch machine and the 1890 census system that started it all - the origin of storing data as punched holes."
+        caption: "IBM Keypunch by Herman Hollerith (ITM). A look at the keypunch machine and the 1890 census system that started it all. The origin of storing data as punched holes."
       }
     ],
     significance:
