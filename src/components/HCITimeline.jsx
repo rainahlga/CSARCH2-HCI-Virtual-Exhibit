@@ -59,42 +59,49 @@ const milestones = [
     tryIt: "Command Line Interface",
     overview:
       "Command Line Interfaces allowed users to interact with computers by typing text-based commands through keyboards and terminals. This gave users more direct control compared to punch cards.",
-    artifactTitle: "Computer Terminal",
+    artifactTitle: "Datapoint 3300",
     artifactText:
-      "Computer terminals and keyboards allowed users to enter commands and receive responses through text. This made interaction faster because users no longer had to wait for punched cards to be processed.",
-    citations: [],
+      `The Datapoint 3300 is one of the first commercially successful video display terminals to replace mechanical teleprinters like the Teletype Model 33, and was manufactured by Computer Terminal Corporation. The directions for operating the Datapoint 3300 were not printed on paper, but were displayed on the screen of a cathode-ray tube. The instructions for using the Datapoint 3300 were not printed out, but instead were shown on the screen of a cathode-ray tube and commands were entered by pressing buttons on a keyboard. This innovation allowed the Command-Line Interaction to be quicker since people could view, edit, and correct their commands before sending it to the computer. The terminal also allowed text-based computing to be more practical and efficient in time-sharing systems, because of features that were not available on traditional teleprinters, such as cursor movement and screen-editing. 
+      
+      The Datapoint 3300 was a significant part of the Command Line Era, enhancing the way people interacted with computers using text commands. This was different from the earlier systems that used printed output, and allowed for a quiet, interactive screen that the user could type commands on, that could control files and communicate with remote computers in real time. These enhancements enabled the increasing popularity of the Unix operating system and other command-line based operating systems, where the hands-free approach of human-computer interaction relied on a keyboard and terminal. Sharp (1977) found that the use of interactive terminals like the Datapoint 3300 greatly enhanced the productivity of the users by providing feedback during entry of commands, which in turn proved influential in the design of modern command-line terminals and operating systems.`,
+    citations: [
+      {
+        id: 1,
+        text: `Computer Terminal Corporation (1969). Datapoint 3300: For the time-sharing computer user (Product brochure). Computer History Museum. https://www.computerhistory.org/brochures/doc-4372956dcd090/`
+      },
+      {
+        id: 2,
+        text: `Sharp, D. E. (1977). Handbook of interactive computer terminals. Reston Publishing Company. https://archive.org/details/handbookofintera00duan`
+      }
+    ],
       topics: [
       //ibahin niyo nalang yung links
       {
         name: "Text-Based Commands",
-        link: "https://www.sciencedirect.com/topics/computer-science/voice-assistant"
+        link: "https://www.cs.cornell.edu/courses/cs1110/2019fa/materials/shell/"
       },
       {
         name: "Keyboards",
-        link: "https://www.ibm.com/think/topics/augmented-reality"
+        link: "https://www.geeksforgeeks.org/computer-science-fundamentals/what-is-a-keyboard/"
       },
       {
         name: "Computer Terminals",
-        link: "https://www.britannica.com/technology/virtual-reality"
+        link: "https://www.w3resource.com/computer-programming/computer-terminal-guide.php"
       },
       {
         name: "Early Unix Systems",
-        link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
-      },
-      {
-        name: "File Management",
-        link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
+        link: "https://www.redhat.com/en/blog/unix-linux-history"
       }
     ],
     media:[
       {
-        type: "image",
-        url: "https://youtu.be/rh6e-mW_y5E?si=anJ5FabJKzyflXgh", //palitan niyo nalang
-        caption: "This era is represented through a terminal-style screen where commands are typed using a keyboard."
+        type: "video",
+        url: "https://www.youtube.com/watch?v=mABpAI-pCw0", 
+        caption: "Traversy Media's video offers a quick, easy overview of the Command-Line Interface (CLI) and some of the most common terminal commands. It gets into the difference between command line, terminal and shell and shows some of the common commands used to navigate directories, manage files, search content and use the keyboard shortcut keys. The tutorial guides the viewers on how to communicate with operating system via text-based user interface, following the principles of the Command Line Era."
       }
     ],
     significance:
-      "CLI made computer interaction faster and more direct. However, users still needed to memorize commands and use the correct syntax, which made it difficult for beginners.",
+      "CLIs played an important role in the evolution of HCI because it allowed users to interact with computers directly through typed commands. Users did not need to wait for their inputs to be processed, making computer use faster and more efficient. This development paved the way for more advanced interfaces.",
   },
   {
     id: "mouse",
