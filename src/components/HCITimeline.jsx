@@ -17,40 +17,68 @@ const milestones = [
       "During the early years of computing, users interacted with computers through punch cards and batch processing. Instructions were prepared beforehand by punching holes into cards, which were then processed in groups or batches.",
     artifactTitle: "Punch Card",
     artifactText:
-      "Punch cards stored instructions and data using holes. Users had to prepare the cards before submitting them to the computer. This made early computing slow, but it became one of the first ways people gave instructions to machines.",
-    citations: [],
-      topics: [
-      //ibahin niyo nalang yung links
+      `Punch cards stored instructions and data using holes. Users had to prepare the cards before submitting them to the computer. This made early computing slow, but it became one of the first ways people gave instructions to machines.Engineer Herman Hollerith (1860–1929) borrowed the punched-card concept for a tabulating machine to count the US Census. Hand-tabulating the census would have taken well over a decade; Hollerith's machines did it in a fraction of that time. His company, the Tabulating Machine Company, later merged into what became IBM that is why punch cards became known as IBM cards. 
+
+      Punch cards stored instructions and data using holes. Users had to prepare the cards before submitting them to the computer. This made early computing slow, but it became one of the first ways people gave instructions to machines.Engineer Herman Hollerith (1860–1929) borrowed the punched-card concept for a tabulating machine to count the US Census. Hand-tabulating the census would have taken well over a decade; Hollerith's machines did it in a fraction of that time. His company, the Tabulating Machine Company, later merged into what became IBM that is why punch cards became known as IBM cards. `,
+
+    citations: [
+      {
+        id: 1,
+        text: `National Museum of American History. (n.d.). Punch cards for data processing. Smithsonian Institution. Retrieved July 21, 2026, from https://americanhistory.si.edu/collections/object-groups/punch-cards/punch-cards-data-processing`
+      },
+      {
+        id: 2,
+        text: `IEEE Spectrum. (n.d.). The surprisingly long life of the punch card. Retrieved July 21, 2026, from https://spectrum.ieee.org/the-surprisingly-long-life-of-the-punch-card`
+      },
+      {
+        id: 3,
+        text: `Computer History Museum. (n.d.). Punched cards. Retrieved July 21, 2026, from https://www.computerhistory.org/revolution/punched-cards/2/211`
+      },
+      {
+        id: 4,
+        text: `GeeksforGeeks. (n.d.). Batch processing operating system. Retrieved July 21, 2026, from https://www.geeksforgeeks.org/operating-systems/batch-processing-operating-system/`
+      },
+      {
+        id: 5,
+        text: `The Investopedia Team. (2025). Understanding batch processing: Function, benefits, and historical context. Investopedia. https://www.investopedia.com/terms/b/batch-processing.asp`
+      }
+    ],
+    topics: [
       {
         name: "Punch Cards",
-        link: "https://www.sciencedirect.com/topics/computer-science/voice-assistant"
+        link: "https://www.computerhistory.org/revolution/punched-cards/2/211"
       },
       {
         name: "Batch Processing",
-        link: "https://www.ibm.com/think/topics/augmented-reality"
+        link: "https://www.geeksforgeeks.org/operating-systems/batch-processing-operating-system/"
       },
       {
-        name: "ENIAC",
-        link: "https://www.britannica.com/technology/virtual-reality"
+        name: "Hollerith Code",
+        link: "https://www.columbia.edu/cu/computinghistory/oldpunch.html"
       },
       {
-        name: "Physical Rewiring",
-        link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
+        name: "IBM 80-Column Card",
+        link: "https://americanhistory.si.edu/collections/object-groups/punch-cards/punch-cards-data-processing"
       },
       {
-        name: "Early Programming",
-        link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
+        name: "FORTRAN",
+        link: "https://www.britannica.com/technology/FORTRAN"
       }
     ],
-    media:[
+    media: [
       {
-        type: "image",
-        url: "https://youtu.be/rh6e-mW_y5E?si=anJ5FabJKzyflXgh", //palitan niyo nalang
-        caption: "This era is represented through a simplified punch card visual. The holes show how early data and instructions were encoded before being processed by a computer."
+        type: "video",
+        url: "https://www.youtube.com/embed/KG2M4ttzBnY",
+        caption: "Computerphile - Punch Card Programming. Professor Brailsford gives a hands-on look at how punch-card systems worked in the mainframe era, showing how a deck of cards became a runnable program."
+      },
+      {
+        type: "video",
+        url: "https://www.youtube.com/embed/rxFvNaQ6YhY",
+        caption: "IBM Keypunch by Herman Hollerith (ITM). A look at the keypunch machine and the 1890 census system that started it all - the origin of storing data as punched holes."
       }
     ],
     significance:
-      "This stage shows how limited early human-computer interaction was. Users could not communicate with the computer in real time, but punch cards helped create the foundation for future interfaces.",
+      "This stage shows how limited early human-computer interaction was. Communication was one-way and heavily delayed: users committed to a whole batch of work before getting any response, worked on the machine's schedule through a human operator, and never touched the computer directly. Because a card cannot be un-punched, one wrong hole ruined the job and meant starting over. Every later era - the command line, the mouse and GUI, touch, and voice - is essentially a response to this pain, steadily shrinking the distance and the delay between a human intention and the computer's answer.",
   },
   {
     id: "cli",
