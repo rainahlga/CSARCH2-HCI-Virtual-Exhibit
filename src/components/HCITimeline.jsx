@@ -3,6 +3,7 @@ import myMusicTrack from "../assets/Elevator Music.mp3";
 import CLITerminal from "./CLITerminal.jsx";
 import PunchCardSimulator from "./PunchCardSimulator.jsx";
 import GUISimulator from "./MiniDesktop.jsx";
+import SmartphoneGesture from './SmartphoneGesture.jsx';
 
 const milestones = [
   {
@@ -369,13 +370,8 @@ function renderFeaturedArtifact(selected) {
 
   if (selected.id === "touch") {
     return (
-      <div className="demo-area touch-demo">
-        <div className="phone">
-          <span>Tap</span>
-          <span>Swipe</span>
-          <span>Pinch</span>
-          <span>Zoom</span>
-        </div>
+      <div className="demo-area touch-demo-wrapper">
+        <SmartphoneGesture />
       </div>
     );
   }
@@ -591,7 +587,7 @@ export default function HCITimeline() {
         </header>
 
         <section className="try-section">
-          {selected.id !== "mouse" && selected.id !== "touch" && (
+          {selected.id !== "mouse" && (
             <strong>Try It: {selected.tryIt}</strong>
           )}
           {renderFeaturedArtifact(selected)}
@@ -1018,6 +1014,16 @@ export default function HCITimeline() {
         }
 
         .cli-demo-wrapper:hover {
+          transform: none;
+          box-shadow: none;
+        }
+
+        .touch-demo-wrapper {
+          background: transparent;
+          padding: 0;
+        }
+
+        .touch-demo-wrapper:hover {
           transform: none;
           box-shadow: none;
         }
