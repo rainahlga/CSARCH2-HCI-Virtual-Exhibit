@@ -63,6 +63,92 @@ These warnings prevented us from interacting with any buttons; clicking on them 
 
    - Finalization of all components 
 
+
+*The documentation above is retained as the mid-milestone progress record. The following tables document the developments completed after that submission.*
+
+## Final Development Documentation
+
+### Proposal to Final Implementation
+
+| Category | Details |
+| :--- | :--- |
+| **Things Learned / Fun Facts** | The original proposal successfully guided the final exhibit through six HCI eras: Punch Cards, CLI, Pointing Devices, GUI, Touch and Mobile Interfaces, and Spatial and Voice Computing. We learned that a proposal can remain useful while still allowing the implementation to improve through testing and research. |
+| **Challenges** | Some proposed sections were initially more informational than interactive, and several links, media files, and descriptions needed revision before they matched the exhibit’s learning goals. |
+| **Creative Development** | The group kept the original timeline structure but expanded it into a combined historical exhibit and interactive experience. Static materials were replaced or supported by simulations, linked topics, citations, and educational media. |
+
+### Website Foundation and Interactive Timeline
+
+| Category | Details |
+| :--- | :--- |
+| **Things Learned / Fun Facts** | We learned how Astro and React can work together in a content-heavy interactive website. Organizing each era as structured data allowed the timeline to change its overview, artifact, topics, media, references, and significance without reloading the page. |
+| **Challenges** | `HCITimeline.jsx` became difficult to manage as more information and simulations were added. Multiple contributors also needed to follow consistent structures for imports, media, topics, and citations. |
+| **Creative Development** | Major simulations were separated into reusable React components and conditionally rendered inside the timeline. Key Topics were also changed from plain text into clickable resource links. |
+
+### Batch Processing and Punch Card Simulator
+
+| Category | Details |
+| :--- | :--- |
+| **Things Learned / Fun Facts** | We learned that Hollerith cards use organized hole patterns and that batch-processing users had to prepare jobs and wait for results instead of receiving immediate feedback. |
+| **Challenges** | The first simulator displayed the punched pattern too quickly and did not clearly explain the historical workflow. The era also needed stronger information, citations, media, and captions. |
+| **Creative Development** | We added a staged keypunch and processing sequence, decoded output, historical information about Hollerith and IBM cards, two embedded videos, updated references, and corrected captions. |
+
+### Command-Line Interface Simulator
+
+| Category | Details |
+| :--- | :--- |
+| **Things Learned / Fun Facts** | CLI systems made interaction faster than punch cards, but users still needed to remember exact commands, syntax, and file paths. We also learned how keyboard events and React state can store command history. |
+| **Challenges** | The first CLI version had limited historical context and a basic interaction flow. |
+| **Creative Development** | We added a boot sequence, command-history recall using the arrow keys, expanded the Datapoint 3300 discussion, and updated the links and citations for commands, keyboards, terminals, Unix, and file management. |
+
+### Pointing Device Simulator
+
+| Category | Details |
+| :--- | :--- |
+| **Things Learned / Fun Facts** | We learned that a mouse or trackpad is an indirect input device because movement on one surface controls a pointer on another. Pointer speed, acceleration, target size, distance, and reaction time affect performance. |
+| **Challenges** | The Pointing Devices era originally lacked an interactive artifact. Implementing cursor calculations, target detection, timing, scoring, responsive sizing, and reset behavior required a separate component. |
+| **Creative Development** | We created `PointingDevice.jsx`, which includes a trackpad, moving cursor, random targets, hit and miss counters, average reaction time, tap or click behavior, replay controls, and reduced-motion support. |
+
+### Graphical User Interface and Mini Desktop
+
+| Category | Details |
+| :--- | :--- |
+| **Things Learned / Fun Facts** | We learned that GUIs reduce cognitive load by letting users recognize visible windows, icons, menus, and pointers instead of memorizing commands. |
+| **Challenges** | The desktop required several states for icons, windows, dragging, closing, open applications, and taskbar behavior. The GUI section also needed stronger references and media. |
+| **Creative Development** | The Mini Desktop was inspired by early Windows-style interfaces and includes clickable icons, draggable windows, a working clock, window controls, and a taskbar. GUI explanations, citations, videos, and significance were also expanded. |
+
+### Touch and Mobile Interface
+
+| Category | Details |
+| :--- | :--- |
+| **Things Learned / Fun Facts** | We learned how resistive, capacitive, and infrared touchscreens detect input differently. Capacitive screens helped make multi-touch gestures such as tapping, swiping, and pinching practical. |
+| **Challenges** | A static phone illustration could not clearly demonstrate direct touch interaction. |
+| **Creative Development** | We replaced the static visual with `SmartphoneGesture.jsx`, an interactive mobile-style component that demonstrates gestures and direct manipulation. The era’s research, citations, and topic links were also improved. |
+
+### Spatial and Voice Computing
+
+| Category | Details |
+| :--- | :--- |
+| **Things Learned / Fun Facts** | We learned that browser speech recognition can depend on permissions, browser support, and external speech-to-text services. Voice, VR, and spatial systems also extend interaction through speech, movement, body language, and virtual environments. |
+| **Challenges** | Speech recognition was inconsistent across browsers, and local media files were less convenient to maintain and deploy. |
+| **Creative Development** | We retained a text-command fallback, expanded the virtual-assistant responses, replaced local videos with embedded media, and added discussions about Siri, Alexa, VR, social interaction, virtual learning, and immersive environments. |
+
+### Final Technical Integration and Collaboration
+
+| Category | Details |
+| :--- | :--- |
+| **Things Learned / Fun Facts** | Separating the simulations into components made the code easier to maintain and allowed members to work on different features. GitHub commit history also provided a clear record of individual and incremental contributions. |
+| **Challenges** | The group had to resolve package-version warnings, inconsistent data formats, duplicate entries, unrelated links, caption errors, and integration issues between shared files. |
+| **Creative Development** | The group used structured topic, citation, and media objects; iframe video embeds; component-specific state; responsive styles; and conditional rendering. Recent commits documented updates to voice, touch, pointing devices, CLI, batch processing, captions, and GUI content, with the visible checks passing (`2/2`). |
+
+### Final Testing, Feedback, and Submission Status
+
+| Category | Details |
+| :--- | :--- |
+| **Things Learned / Fun Facts** | Final documentation is part of development because it connects the proposal, implementation choices, challenges, learning outcomes, and collaboration record. |
+| **Challenges** | The deployed website must still be checked for broken links, browser compatibility, mobile responsiveness, accessibility, and media availability. The exact exhibit feedback-form comments were not included in the materials used for this README update. |
+| **Creative Development** | Before submission, the group will add each feedback comment or question together with its response, action taken, and supporting commit or website evidence. The final README will then be committed to `main`, followed by one last GitHub Pages verification. |
+
+
 # **Disclosure On the Use of AI/LLM** 
 
 This is to acknowledge that the Virtual Exhibit was made by the CSARCH2 S02 Group 8. We, Raina Helaga, Jason Benedict Lee, Sofia Maravilla, Venice Raeka Plurad, and Diana Angela Ramirez, utilized Gemini and ChatGPT in the following ways: 
@@ -75,7 +161,7 @@ This is to acknowledge that the Virtual Exhibit was made by the CSARCH2 S02 Grou
 
 - Explaining the format and syntax of .astro and .mdx. 
 
-The group learned and navigated through unfamiliar syntax and approaches that seemed more difficult and faster. The lack of sufficient knowledge while navigating through implementing API elements proved both insightful and convenient. Additionally, debugging, especially with the unfamiliar package versions of astro 
+The group learned to navigate unfamiliar syntax and development approaches that initially seemed difficult and time-consuming. AI tools helped the members explore APIs, understand code structure, review styling approaches, and diagnose unfamiliar Astro and React package-version problems. However, the group remained responsible for revising the suggestions, integrating the code, verifying the sources, testing the interactive elements, and confirming that the final website followed the project requirements. 
 
 # References :
 - Components. (n.d.). Docs. https://docs.astro.build/en/basics/astro-components/
@@ -91,7 +177,7 @@ Plurad, Venice Raeka\
 Ramirez, Diana Angela
 
 ## GITHUB REPOSITORY LINK
-Link to the group’s repository: https://github.com/ventilogz/-CSARCH2-Case-Study-Project-2
+Link to the group’s repository: https://github.com/rainahlga/CSARCH2-HCI-Virtual-Exhibit
 ## I. VIRTUAL EXHIBIT PLAN
 This proposal presents the planned virtual exhibit on Historical Computing, specifically
 focusing on the evolution of Human-Computer Interaction (HCI). It outlines the exhibit’s
