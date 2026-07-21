@@ -3,7 +3,7 @@ This website is an interactive exploration of Human-Computer Interaction, lettin
 
 ## Deployment Link : https://rainahlga.github.io/CSARCH2-HCI-Virtual-Exhibit/
 
-# Documentation: 
+# Documentation (Mid-Milestone): 
 
 ## **Development Actions Completed (Things Done):** 
 
