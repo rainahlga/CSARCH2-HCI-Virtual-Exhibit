@@ -59,7 +59,24 @@ This website is an interactive exploration of Human-Computer Interaction, lettin
 
    - We transformed Key Topics into clickable learning resources so visitors could explore concepts beyond the main exhibit content. 
 
-   - We combined historical information, media, and interactive artifacts in one timeline to create a more unified museum-like experience. 
+   - We combined historical information, media, and interactive artifacts in one timeline to create a more unified museum-like experience.
+
+# **Disclosure On the Use of AI/LLM** 
+
+We, Raina Helaga, Jason Benedict Lee, Sofia Maravilla, Venice Raeka Plurad, and Diana Angela Ramirez,  used ChatGPT and Gemini as supplementary tools during the planning, development, and documentation of the virtual exhibit. These tools were mainly used to support the members while working with unfamiliar technologies and solving technical issues.
+
+AI tools assisted the group in:
+ 
+ - Exploring possible APIs and implementation approaches for the interactive elements.
+ - Understanding Astro, React, JSX, MDX, state management, event handling, and component-based development.
+ - Identifying possible solutions for coding errors, package-version conflicts, import problems, and deployment issues.
+ - Reviewing approaches for responsive design, accessibility, component organization, and media embedding.
+ - Improving the clarity of captions, historical explanations, technical discussions, and README documentation.
+   
+The group did not directly use AI-generated content without review. All suggestions were examined, revised, tested, and adjusted according to the project requirements. The members remained responsible for researching and verifying the historical information, selecting appropriate references, writing and integrating the code, testing the interactive components, and confirming that the deployed website worked properly.
+
+AI tools served only as learning and development aids. The final decisions, implementation, design, research, testing, and documentation were completed and validated by the group.
+
 
 # Documentation (Mid-Milestone): 
 
