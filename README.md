@@ -5,6 +5,62 @@ This website is an interactive exploration of Human-Computer Interaction, lettin
 
 # Documentation (Final Development): 
 
+## **Development Actions Completed (Things Done):** 
+
+   - Updated and completed the information for all six HCI eras. 
+
+   - Added the remaining interactive elements for Pointing Devices and Touch Interfaces. 
+
+   - Expanded the Punch Card, CLI, GUI, Touch, Pointing Device, and Voice sections with references, videos, and HCI significance. 
+
+   - Converted Key Topics into clickable links and corrected incomplete or unrelated sources. 
+
+   - Improved the website’s responsive design, accessibility, and component integration. 
+
+## **Conceptual Insights & Applied Learning (Aha! Moments / Things Learned):** 
+
+   - We learned how Astro and React work together, with Astro handling the website structure and React managing the interactive components. 
+
+   - We learned how React state and event handling control features such as command history, cursor movement, target scoring, touch gestures, draggable windows, and voice responses. 
+
+   - We learned that separating features into components like `PointingDevice.jsx` and `SmartphoneGesture.jsx` makes the code easier to organize, test, and update. 
+
+   - We learned how conditional rendering allows the correct interactive element and information to appear based on the selected HCI era. 
+
+   - We learned how to organize topics, citations, and media using structured data objects and display videos through embedded iframes. 
+
+   - We learned how responsive CSS, accessibility features, GitHub version control, and GitHub Pages deployment help make the website usable, maintainable, and accessible online. 
+
+## **Technical Challenges & Mitigations (Challenges):** 
+
+   - We encountered Astro, React, and Vite package compatibility issues that caused interactive buttons to stop working. This was resolved by updating the project dependencies to compatible versions. 
+
+   - As more features were added, the timeline component became difficult to manage. We separated the simulations into individual React components and used conditional rendering to organize them. 
+
+   - Implementing the Pointing Device activity required accurate cursor movement, target detection, scoring, and reaction-time calculations. These were handled through React state, pointer events, and reset functions. 
+
+   - The Touch interface initially used a static image, so it was replaced with a responsive gesture-based component to provide actual user interaction. 
+
+   - Voice recognition behaved differently across browsers and depended on microphone permissions. A text-command fallback was added so the feature could still be demonstrated. 
+
+   - Local video files increased the repository size and created deployment concerns. Some media files were replaced with embedded YouTube videos using iframes. 
+
+   - Interactive components did not always fit properly on smaller screens. Responsive CSS, media queries, and reduced-motion support were added to improve usability and accessibility. 
+
+## **Creative Iterations & Architectural Pivots (Creative Development):** 
+
+   - We gave each HCI era a distinct interaction style that reflects how users communicated with computers during that period. 
+
+   - We redesigned the exhibit so users could explore history through simulations instead of relying mainly on written explanations. 
+
+   - We used an early desktop aesthetic for the GUI section and a modern assistant-inspired design for the Voice section to clearly distinguish the eras. 
+
+   - We added performance feedback to the Pointing Device activity, such as reaction time and accuracy, to make the interaction more engaging. 
+
+   - We transformed Key Topics into clickable learning resources so visitors could explore concepts beyond the main exhibit content. 
+
+   - We combined historical information, media, and interactive artifacts in one timeline to create a more unified museum-like experience. 
+
 # Documentation (Mid-Milestone): 
 
 ## **Development Actions Completed (Things Done):** 
