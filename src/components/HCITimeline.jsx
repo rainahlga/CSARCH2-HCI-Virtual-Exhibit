@@ -4,7 +4,7 @@ import CLITerminal from "./CLITerminal.jsx";
 import PunchCardSimulator from "./PunchCardSimulator.jsx";
 import GUISimulator from "./MiniDesktop.jsx";
 import SmartphoneGesture from './SmartphoneGesture.jsx';
-import PointingDevice from "./PointingDevice.jsx";   
+import PointingDevice from "./PointingDevice.jsx";
 
 const milestones = [
   {
@@ -103,7 +103,7 @@ const milestones = [
         text: `Sharp, D. E. (1977). Handbook of interactive computer terminals. Reston Publishing Company. https://archive.org/details/handbookofintera00duan`
       }
     ],
-      topics: [
+    topics: [
       //ibahin niyo nalang yung links
       {
         name: "Text-Based Commands",
@@ -122,10 +122,10 @@ const milestones = [
         link: "https://www.redhat.com/en/blog/unix-linux-history"
       }
     ],
-    media:[
+    media: [
       {
         type: "video",
-        url: "https://www.youtube.com/watch?v=mABpAI-pCw0", 
+        url: "https://www.youtube.com/watch?v=mABpAI-pCw0",
         caption: "Traversy Media's video offers a quick, easy overview of the Command-Line Interface (CLI) and some of the most common terminal commands. It gets into the difference between command line, terminal and shell and shows some of the common commands used to navigate directories, manage files, search content and use the keyboard shortcut keys. The tutorial guides the viewers on how to communicate with operating system via text-based user interface, following the principles of the Command Line Era."
       }
     ],
@@ -159,7 +159,7 @@ const milestones = [
         text: "Ng, T. (2003). The optical mouse as a two-dimensional displacement sensor. Sensors and Actuators A: Physical, 107(1), 21-25. https://doi.org/10.1016/S0924-4247(03)00256-5"
       }
     ],
-      topics: [
+    topics: [
       //ibahin niyo nalang yung links
       {
         name: "Computer Mouse",
@@ -180,14 +180,14 @@ const milestones = [
     ],
     media: [
       {
-      type: "video",
-      url: "https://www.youtube.com/embed/vQesgAtr2e4", //palitan niyo nalang
-      caption: "The video from Branch Education explores the components of how a PS4 controller operate with its layers of electronics, its buttons and its general algorithm of mapping the movement of the joysticks to the movement of the cursor on the display."
+        type: "video",
+        url: "https://www.youtube.com/embed/vQesgAtr2e4", //palitan niyo nalang
+        caption: "The video from Branch Education explores the components of how a PS4 controller operate with its layers of electronics, its buttons and its general algorithm of mapping the movement of the joysticks to the movement of the cursor on the display."
       },
       {
-      type: "video",
-      url: "https://www.youtube.com/embed/7Ix0mN8agzo", //palitan niyo nalang
-      caption: "TJerryRigEverything demonstrates and tears apart a Samsung Galaxy Note 7's stylus or an S Pen. He explains how the pens work without any power source while communicating with the phone on its displacement."
+        type: "video",
+        url: "https://www.youtube.com/embed/7Ix0mN8agzo", //palitan niyo nalang
+        caption: "TJerryRigEverything demonstrates and tears apart a Samsung Galaxy Note 7's stylus or an S Pen. He explains how the pens work without any power source while communicating with the phone on its displacement."
       }
     ],
     significance:
@@ -201,46 +201,47 @@ const milestones = [
     tryIt: "Mini Desktop",
     overview:
       "Graphical User Interfaces became popular in the 1980s. They introduced windows, icons, menus, and pointers, allowing users to interact with visual elements instead of typing every command.",
-    artifactTitle: "Desktop Interface",
+    artifactTitle: "Graphical User Interface",
     artifactText:
-      "The desktop interface used icons, folders, windows, menus, and pointers to make computers easier to understand and use.",
-    citations: [],
-      topics: [
-      //ibahin niyo nalang yung links
+      "A graphical user interface (GUI) is a computer program that enables a person to communicate with a computer through the use of symbols, visual metaphors, and pointing devices. Best known for its implementation in Apple Inc.’s Macintosh and Microsoft Corporation’s Windows operating system, the GUI has replaced the arcane and difficult textual interfaces of earlier computing with a relatively intuitive system that has made computer operation not only easier to learn but more pleasant and natural.\n\nThere was no singular inventor of the GUI; it evolved with the help of a series of innovators. The first theorist was Vannevar Bush who envisioned how future information gatherers would use a computer-like device, which he called a “memex”, outfitted with buttons and levers that could access vast amounts of linked data—an idea that anticipated hyperlinking.\n\nBush inspired Douglas Engelbart, a young naval technician, who embarked on a lifelong quest to realize some of those ideas. While working on a U.S. Department of Defense grant, Engelbart formed the Augmentation Research center, devised a set of innovations, and also invented a pointing device, famously known as the “mouse”. These innovations made by Engelbart allowed information to be manipulated in a more flexible, natural manner than the prevalent method of typing one of a limited set of commands.",
+    citations: [
       {
-        name: "Windows",
-        link: "https://www.sciencedirect.com/topics/computer-science/voice-assistant"
+        id: 1,
+        text: "Levy, S. (1998). Graphical user interface. Britannica. https://www.britannica.com/technology/graphical-user-interface"
       },
       {
-        name: "Icons",
-        link: "https://www.ibm.com/think/topics/augmented-reality"
+        id: 2,
+        text: "What is Graphical User Interface? (n.d.). GeeksforGeeks. https://www.geeksforgeeks.org/computer-graphics/what-is-graphical-user-interface/"
+      }
+    ],
+    topics: [
+      {
+        name: "Desktop metaphors",
+        link: "https://web.archive.org/web/20010222011552/http://www.csdl.tamu.edu/~l0f0954/academic/cpsc610/hw2-3.htm"
       },
       {
-        name: "Menus",
-        link: "https://www.britannica.com/technology/virtual-reality"
+        name: "Components, Features, and Design Principles",
+        link: "https://www.geeksforgeeks.org/computer-graphics/what-is-graphical-user-interface"
       },
       {
-        name: "Pointers",
-        link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
-      },
-      {
-        name: "Desktop Metaphor",
-        link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
-      },
-      {
-        name: "Files and Folders",
-        link: "https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spatial-mapping"
+        name: "WIMP model",
+        link: "https://www.lenovo.com/us/en/glossary/wimp/"
       }
     ],
     media: [
       {
-        type: "image",
-        url: "https://youtu.be/rh6e-mW_y5E?si=anJ5FabJKzyflXgh", //palitan niyo nalang
-        caption: "This era is represented through a mini desktop layout inspired by early graphical user interfaces."
+        type: "video",
+        url: "https://www.youtube.com/embed/7S2VKY__f8A",
+        caption: "This video provides an overview of how Graphical User Interfaces work, demonstrating the core features and design principles such as the use of windows, icons, menus, and pointers to interact with a computer system."
+      },
+      {
+        type: "video",
+        url: "https://www.youtube.com/embed/w9u0d4C95Zs",
+        caption: "This video explains the fundamental differences between a Graphical User Interface (GUI) and a Command Line Interface (CLI). It illustrates how the GUI's intuitive, visual approach contrasts with the text-based command execution of the CLI."
       }
     ],
     significance:
-      "GUI made computers easier for non-technical users. It reduced the need to memorize commands and made interaction more visual, intuitive, and accessible.",
+      "During the 1980s, the popularity of the Graphical User Interface (GUI) transformed how computers were used, replacing command-line interfaces with intuitive visual interactions like windows, menus, and pointers. By introducing direct manipulation interfaces, this era established the foundation of modern human-computer interaction—significantly reducing cognitive load, enhancing learnability, and defining core usability principles that shape software design today.",
   },
   {
     id: "touch",
@@ -272,28 +273,28 @@ const milestones = [
       }
     ],
     topics: [
-    //ibahin niyo nalang yung links
+      //ibahin niyo nalang yung links
       {
-      name: "Capacitive Touchscreens",
-      link: "https://www.rocktech.com.hk/rocktech-blog/how-capacitive-touchscreens-work-principles-and-applications/"
-    },
-    {
-      name: "Multi-Touch Gestures",
-      link: "https://hci-museum.lisn.upsaclay.fr/multi-touch-gestures"
-    },
-    {
-      name: "Smartphones",
-      link: "https://www.britannica.com/technology/smartphone"
-    },
-    {
-      name: "Mobile Interfaces",
-      link: "https://www.netguru.com/glossary/mobile-user-interface"
-    },
-    {
-      name: "Direct Manipulation",
-      link: "https://www.nngroup.com/articles/direct-manipulation/"
-    }
-  ],
+        name: "Capacitive Touchscreens",
+        link: "https://www.rocktech.com.hk/rocktech-blog/how-capacitive-touchscreens-work-principles-and-applications/"
+      },
+      {
+        name: "Multi-Touch Gestures",
+        link: "https://hci-museum.lisn.upsaclay.fr/multi-touch-gestures"
+      },
+      {
+        name: "Smartphones",
+        link: "https://www.britannica.com/technology/smartphone"
+      },
+      {
+        name: "Mobile Interfaces",
+        link: "https://www.netguru.com/glossary/mobile-user-interface"
+      },
+      {
+        name: "Direct Manipulation",
+        link: "https://www.nngroup.com/articles/direct-manipulation/"
+      }
+    ],
     media: [
       {
         type: "video",
@@ -481,7 +482,7 @@ function renderFeaturedArtifact(selected) {
             (speechToText.includes("tell") && speechToText.includes("yourself")) ||
             (speechToText.includes("who") && speechToText.includes("you")) ||
             (speechToText.includes("what") && speechToText.includes("are you")) ||
-              speechToText.includes("introduce yourself")
+            speechToText.includes("introduce yourself")
           ) {
             const response =
               "I am a voice-activated assistant, ready to help once you press the button!";
@@ -692,15 +693,15 @@ export default function HCITimeline() {
                   )}
 
                   {item.type === "video" && (
-                      <iframe
-                        width="100%"
-                        height="400"
-                        src={item.url}
-                        title={item.caption}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
+                    <iframe
+                      width="100%"
+                      height="400"
+                      src={item.url}
+                      title={item.caption}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
                   )}
 
                   <p>{item.caption}</p>
