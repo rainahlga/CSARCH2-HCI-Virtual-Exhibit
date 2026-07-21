@@ -621,9 +621,7 @@ export default function HCITimeline() {
         </header>
 
         <section className="try-section">
-          {selected.id !== "mouse" && (
-            <strong>Try It: {selected.tryIt}</strong>
-          )}
+          <strong>Try It: {selected.tryIt}</strong>
           {renderFeaturedArtifact(selected)}
         </section>
 
