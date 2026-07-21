@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
 const ROWS = [12, 11, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; // top to bottom
-const NUM_COLS = 40; // real cards had 80; 40 keeps it readable on screen
+const NUM_COLS = 40; 
 
-// Hollerith encoding: character -> rows punched in one column
 const HOLLERITH = (() => {
   const map = { " ": [] };
   for (let d = 0; d <= 9; d++) map[String(d)] = [d];

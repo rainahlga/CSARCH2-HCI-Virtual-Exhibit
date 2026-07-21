@@ -1,33 +1,10 @@
 import { useRef, useState } from "react";
 
-/*
-  Pointing Device Demo (Trackpad -> Screen)
-  ------------------------------------------------------------
-  Interactive element for the "Pointing Devices" section of the
-  HCI exhibit (1968, Engelbart's Mother of All Demos).
-
-  The big idea this demonstrates: a pointing device is INDIRECT.
-  You move your hand on one surface (the trackpad at the bottom)
-  and a cursor moves on a SEPARATE surface (the screen at the top).
-  Pointing (moving) and selecting (the click button) are two
-  distinct actions - exactly what Engelbart's mouse introduced.
-
-  How it works:
-  - Press START on the screen to begin.
-  - Drag on the trackpad to move the cursor on the screen above.
-    The cursor moves faster than your finger (pointer acceleration),
-    just like a real trackpad.
-  - Press the CLICK button (or tap the trackpad) to select the
-    target under the cursor.
-  - Targets alternate large / small to show Fitts's Law: bigger
-    targets are faster to hit, tracked by the live averages.
-*/
-
-const LARGE_SIZE = 56; // px diameter
+const LARGE_SIZE = 56; 
 const SMALL_SIZE = 24;
 const EDGE_PAD = 14;
-const SENSITIVITY = 1.7; // cursor moves faster than the finger
-const TAP_THRESHOLD = 8; // px of movement below which a drag counts as a tap
+const SENSITIVITY = 1.7; 
+const TAP_THRESHOLD = 8; 
 
 export default function PointingDeviceDemo() {
   const [phase, setPhase] = useState("idle"); // idle | playing
@@ -80,7 +57,6 @@ export default function PointingDeviceDemo() {
     spawnTarget();
   }
 
-  // Selection: is the cursor over the current target?
   function registerClick() {
     if (phase !== "playing" || !target) return;
     const cx = target.x + target.size / 2;
@@ -98,7 +74,6 @@ export default function PointingDeviceDemo() {
     }
   }
 
-  // Trackpad handlers -> move the cursor on the screen above
   function padPointerDown(event) {
     if (phase !== "playing") return;
     event.currentTarget.setPointerCapture(event.pointerId);
@@ -133,7 +108,6 @@ export default function PointingDeviceDemo() {
   function padPointerUp() {
     setPressed(false);
     setContact(null);
-    // A quick tap (little movement) counts as a click, like a real trackpad
     if (lastPointRef.current && movedRef.current < TAP_THRESHOLD) {
       registerClick();
     }
